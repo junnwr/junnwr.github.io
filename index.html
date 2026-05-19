@@ -260,6 +260,13 @@ div#sora_blogger_cntct_form span.clear-bg { display: none; }
   .header-text p { font-size: 20px; }
   .header-logo-desc span, .header-logo-desc p { font-size: 16px; }
 }
+.skill-percent{
+    display:block;
+    height:10px;
+    width:0;
+    background:#00bcd4;
+    transition:width 1s ease;
+}
 
 /* Animate CSS minimal */
 .animated{animation-duration:1s;animation-fill-mode:both}
@@ -442,95 +449,7 @@ div#sora_blogger_cntct_form span.clear-bg { display: none; }
   </div>
   <div style='clear:both;'></div>
 
-  <div class='row' id='content-wrapper'>
-    <div id='main-wrapper'>
-      <div class='blog-posts hfeed'>
-        <div class='post-grid wow fadeInUp' style='visibility: visible;'>
-          <div class='post-grid-item wow flipInX' style='visibility: visible;'>
-            <div class='post hentry'> 
-              <div class='block-image'>
-                <a class='thumb' href='#'><img alt='Projeto 1' src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&q=80'/></a>
-                <font class='retitle'>
-                  <span class='post-retitle'>
-                    <h2 class='post-title entry-title'><a href='#'>Design Web</a></h2>
-                  </span>
-                </font>
-              </div>
-            </div>
-          </div>
-          <div class='post-grid-item wow flipInX' style='visibility: visible;'>
-            <div class='post hentry'> 
-              <div class='block-image'>
-                <a class='thumb' href='#'><img alt='Projeto 2' src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&q=80'/></a>
-                <font class='retitle'>
-                  <span class='post-retitle'>
-                    <h2 class='post-title entry-title'><a href='#'>Automação em Python</a></h2>
-                  </span>
-                </font>
-              </div>
-            </div>
-          </div>
-          <div class='post-grid-item wow flipInX' style='visibility: visible;'>
-            <div class='post hentry'> 
-              <div class='block-image'>
-                <a class='thumb' href='#'><img alt='Projeto 3' src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&q=80'/></a>
-                <font class='retitle'>
-                  <span class='post-retitle'>
-                    <h2 class='post-title entry-title'><a href='#'>Cibersegurança</a></h2>
-                  </span>
-                </font>
-              </div>
-            </div>
-          </div>
-          <div class='post-grid-item wow flipInX' style='visibility: visible;'>
-            <div class='post hentry'> 
-              <div class='block-image'>
-                <a class='thumb' href='#'><img alt='Projeto 4' src='https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&q=80'/></a>
-                <font class='retitle'>
-                  <span class='post-retitle'>
-                    <h2 class='post-title entry-title'><a href='#'>Pentest Report</a></h2>
-                  </span>
-                </font>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     
-    <div id='sidebar-wrapper'>
-      <div class='sidebar' id='sidebar'>
-        <div class='widget PopularPosts' id='PopularPosts1'>
-          <h2>Popular</h2>
-          <div class='widget-content popular-posts'>
-            <ul>
-              <li>
-                <div class='item-content'>
-                  <div class='item-thumbnail'>
-                    <a href='#'><img border='0' alt='Post Popular' height='72' src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=100&q=80' width='72'/></a>
-                  </div>
-                  <div class='item-title'><a href='#'>Pentest na prática</a></div>
-                  <div class='item-snippet'>Aprenda como iniciar e explorar vulnerabilidades...</div>
-                </div>
-                <div style='clear: both;'></div>
-              </li>
-              <li>
-                <div class='item-content'>
-                  <div class='item-thumbnail'>
-                    <a href='#'><img border='0' alt='Post Popular 2' height='72' src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=100&q=80' width='72'/></a>
-                  </div>
-                  <div class='item-title'><a href='#'>Criando ferramentas de Automação</a></div>
-                  <div class='item-snippet'>Aumente sua produtividade usando bibliotecas em Python...</div>
-                </div>
-                <div style='clear: both;'></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style='clear: both;'></div>
-  </div>
 
   <div class='main-gallery wow fadeInRight' id='section-5' style='visibility: visible;'>
     <div class='gallery-cell'>
@@ -705,7 +624,7 @@ $(function() {
         cellAlign: 'left',
         contain: true,
         wrapAround: true,
-        prevNextButtons: true,
+        prevNextButtons: false,
         autoPlay: 5000
     });
 
@@ -722,15 +641,20 @@ $(function() {
         }
     });
 
-    // Animação das Barras de Habilidade
-    var x = $('.skills').prev().height() / 4;
-    $(window).scroll(function() {
-        if ($(window).scrollTop() >= x) {
-            $('.skill-percent').each(function() {
-                $(this).animate({ width: $(this).data('percent') + '%' }, 1000);
-            });
-        }
-    });
+   var x = $('.skills').prev().height() / 4;
+var jaAnimou = false; // <--- Esta variável é a nossa "trava"
+
+$(window).scroll(function() {
+    // Adicionamos "&& !jaAnimou" para verificar se a animação já não aconteceu
+    if ($(window).scrollTop() >= x && !jaAnimou) {
+        
+        jaAnimou = true; // <--- Travamos a animação aqui para não repetir
+
+        $('.skill-percent').each(function() {
+            $(this).animate({ width: $(this).data('percent') + '%' }, 1000);
+        });
+    }
+})
 
     // Desaparecer Loading Screen
     $(window).bind("load", function () {
