@@ -625,124 +625,82 @@
 
         // --- SCRIPT DO QUIZ 2 (Ingles 9.1 a 10.1) ---
         const questionsBank2 = [
-            { q: "Complete: This is _____ (tall) than that building.", options: ["tall", "taller", "tallest"], a: 1, type: "comp" },
-            { q: "Complete: My bag is _____ (big) than yours.", options: ["big", "bigger", "biggest"], a: 1, type: "comp" },
-            { q: "Complete: He is _____ (old) than me.", options: ["old", "older", "oldest"], a: 1, type: "comp" },
-            { q: "Complete: This test is _____ (hard) than yesterday's.", options: ["hard", "harder", "hardest"], a: 1, type: "comp" },
-            { q: "Complete: São Paulo is _____ (far) than Campinas from here.", options: ["far", "farther", "farthest"], a: 1, type: "comp" },
-            { q: "Irregular: This phone is _____ (good) than the old one.", options: ["good", "better", "best"], a: 1, type: "irreg" },
-            { q: "Irregular: The weather was _____ (bad) yesterday.", options: ["bad", "worse", "worst"], a: 1, type: "irreg" },
-            { q: " rule: For 'thin' (CVC), it is _____ than.", options: ["thiner", "thinner", "more thin"], a: 1, type: "spell" },
-            { q: "Complete: This exercise is _____ (easy) than the last.", options: ["easy", "easier", "easyer"], a: 1, type: "y" },
-            { q: "Complete: The city is _____ (busy) than the countryside.", options: ["busy", "busier", "busyer"], a: 1, type: "y" },
-            { q: ": Happy → _____ than.", options: ["happier", "happyer", "more happy"], a: 0, type: "y" },
-            { q: ": Pretty → _____ than.", options: ["prettier", "prettyer", "more pretty"], a: 0, type: "y" },
-            { q: "Complete: This design is _____ (modern) than the old one.", options: ["modern", "more modern", "most modern"], a: 1, type: "long" },
-            { q: " inferiority: This is _____ (difficult) than expected.", options: ["less difficult", "more difficult", "difficultest"], a: 0, type: "long" },
-            { q: "Complete: The meeting was _____ (formal) than usual.", options: ["formal", "more formal", "formalest"], a: 1, type: "long" },
-            { q: "3+ syllables: Expensive → _____ than.", options: ["expensiver", "more expensive", "most expensive"], a: 1, type: "long" },
-            { q: "This is the _____ (difficult) part.", options: ["difficult", "more difficult", "most difficult"], a: 2, type: "super" },
-            { q: ": Modern → the _____ modern.", options: ["more modern", "most modern", "modernest"], a: 1, type: "super" },
-            { q: "This city has the _____ (big) population.", options: ["big", "bigger", "biggest"], a: 2, type: "super" },
-            { q: "Irregular: This is the _____ (good) option.", options: ["good", "better", "best"], a: 2, type: "super" },
-            { q: "When water falls: It's _____ .", options: ["Snowing", "Raining", "Cloudy"], a: 1, type: "weather" },
-            { q: "White cold things from sky: _____ .", options: ["Raining", "Snowing", "Foggy"], a: 1, type: "weather" },
-            { q: "No sun, gray sky: _____ .", options: ["Sunny", "Cloudy", "Hot"], a: 1, type: "weather" },
-            { q: "Air moving fast: _____ .", options: ["Windy", "Foggy", "Freezing"], a: 0, type: "weather" },
-            { q: "Hard to see: _____ .", options: ["Foggy", "Windy", "Rainy"], a: 0, type: "weather" },
-            { q: "'Thunderstorm' = rain + _____ .", options: ["Snow", "Lightning", "Wind"], a: 1, type: "weather" },
-            { q: "Question from : '____ the weather?'", options: ["What is like", "What's like", "What is the weather like?"], a: 2, type: "weather" },
-            { q: " rule 1: 1-2 syl ending in 'y': _____ .", options: ["Add -er", "Change y to i + er", "More"], a: 1, type: "spell" },
-            { q: " rule 2: Ending in consonant-vowel-consonant: _____ .", options: ["Double consonant", "No change", "Change vowel"], a: 0, type: "spell" },
-            { q: " rule 3: Ending in 'e': _____ .", options: ["Add -er", "Drop e + er", "More"], a: 1, type: "spell" },
-            { q: "Thin → _____ ( ex).", options: ["Thiner", "Thinner", "More thin"], a: 1, type: "spell" },
-            { q: "Late → _____ .", options: ["Latter", "Later", "More late"], a: 1, type: "spell" },
-            { q: " ex: _____ than (good).", options: ["Better", "Gooder", "More good"], a: 0, type: "mix" },
-            { q: " ex: _____ than (far).", options: ["Farther", "More far", "Farest"], a: 0, type: "mix" },
-            { q: "'It rained a lot yesterday' usa:", options: ["Present Simple", "Past Simple", "Present Continuous"], a: 1, type: "mix" },
-            { q: "'It is raining now' usa:", options: ["Past Simple", "Present Continuous", "Simple Present"], a: 1, type: "mix" },
-            { q: "This product is more _____ than that one (economical).", options: ["Expensive", "Economical", "Dangerous"], a: 1, type: "vocab" },
-            { q: "'Superiority' significa:", options: ["Pior", "Melhor", "Igual"], a: 1, type: "vocab" },
-            { q: "'Inferiority' ex: less _____ than.", options: ["Difficult", "Easy", "Good"], a: 0, type: "vocab" },
-            { q: "'Could I speak to Mr. Silva?' é:", options: ["Informal", "Polite request", "Command"], a: 1, type: "phone" },
-            { q: "'I'll call you back' usa will para:", options: ["Future plan", "Spontaneous decision", "Past"], a: 1, type: "will" },
-            { q: "'Hold on' significa:", options: ["Desligar", "Aguardar", "Ligar"], a: 1, type: "phone" },
-           // VOCABULARY
-    { q: "What document is a record of what was discussed in a meeting?", options: ["Agenda", "Minutes", "Graph"], a: 1, type: "vocab" },
-    { q: "What is a list of points to be discussed at a future meeting?", options: ["Table", "Bar chart", "Agenda"], a: 2, type: "vocab" },
-    { q: "A 'pie chart' looks like a:", options: ["Circle", "Square", "Line"], a: 0, type: "vocab" },
-    { q: "Which document shows information in columns and rows?", options: ["Table", "Graph", "Agenda"], a: 0, type: "vocab" },
-    { q: "A project 'schedule' is used to show:", options: ["Prices", "Dates and times", "Minutes"], a: 1, type: "vocab" },
-    { q: "A 'bar chart' represents data using:", options: ["Circles", "Rectangular blocks", "Only text"], a: 1, type: "vocab" },
-    { q: "Where do you usually find 'attachments'?", options: ["In a book", "In an email", "On a phone call"], a: 1, type: "vocab" },
-    { q: "If you need the record of the last meeting, ask for the:", options: ["Minutes", "Agenda", "Schedule"], a: 0, type: "vocab" },
-    { q: "The professor said 'Graph' is for linear data, while 'Chart' is generic.", options: ["True", "False"], a: 0, type: "vocab" },
-    { q: "Another name for a project timeline in Unit 9.1 is:", options: ["Minutes", "Schedule", "Pie chart"], a: 1, type: "vocab" },
+           { // 10.2 MAKING CHOICES (SUPERLATIVES & OPINIONS)
+    { q: "Flying is the ____ way to travel.", options: ["safer", "safest", "most safe"], a: 1, type: "superlative" }, // [1, 2]
+    { q: "The French TGV is the ____ train in Europe.", options: ["fastest", "faster", "most fast"], a: 0, type: "superlative" }, // [3]
+    { q: "First class seats are the ____.", options: ["best", "goodest", "better"], a: 0, type: "superlative" }, // [3]
+    { q: "When you agree with an opinion: 'You're ____.'", options: ["true", "right", "sure"], a: 1, type: "opinion" }, // [4]
+    { q: "When you are not sure: 'I'm not so ____.'", options: ["agree", "sure", "right"], a: 1, type: "opinion" }, // [4, 5]
+    { q: "The superlative form of 'bad' is: ____", options: ["badder", "worse", "worst"], a: 2, type: "superlative" }, // [3]
 
-    // OBJECT PRONOUNS
-    { q: "Which pronoun replaces 'The minutes' (plural)?", options: ["It", "Them", "Us"], a: 1, type: "grammar" },
-    { q: "Alex wrote the report. He sent ____ to Carla.", options: ["it", "them", "her"], a: 0, type: "grammar" },
-    { q: "Carla and I are here. Can you send the email to ____?", options: ["we", "us", "them"], a: 1, type: "grammar" },
-    { q: "I saw Mr. Silva and spoke to ____.", options: ["he", "him", "his"], a: 1, type: "grammar" },
-    { q: "If Carla is the recipient, we send the file to ____.", options: ["she", "her", "it"], a: 1, type: "grammar" },
-    { q: "This is my phone number. Please call ____ later.", options: ["me", "I", "my"], a: 0, type: "grammar" },
-    { q: "We have the documents. We have ____ in the office.", options: ["they", "it", "them"], a: 2, type: "grammar" },
-    { q: "The manager is talking to you and me. He is talking to ____.", options: ["us", "we", "you"], a: 0, type: "grammar" },
-    { q: "I don't have the agenda. Can you send ____ to me?", options: ["it", "them", "him"], a: 0, type: "grammar" },
-    { q: "Object pronouns come ____ the verb or preposition.", options: ["Before", "After"], a: 1, type: "grammar" },
+    // 10.3 CHECKING IN (AIRPORT & NOUNS)
+    { q: "Which of these is an uncountable noun?", options: ["Suitcase", "Luggage", "Ticket"], a: 1, type: "nouns" }, // [6]
+    { q: "Question: 'Do you have ____ identification?'", options: ["some", "any", "no"], a: 1, type: "grammar" }, // [6, 7]
+    { q: "Negative: 'I have ____ hand luggage, just a briefcase.'", options: ["any", "some", "no"], a: 2, type: "grammar" }, // [6]
+    { q: "A seat next to the corridor is an ____ seat.", options: ["window", "aisle", "boarding"], a: 1, type: "airport" }, // [7, 8]
+    { q: "If a flight is late, it is ____.", options: ["cancelled", "boarding", "delayed"], a: 2, type: "airport" }, // [8, 9]
+    { q: "You need a ____ pass to get on the plane.", options: ["identity", "boarding", "credit"], a: 1, type: "airport" }, // [7, 8]
 
-    // IRREGULAR VERBS
-    { q: "What is the past of 'GIVE'?", options: ["Gived", "Gave", "Given"], a: 1, type: "verb" },
-    { q: "What is the past of 'SAY'?", options: ["Sayed", "Said", "Says"], a: 1, type: "verb" },
-    { q: "What is the past of 'SEE'?", options: ["Saw", "Seed", "Seen"], a: 0, type: "verb" },
-    { q: "What is the past of 'SEND'?", options: ["Sended", "Send", "Sent"], a: 2, type: "verb" },
-    { q: "What is the past of 'WRITE'?", options: ["Writed", "Wrote", "Written"], a: 1, type: "verb" },
-    { q: "What is the past of 'THINK'?", options: ["Thought", "Thinked", "Thinks"], a: 0, type: "verb" },
-    { q: "What is the past of 'SPEAK'?", options: ["Speaked", "Spoke", "Spoken"], a: 1, type: "verb" },
-    { q: "The past of 'READ' is spelled exactly the same, but pronounced like 'red'.", options: ["True", "False"], a: 0, type: "verb" },
-    { q: "What is the past of 'TELL'?", options: ["Telled", "Told", "Tell"], a: 1, type: "verb" },
-    { q: "Which one is NOT a past irregular verb?", options: ["Had", "Read", "Talked"], a: 2, type: "verb" },
+    // 11.1 SEQUENCING & SUGGESTIONS
+    { q: "A suggestion for 'we': '____ we meet next month?'", options: ["Shall", "Let's", "Will"], a: 0, type: "suggestions" }, // [10]
+    { q: "An affirmative suggestion: '____ go to the office.'", options: ["Shall", "Let's", "Are"], a: 1, type: "suggestions" }, // [10, 11]
+    { q: "To start a list of points: '____, let's talk about the photos.'", options: ["Next", "Then", "First"], a: 2, type: "sequencing" }, // [12]
+    { q: "To end a sequence: '____, we need to arrange a meeting.'", options: ["Finally", "Then", "First"], a: 0, type: "sequencing" }, // [13, 14]
+    { q: "To agree: 'That's a ____ idea.'", options: ["well", "good", "best"], a: 1, type: "opinion" }, // [12, 15]
 
-    // TELEPHONE
-    { q: "A polite way to start: '____ I speak to Mr. Webb?'", options: ["Will", "Could", "Are"], a: 1, type: "phone" },
-    { q: "When answering: 'This is Carla ____'", options: ["Speaking", "Talking", "Calling"], a: 0, type: "phone" },
-    { q: "To be polite: 'I'm ____ she is out.'", options: ["Sad", "Afraid", "Busy"], a: 1, type: "phone" },
-    { q: "To ask someone to wait: '____ for a moment, please.'", options: ["Wait", "Hold", "Stop"], a: 1, type: "phone" },
-    { q: "Question: 'Who is ____?'", options: ["Speaking", "Calling", "Both"], a: 2, type: "phone" },
+    // 11.2 FUTURE WITH 'GOING TO'
+    { q: "I ____ going to take a taxi to the hotel.", options: ["is", "are", "am"], a: 2, type: "future" }, // [16, 17]
+    { q: "They ____ going to work on the brochure.", options: ["am", "is", "are"], a: 2, type: "future" }, // [18]
+    { q: "Question: 'What ____ she going to present?'", options: ["is", "am", "are"], a: 0, type: "future" }, // [19, 20]
+    { q: "Our ____ is to finish the project in two months.", options: ["target", "plan", "goal"], a: 2, type: "future" }, // [19, 21]
 
-    // WILL
-    { q: "We use 'will' for ____ decisions.", options: ["Planned", "Spontaneous", "Past"], a: 1, type: "will" },
-    { q: "I ____ call you back.", options: ["will", "am", "going to"], a: 0, type: "will" },
-    { q: "'I'll' is:", options: ["I am", "I will", "I feel"], a: 1, type: "will" },
+    // 11.3 STAYING AT A HOTEL (HAVE GOT & VOCABULARY)
+    { q: "I ____ got a reservation for three nights.", options: ["has", "'ve", "do"], a: 1, type: "hotel" }, // [22, 23]
+    { q: "Question: '____ the hotel got a restaurant?'", options: ["Have", "Has", "Does"], a: 1, type: "hotel" }, // [23]
+    { q: "A room for one person is a ____ room.", options: ["twin", "double", "single"], a: 2, type: "hotel" }, // [24]
+    { q: "Can you ____ in this form, please?", options: ["sign", "fill", "check"], a: 1, type: "hotel" }, // [23, 25]
+    { q: "I'd like a ____ call at 7:00 AM.", options: ["wake-up", "morning", "check"], a: 0, type: "hotel" }, // [24, 25]
+    { q: "When leaving the hotel: 'Could I ____ out, please?'", options: ["check", "sign", "fill"], a: 0, type: "hotel" }, // [24-26]
+    { q: "I had some orange juice from the ____.", options: ["reception", "minibar", "bill"], a: 1, type: "hotel" }, // [24, 27]
+    { q: "The company is paying the ____.", options: ["bill", "extras", "form"], a: 0, type: "hotel" }, // [24, 26]
+    { q: "A room with two separate beds is a ____ room.", options: ["double", "twin", "single"], a: 1, type: "hotel" } // [24, 27]
+}
+            { // 10.2 MAKING CHOICES (SUPERLATIVES & OPINIONS)
+    { q: "The French TGV is the ____ way to get from city centre to city centre.", options: ["quickest", "quicker", "quick"], a: 0, type: "superlative" }, // [1]
+    { q: "Compared with planes, the TGV has ____ seats.", options: ["bigger", "the biggest", "bigest"], a: 0, type: "comparative" }, // [1]
+    { q: "When you disagree: 'I'm not so ____ about that.'", options: ["right", "sure", "true"], a: 1, type: "opinion" }, // [2, 3]
+    { q: "Which is the superlative of 'good'?", options: ["the goodest", "the better", "the best"], a: 2, type: "superlative" }, // [1]
+    { q: "Low-cost airlines often fly to the ____ airports.", options: ["cheapest", "further out", "nearest"], a: 1, type: "superlative" }, // [4]
 
-    // WEATHER
-    { q: "No sun, gray sky:", options: ["Sunny", "Cloudy", "Freezing"], a: 1, type: "weather" },
-    { q: "0°C or less:", options: ["Warm", "Freezing", "Windy"], a: 1, type: "weather" },
-    { q: "Hard to see:", options: ["Foggy", "Sunny", "Raining"], a: 0, type: "weather" },
-    { q: "Rain + lightning:", options: ["Snow", "Thunderstorm", "Wind"], a: 1, type: "weather" },
-    { q: "Water falls:", options: ["Snowing", "Raining", "Cloudy"], a: 1, type: "weather" },
+    // 10.3 CHECKING IN (GRAMMAR & VOCABULARY)
+    { q: "Is the word 'Information' countable or uncountable?", options: ["Countable", "Uncountable"], a: 1, type: "nouns" }, // [5]
+    { q: "Negative sentence: 'I don't have ____ other bags.'", options: ["some", "any", "no"], a: 1, type: "grammar" }, // [6]
+    { q: "Positive sentence: 'There are ____ passengers at the check-in.'", options: ["some", "any", "no"], a: 0, type: "grammar" }, // [7]
+    { q: "I'm sorry, I have ____ other identification with me.", options: ["any", "no", "some"], a: 1, type: "grammar" }, // [8]
+    { q: "The flight to Jakarta is ____. There is no flight today.", options: ["delayed", "boarding", "cancelled"], a: 2, type: "airport" }, // [9]
+    { q: "Where you show your passport and leave your bags: the ____.", options: ["gate", "check-in", "security check"], a: 1, type: "airport" }, // [6, 10]
 
-    // TENSES
-    { q: "It ____ raining now.", options: ["is", "was", "rains"], a: 0, type: "tense" },
-    { q: "It ____ yesterday.", options: ["rains", "rained", "is raining"], a: 1, type: "tense" },
-    { q: "For 'now' we use:", options: ["Simple Present", "Present Continuous", "Past"], a: 1, type: "tense" },
-    { q: "For 'yesterday' we use:", options: ["Present", "Past", "Continuous"], a: 1, type: "tense" },
+    // 11.1 SEQUENCING & SUGGESTIONS
+    { q: "____ I send the email to you now?", options: ["Shall", "Let's", "Will"], a: 0, type: "suggestions" }, // [11]
+    { q: "To suggest an action: '____ talk again tomorrow.'", options: ["Shall", "Let's", "Do"], a: 1, type: "suggestions" }, // [11]
+    { q: "Order of ideas: '____, let's have a coffee and then we can work.'", options: ["Finally", "First", "Next"], a: 1, type: "sequencing" }, // [12]
+    { q: "The most ____ job is to finish the brochure.", options: ["urgent", "then", "next"], a: 0, type: "priority" }, // [3, 12]
+    { q: "____ we have dinner on Wednesday?", options: ["Let's", "Shall", "Are"], a: 1, type: "suggestions" }, // [13]
 
-    // COMPARATIVES
-    { q: "Comparative of 'FAST'?", options: ["More fast", "Faster", "Fastest"], a: 1, type: "comp" },
-    { q: "Comparative of 'GOOD'?", options: ["Gooder", "Better", "Best"], a: 1, type: "irreg" },
-    { q: "Comparative of 'BAD'?", options: ["Badder", "Worst", "Worse"], a: 2, type: "irreg" },
-    { q: "Comparative of 'BIG'?", options: ["Biger", "Bigger", "Biggest"], a: 1, type: "spell" },
-    { q: "Comparative of 'EASY'?", options: ["Easy", "Easier", "Easyer"], a: 1, type: "y" },
-    { q: "Comparative of 'EXPENSIVE'?", options: ["Expensiver", "More expensive", "Most expensive"], a: 1, type: "long" },
-    { q: "'Than' is used with:", options: ["Comparatives", "Superlatives", "Past"], a: 0, type: "comp" },
+    // 11.2 FUTURE WITH 'GOING TO'
+    { q: "Kristi ____ going to meet Akio in Tokyo.", options: ["am", "is", "are"], a: 1, type: "future" }, // [14]
+    { q: "Question: '____ you going to work late tonight?'", options: ["Is", "Am", "Are"], a: 2, type: "future" }, // [8]
+    { q: "Negative: 'I ____ not book the tickets on the Internet.'", options: ["am", "is", "are"], a: 0, type: "future" }, // [8]
+    { q: "What's the ____ date for having the website ready?", options: ["goal", "aim", "target"], a: 2, type: "future" }, // [15]
 
-    // ADJECTIVES
-    { q: "Means 'can be trusted':", options: ["Dangerous", "Reliable", "Cheap"], a: 1, type: "vocab" },
-    { q: "Means 'saves money':", options: ["Expensive", "Economical", "Safe"], a: 1, type: "vocab" },
-    { q: "Opposite of 'Safe':", options: ["Reliable", "Dangerous", "Cheap"], a: 1, type: "vocab" },
-    { q: "Opposite of 'Cheap':", options: ["Expensive", "Safe", "Low"], a: 0, type: "vocab" }
-          
+    // 11.3 STAYING AT A HOTEL (HAVE GOT & VOCABULARY)
+    { q: "Sentence: 'I ____ got a reservation.'", options: ["have", "has", "'ve"], a: 2, type: "hotel" }, // [16, 17]
+    { q: "Negative: 'She ____ got a key.'", options: ["haven't", "hasn't", "don't"], a: 1, type: "hotel" }, // [16]
+    { q: "A room with two separate beds is a ____ room.", options: ["double", "single", "twin"], a: 2, type: "hotel" }, // [17]
+    { q: "You write your ____ on a cheque or form.", options: ["signature", "bill", "extras"], a: 0, type: "hotel" }, // [17, 18]
+    { q: "Phone calls and drinks are often called ____.", options: ["bills", "extras", "forms"], a: 1, type: "hotel" }, // [17, 18]
+    { q: "If you want a meal in your room, you phone room ____.", options: ["service", "check", "wake"], a: 0, type: "hotel" }, // [18]
+}
           
         ];
 
