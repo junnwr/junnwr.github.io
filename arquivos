@@ -1,0 +1,856 @@
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"></meta>
+    <title>Arquivos - Comandos Básicos Linux e Inglês</title>
+    <style>
+        /* --- ESTILOS GERAIS E DAS ABAS --- */
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .tabs { display: flex; cursor: pointer; margin-bottom: 10px; flex-wrap: wrap; gap: 5px; }
+        .tab { padding: 10px 20px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 5px 5px 0 0; }
+        .tab.active { background: #ccc; }
+        
+        .tab-content { display: none; border: 1px solid #ccc; padding: 20px; border-radius: 0 0 5px 5px; }
+        .tab-content.active { display: block; } /* Comportamento padrão para aba ativa */
+
+        /* --- ESTILOS QUIZ 1 (Ingles) --- */
+        #Ingles {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #333;
+            padding: 20px;
+        }
+        /* Garante que o flex só funcione quando a aba estiver ativa */
+        #Ingles.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #Ingles .container { max-width: 900px; width: 100%; background-color: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); margin-top: 20px; }
+        #Ingles header { text-align: center; margin-bottom: 30px; }
+        #Ingles h1 { color: #2c3e50; margin-bottom: 15px; font-size: 2.5rem; }
+        #Ingles .description { color: #7f8c8d; font-size: 1.1rem; margin-bottom: 20px; }
+        #Ingles .score-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding: 15px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); }
+        #Ingles .score { font-size: 1.3rem; font-weight: bold; color: #2c3e50; }
+        #Ingles .controls { display: flex; gap: 10px; flex-wrap: wrap; }
+        #Ingles button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+        #Ingles .skip-btn { background-color: #e74c3c; color: white; }
+        #Ingles .skip-btn:hover { background-color: #c0392b; }
+        #Ingles .hint-btn { background-color: #f39c12; color: white; }
+        #Ingles .hint-btn:hover { background-color: #d35400; }
+        #Ingles .submit-btn { background-color: #2ecc71; color: white; }
+        #Ingles .submit-btn:hover { background-color: #27ae60; }
+        #Ingles .restart-btn { background-color: #3498db; color: white; margin-top: 20px; }
+        #Ingles .restart-btn:hover { background-color: #2980b9; }
+        #Ingles .question-container { margin-bottom: 25px; }
+        #Ingles .question { font-weight: bold; margin-bottom: 15px; font-size: 1.2rem; color: #2c3e50; }
+        #Ingles .options { margin: 10px 0; }
+        #Ingles .option { margin: 12px 0; padding: 10px; background-color: #f8f9fa; border-radius: 5px; transition: background-color 0.2s; }
+        #Ingles .option:hover { background-color: #e9ecef; }
+        #Ingles input[type="text"] { padding: 12px; width: 100%; border: 2px solid #ddd; border-radius: 5px; font-size: 1rem; margin: 10px 0; box-sizing: border-box;}
+        #Ingles input[type="text"]:focus { border-color: #3498db; outline: none; }
+        #Ingles .result { margin-top: 15px; font-weight: bold; padding: 15px; border-radius: 8px; }
+        #Ingles .correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        #Ingles .incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        #Ingles .hint { background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; margin: 15px 0; border: 1px solid #ffeaa7; }
+        #Ingles .completed { text-align: center; padding: 30px; background-color: #d4edda; border-radius: 10px; margin-top: 30px; }
+        #Ingles .completed h2 { color: #155724; margin-bottom: 20px; }
+        #Ingles .matching-container { display: flex; justify-content: space-between; flex-wrap: wrap; margin: 15px 0; }
+        #Ingles .match-column { width: 45%; }
+        #Ingles .match-item { padding: 12px; margin: 8px 0; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; }
+        #Ingles select { padding: 8px; width: 100%; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box;}
+        #Ingles .progress-bar { height: 10px; background-color: #ecf0f1; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
+        #Ingles .progress { height: 100%; background-color: #3498db; border-radius: 5px; transition: width 0.3s ease; }
+        #Ingles .question-counter { text-align: right; color: #7f8c8d; margin-bottom: 10px; }
+        #Ingles .database-info { background-color: #e3f2fd; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center; }
+        #Ingles .filter-container { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+        #Ingles .filter-btn { background-color: #9b59b6; color: white; }
+        #Ingles .filter-btn.active { background-color: #8e44ad; box-shadow: 0 0 5px rgba(0,0,0,0.3); }
+
+        /* --- ESTILOS QUIZ 2 (Ingles: 9.1 a 10.1) --- */
+        #ingles-9-10 { background-color: #eef2f7; }
+        /* Garante que o flex só funcione quando a aba estiver ativa */
+        #ingles-9-10.active {
+            display: flex; 
+            justify-content: center;
+        }
+        #ingles-9-10 .q2-container { max-width: 700px; width: 100%; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        #ingles-9-10 h1 { color: #2c3e50; text-align: center; margin-bottom: 5px; }
+        #ingles-9-10 .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 25px; font-size: 0.9em; }
+        #ingles-9-10 .question-box { margin-bottom: 25px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+        #ingles-9-10 .question-text { font-weight: bold; font-size: 1.1em; color: #34495e; margin-bottom: 15px; }
+        #ingles-9-10 .options-list { list-style: none; padding: 0; }
+        #ingles-9-10 .option-item { background: white; border: 2px solid #ecf0f1; padding: 12px; margin-bottom: 10px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        #ingles-9-10 .option-item:hover { background: #f9f9f9; border-color: #3498db; }
+        #ingles-9-10 .correct { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: bold; }
+        #ingles-9-10 .wrong { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; font-weight: bold; }
+        #ingles-9-10 .feedback { margin-top: 10px; font-style: italic; display: none; padding: 10px; border-radius: 4px; }
+        #ingles-9-10 .btn-restart { display: block; width: 100%; padding: 15px; background: #3498db; color: white; border: none; border-radius: 6px; font-size: 1.1em; cursor: pointer; margin-top: 20px; }
+        #ingles-9-10 .btn-restart:hover { background: #2980b9; }
+        #ingles-9-10 #score-board2 { text-align: center; font-size: 1.2em; font-weight: bold; margin-top: 20px; color: #2c3e50; }
+        #ingles-9-10 .q2-progress { text-align: center; margin-bottom: 20px; font-size: 1em; color: #7f8c8d; }
+        #ingles-9-10 .section-title { color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; margin-bottom: 20px; display: inline-block; }
+
+        @media (max-width: 600px) {
+            #Ingles .container, #ingles-9-10 .q2-container { padding: 20px; }
+            #Ingles h1, #ingles-9-10 h1 { font-size: 2rem; }
+            #Ingles .matching-container { flex-direction: column; }
+            #Ingles .match-column { width: 100%; }
+            #Ingles .controls { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('comandos-basicos')">Comandos Básicos</div>
+        <div class="tab" onclick="showTab('Ingles')">Ingles</div>
+        <div class="tab" onclick="showTab('ingles-9-10')">Ingles: 9.1 a 10.1</div>
+    </div>
+
+    <div class="tab-content active" id="comandos-basicos">
+        <h2>Comandos Básicos do Linux</h2>
+        <ul>
+            <li><strong>ls</strong> - Lista arquivos e diretórios</li>
+            <li><strong>cd</strong> - Navega entre diretórios</li>
+            <li><strong>pwd</strong> - Mostra o diretório atual</li>
+            <li><strong>mkdir</strong> - Cria um novo diretório</li>
+            <li><strong>rm</strong> - Remove arquivos ou diretórios</li>
+            <li><strong>cp</strong> - Copia arquivos ou diretórios</li>
+            <li><strong>mv</strong> - Move ou renomeia arquivos ou diretórios</li>
+            <li><strong>cat</strong> - Exibe o conteúdo de arquivos</li>
+            <li><strong>echo</strong> - Exibe mensagens ou redireciona saídas</li>
+            <li><strong>man</strong> - Acessa o manual de comandos</li>
+            <li><strong>touch</strong> - Cria arquivos vazios ou atualiza a data de modificação</li>
+            <li><strong>find</strong> - Localiza arquivos e diretórios</li>
+            <li><strong>grep</strong> - Busca texto em arquivos</li>
+            <li><strong>chmod</strong> - Altera permissões de arquivos</li>
+            <li><strong>chown</strong> - Altera o proprietário de arquivos</li>
+            <li><strong>tar</strong> - Compacta e descompacta arquivos</li>
+            <li><strong>zip</strong> - Compacta arquivos em formato ZIP</li>
+            <li><strong>unzip</strong> - Descompacta arquivos ZIP</li>
+            <li><strong>ps</strong> - Exibe processos em execução</li>
+            <li><strong>kill</strong> - Encerra processos</li>
+            <li><strong>top</strong> - Monitora processos em tempo real</li>
+            <li><strong>df</strong> - Exibe o uso de espaço em disco</li>
+            <li><strong>du</strong> - Exibe o uso de espaço por arquivo/pasta</li>
+            <li><strong>free</strong> - Exibe o uso de memória</li>
+            <li><strong>ifconfig</strong> - Configura interfaces de rede</li>
+            <li><strong>ip</strong> - Exibe/Configura interfaces de rede</li>
+            <li><strong>ping</strong> - Testa a conectividade com outro host</li>
+            <li><strong>netstat</strong> - Exibe conexões de rede</li>
+            <li><strong>ss</strong> - Exibe conexões de rede (substituto do netstat)</li>
+            <li><strong>scp</strong> - Copia arquivos via SSH</li>
+            <li><strong>rsync</strong> - Sincroniza arquivos e diretórios</li>
+            <li><strong>wget</strong> - Faz download de arquivos da web</li>
+            <li><strong>curl</strong> - Faz requisições HTTP</li>
+            <li><strong>history</strong> - Mostra o histórico de comandos</li>
+            <li><strong>alias</strong> - Cria atalhos para comandos</li>
+            <li><strong>unalias</strong> - Remove atalhos para comandos</li>
+            <li><strong>uptime</strong> - Mostra há quanto tempo o sistema está em execução</li>
+            <li><strong>whoami</strong> - Mostra o usuário atual</li>
+            <li><strong>id</strong> - Mostra o ID do usuário</li>
+            <li><strong>groups</strong> - Mostra os grupos do usuário</li>
+            <li><strong>passwd</strong> - Altera a senha do usuário</li>
+            <li><strong>su</strong> - Troca de usuário</li>
+            <li><strong>sudo</strong> - Executa comandos como superusuário</li>
+            <li><strong>exit</strong> - Sai do terminal ou de uma sessão</li>
+            <li><strong>shutdown</strong> - Desliga o sistema</li>
+            <li><strong>reboot</strong> - Reinicia o sistema</li>
+            <li><strong>service</strong> - Gerencia serviços do sistema</li>
+            <li><strong>systemctl</strong> - Controla o sistema e serviços</li>
+            <li><strong>journalctl</strong> - Visualiza logs do sistema</li>
+            <li><strong>dmesg</strong> - Mostra mensagens do kernel</li>
+            <li><strong>lsblk</strong> - Lista dispositivos de bloco</li>
+            <li><strong>mount</strong> - Monta sistemas de arquivos</li>
+            <li><strong>umount</strong> - Desmonta sistemas de arquivos</li>
+            <li><strong>fdisk</strong> - Gerencia partições de disco</li>
+            <li><strong>mkfs</strong> - Cria sistemas de arquivos</li>
+        </ul>
+    </div>
+
+    <div class="tab-content" id="Ingles">
+        <header>
+            <h1>Jogo de Inglês</h1>
+            <p class="description">Teste Inglês, lição 6.2 a 7.3 - Mais de 100 questões</p>
+        </header>
+
+        <div class="container">
+            <div class="database-info">
+                <p>Teste seu conhecimento</p>
+                <p><strong>105 questões</strong> disponíveis | <strong>5 tipos</strong> diferentes</p>
+            </div>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Todas</button>
+                <button class="filter-btn" data-filter="grammar">Gramática</button>
+                <button class="filter-btn" data-filter="vocabulary">Vocabulário</button>
+                <button class="filter-btn" data-filter="verbs">Verbos</button>
+                <button class="filter-btn" data-filter="prepositions">Preposições</button>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            
+            <div class="question-counter" id="question-counter">Questão 1/105</div>
+            
+            <div class="score-container">
+                <div class="score" id="score">Pontuação: 0/105</div>
+                <div class="controls">
+                    <button class="skip-btn" id="skip-btn">Pular Questão</button>
+                    <button class="hint-btn" id="hint-btn">Dica</button>
+                </div>
+            </div>
+            
+            <div id="game-container"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="ingles-9-10">
+        <div class="q2-container">
+            <h1>Master English Quiz - Units 9.1 to 10.1</h1>
+            <div class="subtitle">200+ questões baseadas na apostila e s (Comparativos, Superlativos, Weather, Pronouns, Will, Telephone, Vocab). 10 aleatórias por vez!</div>
+
+            <div class="q2-progress" id="progress2">Clique para começar</div>
+            <div id="quiz-area2"></div>
+
+            <div id="score-board2"></div>
+            <button class="btn-restart" onclick="startQuiz2()">Nova Rodada (10 Questões Aleatórias)</button>
+        </div>
+    </div>
+
+    <script>
+        // --- SCRIPT PARA TROCAR ABAS ---
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // --- SCRIPT DO QUIZ 1 (Ingles 6.2 a 7.3) ---
+        const questionDatabase = [
+            // Gramática (30 questões)
+            { id: 1, type: "complete", category: "grammar", question: "Jim: Emma, I'm ______ a meeting at the ______ with Laura and Chris.", answer: ["having", "moment"], options: ["having", "phoning", "working", "moment", "now", "today"] },
+            { id: 2, type: "complete", category: "grammar", question: "Emma isn't in the office this week. She ______ on a project in Istanbul.", answer: ["is working"], hint: "Use present continuous tense" },
+            { id: 3, type: "choice", category: "grammar", question: "Which sentence is in the present continuous?", options: ["I work every day", "I'm working at the moment", "I worked yesterday", "I will work tomorrow"], answer: 1 },
+            { id: 4, type: "complete", category: "grammar", question: "Laura's in a meeting. She ______ lunch at the moment.", answer: ["is not having", "isn't having"], hint: "Negative form of present continuous" },
+            { id: 5, type: "complete", category: "grammar", question: "Emma and her colleagues are on the last job. They ______ the testing.", answer: ["are finishing"], hint: "Use present continuous tense" },
+            { id: 6, type: "wh-question", category: "grammar", question: "Complete the question: ______ are you working on at the moment?", answer: ["What"] },
+            { id: 7, type: "complete", category: "grammar", question: "She's ______ a phone call right now.", answer: ["making"] },
+            { id: 8, type: "choice", category: "grammar", question: "Which is the correct negative form?", options: ["He not working", "He isn't working", "He doesn't working", "He not is working"], answer: 1 },
+            { id: 9, type: "wh-question", category: "grammar", question: "Complete the question: ______ is she meeting today?", answer: ["Who"] },
+            { id: 10, type: "complete", category: "grammar", question: "I hate ______. It's so boring!", answer: ["running"], hint: "Use the -ing form" },
+            { id: 11, type: "complete", category: "grammar", question: "She loves ______ in her spare time.", answer: ["swimming"], hint: "Use the -ing form" },
+            { id: 12, type: "choice", category: "grammar", question: "Which sentence uses the gerund correctly?", options: ["I like to swimming", "I like swim", "I like swimming", "I like swam"], answer: 2 },
+            { id: 13, type: "complete", category: "grammar", question: "They ______ working on the project at the moment.", answer: ["are not", "aren't"] },
+            { id: 14, type: "complete", category: "grammar", question: "______ you having a good time in Istanbul?", answer: ["Are"] },
+            { id: 15, type: "complete", category: "grammar", question: "What ______ your team doing now?", answer: ["is"] },
+            { id: 16, type: "complete", category: "grammar", question: "I ______ like to return on Saturday.", answer: ["would"] },
+            { id: 17, type: "complete", category: "grammar", question: "Do you ______ to book the return trip now?", answer: ["want"] },
+            { id: 18, type: "choice", category: "grammar", question: "Which is the correct negative form?", options: ["We're not working today", "We not working today", "We aren't working today", "Both 1 and 3 are correct"], answer: 3 },
+            { id: 19, type: "complete", category: "grammar", question: "The For Dummies books are perfect for absolute ______.", answer: ["beginners"] },
+            { id: 20, type: "complete", category: "grammar", question: "People buy For Dummies books to learn new ______.", answer: ["hobbies", "skills"] },
+            { id: 21, type: "wh-question", category: "grammar", question: "Complete the question: ______ do you do in your spare time?", answer: ["What"] },
+            { id: 22, type: "complete", category: "grammar", question: "We're meeting ______ Tuesday afternoon.", answer: ["on"] },
+            { id: 23, type: "complete", category: "grammar", question: "The conference is ______ March.", answer: ["in"] },
+            { id: 24, type: "complete", category: "grammar", question: "The train leaves ______ 9 o'clock.", answer: ["at"] },
+            { id: 25, type: "choice", category: "grammar", question: "Which preposition is correct? 'I'm free ______ the weekend'", options: ["on", "in", "at", "by"], answer: 2 },
+            { id: 26, type: "complete", category: "grammar", question: "I can't make it ______ Friday the thirteenth.", answer: ["on"] },
+            { id: 27, type: "complete", category: "grammar", question: "We're having a meeting ______ the morning.", answer: ["in"] },
+            { id: 28, type: "wh-question", category: "grammar", question: "Complete the question: ______ are you going to Paris?", answer: ["Why"] },
+            { id: 29, type: "wh-question", category: "grammar", question: "Complete the question: ______ is Gary meeting in London?", answer: ["Who"] },
+            { id: 30, type: "wh-question", category: "grammar", question: "Complete the question: ______ is he travelling to Paris?", answer: ["How"] },
+            
+            // Vocabulário (25 questões)
+            { id: 31, type: "matching", category: "vocabulary", question: "Match the activities with the correct verb:", pairs: [ { left: "basketball", right: "play" }, { left: "aerobics", right: "do" }, { left: "cycling", right: "go" }, { left: "the guitar", right: "play" }, { left: "weight training", right: "do" }, { left: "swimming", right: "go" } ] },
+            { id: 32, type: "complete", category: "vocabulary", question: "I play ______ in my spare time.", answer: ["basketball", "football", "chess", "the guitar"] },
+            { id: 33, type: "complete", category: "vocabulary", question: "I go ______ every weekend.", answer: ["cycling", "running", "swimming", "skiing"] },
+            { id: 34, type: "complete", category: "vocabulary", question: "I do ______ at the gym.", answer: ["aerobics", "weight training"] },
+            { id: 35, type: "choice", category: "vocabulary", question: "What is a 'round-trip ticket' called in British English?", options: ["single", "return", "one-way", "circular"], answer: 1 },
+            { id: 36, type: "complete", category: "vocabulary", question: "I'd like to ______ a seat to Paris, please.", answer: ["book"] },
+            { id: 37, type: "complete", category: "vocabulary", question: "Would you like a single or a ______ ticket?", answer: ["return"] },
+            { id: 38, type: "complete", category: "vocabulary", question: "I want to ______ on Saturday.", answer: ["return"] },
+            { id: 39, type: "complete", category: "vocabulary", question: "How much is the standard ______?", answer: ["fare"] },
+            { id: 40, type: "complete", category: "vocabulary", question: "The train ______ at 17:15 and arrives at 20:55.", answer: ["leaves", "departs"] },
+            { id: 41, type: "complete", category: "vocabulary", question: "Can I ______ my reservation?", answer: ["change"] },
+            { id: 42, type: "matching", category: "vocabulary", question: "Match the questions with the correct answers:", pairs: [ { left: "What are you doing?", right: "I'm working on a project" }, { left: "Where are you going?", right: "To the London office" }, { left: "Who are you meeting?", right: "Tanya Dolan" }, { left: "Why are you leaving early?", right: "I have an appointment" }, { left: "When are you arriving?", right: "At 6:25 am" }, { left: "How are you travelling?", right: "By train" } ] },
+            { id: 43, type: "choice", category: "vocabulary", question: "Which is more formal/polite?", options: ["I want to book a seat", "I'd like to book a seat", "Book me a seat", "I need to book a seat"], answer: 1 },
+            { id: 44, type: "complete", category: "vocabulary", question: "Gary is ______ Los Angeles on Monday.", answer: ["leaving"] },
+            { id: 45, type: "complete", category: "vocabulary", question: "He's ______ the train to Paris.", answer: ["taking"] },
+            { id: 46, type: "complete", category: "vocabulary", question: "He's ______ in Paris for three nights.", answer: ["staying"] },
+            { id: 47, type: "complete", category: "vocabulary", question: "He's ______ back to London on Saturday.", answer: ["coming"] },
+            { id: 48, type: "complete", category: "vocabulary", question: "I'm free ______ the end of January.", answer: ["at"] },
+            { id: 49, type: "complete", category: "vocabulary", question: "I'm busy ______ the beginning of February.", answer: ["at"] },
+            { id: 50, type: "complete", category: "vocabulary", question: "Are you free ______ the middle of March?", answer: ["in"] },
+            { id: 51, type: "complete", category: "vocabulary", question: "______ the morning? ______ nine o'clock?", answer: ["In", "At"] },
+            { id: 52, type: "complete", category: "vocabulary", question: "I'm free ______ February.", answer: ["in"] },
+            { id: 53, type: "complete", category: "vocabulary", question: "No, I can't make it ______ Friday.", answer: ["on"] },
+            { id: 54, type: "complete", category: "vocabulary", question: "Yes, I can make it ______ the twenty-eighth.", answer: ["on"] },
+            { id: 55, type: "complete", category: "vocabulary", question: "The flight leaves ______ 9:00 am.", answer: ["at"] },
+           
+            // Verbos (20 questões)
+            { id: 56, type: "complete", category: "verbs", question: "Right now, I ______ (work) on a new project.", answer: ["am working"], hint: "Use present continuous" },
+            { id: 57, type: "complete", category: "verbs", question: "She ______ (not/work) today because she's sick.", answer: ["is not working", "isn't working"], hint: "Negative form of present continuous" },
+            { id: 58, type: "complete", category: "verbs", question: "______ you ______ (study) English at the moment?", answer: ["Are", "studying"], hint: "Question form of present continuous" },
+            { id: 59, type: "complete", category: "verbs", question: "They ______ (have) a meeting right now.", answer: ["are having"], hint: "Use present continuous" },
+            { id: 60, type: "complete", category: "verbs", question: "What ______ he ______ (do) at the moment?", answer: ["is", "doing"], hint: "Question form of present continuous" },
+            { id: 61, type: "complete", category: "verbs", question: "I ______ (not/watch) TV now, I ______ (read) a book.", answer: ["am not watching", "am reading"], hint: "Negative and positive forms of present continuous" },
+            { id: 62, type: "complete", category: "verbs", question: "We ______ (plan) our vacation for next summer.", answer: ["are planning"], hint: "Use present continuous for future plans" },
+            { id: 63, type: "complete", category: "verbs", question: "______ she ______ (come) to the party tomorrow?", answer: ["Is", "coming"], hint: "Question form of present continuous for future" },
+            { id: 64, type: "complete", category: "verbs", question: "He ______ (not/attend) the conference next week.", answer: ["is not attending", "isn't attending"], hint: "Negative form of present continuous for future" },
+            { id: 65, type: "complete", category: "verbs", question: "They ______ (travel) to Japan next month.", answer: ["are traveling", "are travelling"], hint: "Use present continuous for future plans" },
+            { id: 66, type: "complete", category: "verbs", question: "I ______ (meet) some friends after work today.", answer: ["am meeting"], hint: "Use present continuous for future arrangements" },
+            { id: 67, type: "complete", category: "verbs", question: "What time ______ you ______ (leave) tomorrow?", answer: ["are", "leaving"], hint: "Question form of present continuous for future" },
+            { id: 68, type: "complete", category: "verbs", question: "She ______ (not/come) to the meeting, she's busy.", answer: ["is not coming", "isn't coming"], hint: "Negative form of present continuous for future" },
+            { id: 69, type: "complete", category: "verbs", question: "We ______ (have) a test next Monday.", answer: ["are having"], hint: "Use present continuous for future events" },
+            { id: 70, type: "complete", category: "verbs", question: "______ they ______ (move) to a new apartment soon?", answer: ["Are", "moving"], hint: "Question form of present continuous for future" },
+            { id: 71, type: "complete", category: "verbs", question: "He ______ (start) his new job next week.", answer: ["is starting"], hint: "Use present continuous for future" },
+            { id: 72, type: "complete", category: "verbs", question: "I ______ (not/go) to the concert, I don't have tickets.", answer: ["am not going"], hint: "Negative form of present continuous for future" },
+            { id: 73, type: "complete", category: "verbs", question: "What ______ you ______ (do) this weekend?", answer: ["are", "doing"], hint: "Question form of present continuous for future" },
+            { id: 74, type: "complete", category: "verbs", question: "They ______ (not/stay) at that hotel again.", answer: ["are not staying", "aren't staying"], hint: "Negative form of present continuous for future" },
+            { id: 75, type: "complete", category: "verbs", question: "We ______ (fly) to Paris next Tuesday.", answer: ["are flying"], hint: "Use present continuous for future plans" },
+            
+            // Preposições (30 questões)
+            { id: 76, type: "complete", category: "prepositions", question: "I have a meeting ______ 9 o'clock.", answer: ["at"] },
+            { id: 77, type: "complete", category: "prepositions", question: "Her birthday is ______ July.", answer: ["in"] },
+            { id: 78, type: "complete", category: "prepositions", question: "We're going to the beach ______ Sunday.", answer: ["on"] },
+            { id: 79, type: "complete", category: "prepositions", question: "The concert is ______ June 15th.", answer: ["on"] },
+            { id: 80, type: "complete", category: "prepositions", question: "I'll call you ______ the afternoon.", answer: ["in"] },
+            { id: 81, type: "complete", category: "prepositions", question: "They arrived ______ night.", answer: ["at"] },
+            { id: 82, type: "complete", category: "prepositions", question: "We usually have a big dinner ______ Christmas Day.", answer: ["on"] },
+            { id: 83, type: "complete", category: "prepositions", question: "I like to go for a walk ______ the morning.", answer: ["in"] },
+            { id: 84, type: "complete", category: "prepositions", question: "The store is open ______ 8 am ______ 9 pm.", answer: ["from", "to"] },
+            { id: 85, type: "complete", category: "prepositions", question: "She's been working ______ Monday.", answer: ["since"] },
+            { id: 86, type: "complete", category: "prepositions", question: "I'll finish this ______ an hour.", answer: ["in"] },
+            { id: 87, type: "complete", category: "prepositions", question: "We've lived here ______ 2010.", answer: ["since"] },
+            { id: 88, type: "complete", category: "prepositions", question: "The movie starts ______ 7:30.", answer: ["at"] },
+            { id: 89, type: "complete", category: "prepositions", question: "I have a dentist appointment ______ Tuesday morning.", answer: ["on"] },
+            { id: 90, type: "complete", category: "prepositions", question: "They got married ______ April.", answer: ["in"] },
+            { id: 91, type: "complete", category: "prepositions", question: "We usually go skiing ______ winter.", answer: ["in"] },
+            { id: 92, type: "complete", category: "prepositions", question: "I'll see you ______ a few days.", answer: ["in"] },
+            { id: 93, type: "complete", category: "prepositions", question: "The course begins ______ January and ends ______ March.", answer: ["in", "in"] },
+            { id: 94, type: "complete", category: "prepositions", question: "She's been absent ______ last week.", answer: ["since"] },
+            { id: 95, type: "complete", category: "prepositions", question: "I usually relax ______ the weekend.", answer: ["at"] },
+            { id: 96, type: "complete", category: "prepositions", question: "We're going on vacation ______ August.", answer: ["in"] },
+            { id: 97, type: "complete", category: "prepositions", question: "The train leaves ______ 5:45.", answer: ["at"] },
+            { id: 98, type: "complete", category: "prepositions", question: "I'll be ready ______ a moment.", answer: ["in"] },
+            { id: 99, type: "complete", category: "prepositions", question: "They've been waiting ______ 10 o'clock.", answer: ["since"] },
+            { id: 100, type: "complete", category: "prepositions", question: "The shop is closed ______ Sundays.", answer: ["on"] },
+            { id: 101, type: "complete", category: "prepositions", question: "We usually have a big family dinner ______ Christmas.", answer: ["at"] },
+            { id: 102, type: "complete", category: "prepositions", question: "I'll call you ______ Monday.", answer: ["on"] },
+            { id: 103, type: "complete", category: "prepositions", question: "She was born ______ 1995.", answer: ["in"] },
+            { id: 104, type: "complete", category: "prepositions", question: "The concert is ______ the evening.", answer: ["in"] },
+            { id: 105, type: "complete", category: "prepositions", question: "We met ______ a sunny afternoon in June.", answer: ["on"] }
+        ];
+        
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let questionsOrder = [];
+        let filteredQuestions = [];
+        const gameContainer = document.getElementById('game-container');
+        const scoreElement = document.getElementById('score');
+        const progressElement = document.getElementById('progress');
+        const questionCounterElement = document.getElementById('question-counter');
+        const skipButton = document.getElementById('skip-btn');
+        const hintButton = document.getElementById('hint-btn');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        function initGame() {
+            filteredQuestions = [...questionDatabase];
+            questionsOrder = Array.from({length: filteredQuestions.length}, (_, i) => i);
+            shuffleArray(questionsOrder);
+            
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreElement.textContent = `Pontuação: ${score}/${filteredQuestions.length}`;
+            progressElement.style.width = '0%';
+            questionCounterElement.textContent = `Questão 1/${filteredQuestions.length}`;
+            
+            renderQuestion();
+        }
+
+        function filterQuestions(category) {
+            if (category === 'all') {
+                filteredQuestions = [...questionDatabase];
+            } else {
+                filteredQuestions = questionDatabase.filter(q => q.category === category);
+            }
+            questionsOrder = Array.from({length: filteredQuestions.length}, (_, i) => i);
+            shuffleArray(questionsOrder);
+            
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreElement.textContent = `Pontuação: ${score}/${filteredQuestions.length}`;
+            progressElement.style.width = '0%';
+            questionCounterElement.textContent = `Questão 1/${filteredQuestions.length}`;
+            
+            renderQuestion();
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function renderQuestion() {
+            if (currentQuestionIndex >= filteredQuestions.length) {
+                showFinalResults();
+                return;
+            }
+
+            const questionIndex = questionsOrder[currentQuestionIndex];
+            const question = filteredQuestions[questionIndex];
+            gameContainer.innerHTML = '';
+
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-container';
+
+            const questionText = document.createElement('div');
+            questionText.className = 'question';
+            questionText.textContent = question.question;
+            questionDiv.appendChild(questionText);
+
+            if (question.type === 'complete') {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = 'answer-input';
+                input.placeholder = 'Digite sua resposta aqui...';
+                questionDiv.appendChild(input);
+            } else if (question.type === 'choice') {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = 'answer';
+                    radio.value = index;
+                    radio.id = `option-${index}`;
+
+                    const label = document.createElement('label');
+                    label.htmlFor = `option-${index}`;
+                    label.textContent = option;
+
+                    optionDiv.appendChild(radio);
+                    optionDiv.appendChild(label);
+                    optionsDiv.appendChild(optionDiv);
+                });
+
+                questionDiv.appendChild(optionsDiv);
+            } else if (question.type === 'wh-question') {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = 'answer-input';
+                input.placeholder = 'Digite a palavra interrogativa (Who, What, When, Where, Why, How)...';
+                questionDiv.appendChild(input);
+            } else if (question.type === 'matching') {
+                const matchingContainer = document.createElement('div');
+                matchingContainer.className = 'matching-container';
+
+                const leftColumn = document.createElement('div');
+                leftColumn.className = 'match-column';
+                
+                const rightColumn = document.createElement('div');
+                rightColumn.className = 'match-column';
+                
+                question.pairs.forEach((pair, index) => {
+                    const leftItem = document.createElement('div');
+                    leftItem.className = 'match-item';
+                    leftItem.textContent = pair.left;
+                    leftItem.id = `left-${index}`;
+                    leftColumn.appendChild(leftItem);
+
+                    const select = document.createElement('select');
+                    select.id = `match-${index}`;
+                    select.innerHTML = '<option value="">Selecione...</option>';
+                    
+                    const rightOptions = [...new Set(question.pairs.map(p => p.right))];
+                    rightOptions.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.textContent = option;
+                        select.appendChild(optionElement);
+                    });
+                    
+                    const rightItem = document.createElement('div');
+                    rightItem.className = 'match-item';
+                    rightItem.appendChild(select);
+                    rightColumn.appendChild(rightItem);
+                });
+
+                matchingContainer.appendChild(leftColumn);
+                matchingContainer.appendChild(rightColumn);
+                questionDiv.appendChild(matchingContainer);
+            }
+
+            const submitButton = document.createElement('button');
+            submitButton.textContent = 'Enviar Resposta';
+            submitButton.className = 'submit-btn';
+            submitButton.addEventListener('click', checkAnswer);
+            questionDiv.appendChild(submitButton);
+
+            gameContainer.appendChild(questionDiv);
+            
+            const progressPercentage = (currentQuestionIndex / filteredQuestions.length) * 100;
+            progressElement.style.width = `${progressPercentage}%`;
+            questionCounterElement.textContent = `Questão ${currentQuestionIndex + 1}/${filteredQuestions.length}`;
+        }
+
+        function checkAnswer() {
+            const questionIndex = questionsOrder[currentQuestionIndex];
+            const question = filteredQuestions[questionIndex];
+            let isCorrect = false;
+
+            if (question.type === 'complete' || question.type === 'wh-question') {
+                const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
+                isCorrect = question.answer.some(ans => userAnswer === ans.toLowerCase());
+            } else if (question.type === 'choice') {
+                const selectedOption = document.querySelector('input[name="answer"]:checked');
+                isCorrect = selectedOption && parseInt(selectedOption.value) === question.answer;
+            } else if (question.type === 'matching') {
+                isCorrect = true;
+                question.pairs.forEach((pair, index) => {
+                    const select = document.getElementById(`match-${index}`);
+                    if (select.value !== pair.right) {
+                        isCorrect = false;
+                    }
+                });
+            }
+
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'result';
+            if (isCorrect) {
+                resultDiv.classList.add('correct');
+                resultDiv.textContent = 'Correto!';
+                score++;
+            } else {
+                resultDiv.classList.add('incorrect');
+                if (question.type === 'complete' || question.type === 'wh-question') {
+                    resultDiv.textContent = `Incorreto. A resposta correta é: ${question.answer.join(' ou ')}`;
+                } else if (question.type === 'choice') {
+                    resultDiv.textContent = `Incorreto. A resposta correta é: ${question.options[question.answer]}`;
+                } else if (question.type === 'matching') {
+                    resultDiv.textContent = 'Algumas correspondências estão incorretas. Tente novamente.';
+                    gameContainer.appendChild(resultDiv);
+                    scoreElement.textContent = `Pontuação: ${score}/${filteredQuestions.length}`;
+                    return;
+                }
+            }
+
+            gameContainer.appendChild(resultDiv);
+            scoreElement.textContent = `Pontuação: ${score}/${filteredQuestions.length}`;
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                renderQuestion();
+            }, 2000);
+        }
+
+        function showFinalResults() {
+            gameContainer.innerHTML = '';
+            const resultsDiv = document.createElement('div');
+            resultsDiv.className = 'completed';
+
+            const heading = document.createElement('h2');
+            heading.textContent = 'Parabéns! Você completou todas as questões.';
+            resultsDiv.appendChild(heading);
+            
+            const scoreText = document.createElement('p');
+            scoreText.textContent = `Sua pontuação final: ${score}/${filteredQuestions.length}`;
+            resultsDiv.appendChild(scoreText);
+
+            const percentage = (score / filteredQuestions.length) * 100;
+            const performanceText = document.createElement('p');
+            
+            if (percentage >= 90) {
+                performanceText.textContent = 'Desempenho excelente! Você domina o conteúdo.';
+            } else if (percentage >= 70) {
+                performanceText.textContent = 'Bom trabalho! Você tem um bom entendimento do conteúdo.';
+            } else if (percentage >= 50) {
+                performanceText.textContent = 'Resultado satisfatório. Reveja algumas áreas para melhorar.';
+            } else {
+                performanceText.textContent = 'Estude um pouco mais o conteúdo e tente novamente.';
+            }
+            
+            resultsDiv.appendChild(performanceText);
+            
+            const restartButton = document.createElement('button');
+            restartButton.textContent = 'Jogar Novamente';
+            restartButton.className = 'restart-btn';
+            restartButton.addEventListener('click', initGame);
+            resultsDiv.appendChild(restartButton);
+
+            gameContainer.appendChild(resultsDiv);
+            progressElement.style.width = '100%';
+        }
+
+        skipButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            renderQuestion();
+        });
+        
+        hintButton.addEventListener('click', () => {
+            const questionIndex = questionsOrder[currentQuestionIndex];
+            const question = filteredQuestions[questionIndex];
+            
+            if (question.hint) {
+                const existingHints = document.querySelectorAll('.hint');
+                existingHints.forEach(hint => hint.remove());
+                
+                const hintDiv = document.createElement('div');
+                hintDiv.className = 'hint';
+                hintDiv.textContent = question.hint;
+                gameContainer.appendChild(hintDiv);
+            }
+        });
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterQuestions(button.dataset.filter);
+            });
+        });
+
+        initGame();
+
+        // --- SCRIPT DO QUIZ 2 (Ingles 9.1 a 10.1) ---
+        const questionsBank2 = [
+            { q: "Complete: This is _____ (tall) than that building.", options: ["tall", "taller", "tallest"], a: 1, type: "comp" },
+            { q: "Complete: My bag is _____ (big) than yours.", options: ["big", "bigger", "biggest"], a: 1, type: "comp" },
+            { q: "Complete: He is _____ (old) than me.", options: ["old", "older", "oldest"], a: 1, type: "comp" },
+            { q: "Complete: This test is _____ (hard) than yesterday's.", options: ["hard", "harder", "hardest"], a: 1, type: "comp" },
+            { q: "Complete: São Paulo is _____ (far) than Campinas from here.", options: ["far", "farther", "farthest"], a: 1, type: "comp" },
+            { q: "Irregular: This phone is _____ (good) than the old one.", options: ["good", "better", "best"], a: 1, type: "irreg" },
+            { q: "Irregular: The weather was _____ (bad) yesterday.", options: ["bad", "worse", "worst"], a: 1, type: "irreg" },
+            { q: " rule: For 'thin' (CVC), it is _____ than.", options: ["thiner", "thinner", "more thin"], a: 1, type: "spell" },
+            { q: "Complete: This exercise is _____ (easy) than the last.", options: ["easy", "easier", "easyer"], a: 1, type: "y" },
+            { q: "Complete: The city is _____ (busy) than the countryside.", options: ["busy", "busier", "busyer"], a: 1, type: "y" },
+            { q: ": Happy → _____ than.", options: ["happier", "happyer", "more happy"], a: 0, type: "y" },
+            { q: ": Pretty → _____ than.", options: ["prettier", "prettyer", "more pretty"], a: 0, type: "y" },
+            { q: "Complete: This design is _____ (modern) than the old one.", options: ["modern", "more modern", "most modern"], a: 1, type: "long" },
+            { q: " inferiority: This is _____ (difficult) than expected.", options: ["less difficult", "more difficult", "difficultest"], a: 0, type: "long" },
+            { q: "Complete: The meeting was _____ (formal) than usual.", options: ["formal", "more formal", "formalest"], a: 1, type: "long" },
+            { q: "3+ syllables: Expensive → _____ than.", options: ["expensiver", "more expensive", "most expensive"], a: 1, type: "long" },
+            { q: "This is the _____ (difficult) part.", options: ["difficult", "more difficult", "most difficult"], a: 2, type: "super" },
+            { q: ": Modern → the _____ modern.", options: ["more modern", "most modern", "modernest"], a: 1, type: "super" },
+            { q: "This city has the _____ (big) population.", options: ["big", "bigger", "biggest"], a: 2, type: "super" },
+            { q: "Irregular: This is the _____ (good) option.", options: ["good", "better", "best"], a: 2, type: "super" },
+            { q: "When water falls: It's _____ .", options: ["Snowing", "Raining", "Cloudy"], a: 1, type: "weather" },
+            { q: "White cold things from sky: _____ .", options: ["Raining", "Snowing", "Foggy"], a: 1, type: "weather" },
+            { q: "No sun, gray sky: _____ .", options: ["Sunny", "Cloudy", "Hot"], a: 1, type: "weather" },
+            { q: "Air moving fast: _____ .", options: ["Windy", "Foggy", "Freezing"], a: 0, type: "weather" },
+            { q: "Hard to see: _____ .", options: ["Foggy", "Windy", "Rainy"], a: 0, type: "weather" },
+            { q: "'Thunderstorm' = rain + _____ .", options: ["Snow", "Lightning", "Wind"], a: 1, type: "weather" },
+            { q: "Question from : '____ the weather?'", options: ["What is like", "What's like", "What is the weather like?"], a: 2, type: "weather" },
+            { q: " rule 1: 1-2 syl ending in 'y': _____ .", options: ["Add -er", "Change y to i + er", "More"], a: 1, type: "spell" },
+            { q: " rule 2: Ending in consonant-vowel-consonant: _____ .", options: ["Double consonant", "No change", "Change vowel"], a: 0, type: "spell" },
+            { q: " rule 3: Ending in 'e': _____ .", options: ["Add -er", "Drop e + er", "More"], a: 1, type: "spell" },
+            { q: "Thin → _____ ( ex).", options: ["Thiner", "Thinner", "More thin"], a: 1, type: "spell" },
+            { q: "Late → _____ .", options: ["Latter", "Later", "More late"], a: 1, type: "spell" },
+            { q: " ex: _____ than (good).", options: ["Better", "Gooder", "More good"], a: 0, type: "mix" },
+            { q: " ex: _____ than (far).", options: ["Farther", "More far", "Farest"], a: 0, type: "mix" },
+            { q: "'It rained a lot yesterday' usa:", options: ["Present Simple", "Past Simple", "Present Continuous"], a: 1, type: "mix" },
+            { q: "'It is raining now' usa:", options: ["Past Simple", "Present Continuous", "Simple Present"], a: 1, type: "mix" },
+            { q: "This product is more _____ than that one (economical).", options: ["Expensive", "Economical", "Dangerous"], a: 1, type: "vocab" },
+            { q: "'Superiority' significa:", options: ["Pior", "Melhor", "Igual"], a: 1, type: "vocab" },
+            { q: "'Inferiority' ex: less _____ than.", options: ["Difficult", "Easy", "Good"], a: 0, type: "vocab" },
+            { q: "'Could I speak to Mr. Silva?' é:", options: ["Informal", "Polite request", "Command"], a: 1, type: "phone" },
+            { q: "'I'll call you back' usa will para:", options: ["Future plan", "Spontaneous decision", "Past"], a: 1, type: "will" },
+            { q: "'Hold on' significa:", options: ["Desligar", "Aguardar", "Ligar"], a: 1, type: "phone" },
+           // VOCABULARY
+    { q: "What document is a record of what was discussed in a meeting?", options: ["Agenda", "Minutes", "Graph"], a: 1, type: "vocab" },
+    { q: "What is a list of points to be discussed at a future meeting?", options: ["Table", "Bar chart", "Agenda"], a: 2, type: "vocab" },
+    { q: "A 'pie chart' looks like a:", options: ["Circle", "Square", "Line"], a: 0, type: "vocab" },
+    { q: "Which document shows information in columns and rows?", options: ["Table", "Graph", "Agenda"], a: 0, type: "vocab" },
+    { q: "A project 'schedule' is used to show:", options: ["Prices", "Dates and times", "Minutes"], a: 1, type: "vocab" },
+    { q: "A 'bar chart' represents data using:", options: ["Circles", "Rectangular blocks", "Only text"], a: 1, type: "vocab" },
+    { q: "Where do you usually find 'attachments'?", options: ["In a book", "In an email", "On a phone call"], a: 1, type: "vocab" },
+    { q: "If you need the record of the last meeting, ask for the:", options: ["Minutes", "Agenda", "Schedule"], a: 0, type: "vocab" },
+    { q: "The professor said 'Graph' is for linear data, while 'Chart' is generic.", options: ["True", "False"], a: 0, type: "vocab" },
+    { q: "Another name for a project timeline in Unit 9.1 is:", options: ["Minutes", "Schedule", "Pie chart"], a: 1, type: "vocab" },
+
+    // OBJECT PRONOUNS
+    { q: "Which pronoun replaces 'The minutes' (plural)?", options: ["It", "Them", "Us"], a: 1, type: "grammar" },
+    { q: "Alex wrote the report. He sent ____ to Carla.", options: ["it", "them", "her"], a: 0, type: "grammar" },
+    { q: "Carla and I are here. Can you send the email to ____?", options: ["we", "us", "them"], a: 1, type: "grammar" },
+    { q: "I saw Mr. Silva and spoke to ____.", options: ["he", "him", "his"], a: 1, type: "grammar" },
+    { q: "If Carla is the recipient, we send the file to ____.", options: ["she", "her", "it"], a: 1, type: "grammar" },
+    { q: "This is my phone number. Please call ____ later.", options: ["me", "I", "my"], a: 0, type: "grammar" },
+    { q: "We have the documents. We have ____ in the office.", options: ["they", "it", "them"], a: 2, type: "grammar" },
+    { q: "The manager is talking to you and me. He is talking to ____.", options: ["us", "we", "you"], a: 0, type: "grammar" },
+    { q: "I don't have the agenda. Can you send ____ to me?", options: ["it", "them", "him"], a: 0, type: "grammar" },
+    { q: "Object pronouns come ____ the verb or preposition.", options: ["Before", "After"], a: 1, type: "grammar" },
+
+    // IRREGULAR VERBS
+    { q: "What is the past of 'GIVE'?", options: ["Gived", "Gave", "Given"], a: 1, type: "verb" },
+    { q: "What is the past of 'SAY'?", options: ["Sayed", "Said", "Says"], a: 1, type: "verb" },
+    { q: "What is the past of 'SEE'?", options: ["Saw", "Seed", "Seen"], a: 0, type: "verb" },
+    { q: "What is the past of 'SEND'?", options: ["Sended", "Send", "Sent"], a: 2, type: "verb" },
+    { q: "What is the past of 'WRITE'?", options: ["Writed", "Wrote", "Written"], a: 1, type: "verb" },
+    { q: "What is the past of 'THINK'?", options: ["Thought", "Thinked", "Thinks"], a: 0, type: "verb" },
+    { q: "What is the past of 'SPEAK'?", options: ["Speaked", "Spoke", "Spoken"], a: 1, type: "verb" },
+    { q: "The past of 'READ' is spelled exactly the same, but pronounced like 'red'.", options: ["True", "False"], a: 0, type: "verb" },
+    { q: "What is the past of 'TELL'?", options: ["Telled", "Told", "Tell"], a: 1, type: "verb" },
+    { q: "Which one is NOT a past irregular verb?", options: ["Had", "Read", "Talked"], a: 2, type: "verb" },
+
+    // TELEPHONE
+    { q: "A polite way to start: '____ I speak to Mr. Webb?'", options: ["Will", "Could", "Are"], a: 1, type: "phone" },
+    { q: "When answering: 'This is Carla ____'", options: ["Speaking", "Talking", "Calling"], a: 0, type: "phone" },
+    { q: "To be polite: 'I'm ____ she is out.'", options: ["Sad", "Afraid", "Busy"], a: 1, type: "phone" },
+    { q: "To ask someone to wait: '____ for a moment, please.'", options: ["Wait", "Hold", "Stop"], a: 1, type: "phone" },
+    { q: "Question: 'Who is ____?'", options: ["Speaking", "Calling", "Both"], a: 2, type: "phone" },
+
+    // WILL
+    { q: "We use 'will' for ____ decisions.", options: ["Planned", "Spontaneous", "Past"], a: 1, type: "will" },
+    { q: "I ____ call you back.", options: ["will", "am", "going to"], a: 0, type: "will" },
+    { q: "'I'll' is:", options: ["I am", "I will", "I feel"], a: 1, type: "will" },
+
+    // WEATHER
+    { q: "No sun, gray sky:", options: ["Sunny", "Cloudy", "Freezing"], a: 1, type: "weather" },
+    { q: "0°C or less:", options: ["Warm", "Freezing", "Windy"], a: 1, type: "weather" },
+    { q: "Hard to see:", options: ["Foggy", "Sunny", "Raining"], a: 0, type: "weather" },
+    { q: "Rain + lightning:", options: ["Snow", "Thunderstorm", "Wind"], a: 1, type: "weather" },
+    { q: "Water falls:", options: ["Snowing", "Raining", "Cloudy"], a: 1, type: "weather" },
+
+    // TENSES
+    { q: "It ____ raining now.", options: ["is", "was", "rains"], a: 0, type: "tense" },
+    { q: "It ____ yesterday.", options: ["rains", "rained", "is raining"], a: 1, type: "tense" },
+    { q: "For 'now' we use:", options: ["Simple Present", "Present Continuous", "Past"], a: 1, type: "tense" },
+    { q: "For 'yesterday' we use:", options: ["Present", "Past", "Continuous"], a: 1, type: "tense" },
+
+    // COMPARATIVES
+    { q: "Comparative of 'FAST'?", options: ["More fast", "Faster", "Fastest"], a: 1, type: "comp" },
+    { q: "Comparative of 'GOOD'?", options: ["Gooder", "Better", "Best"], a: 1, type: "irreg" },
+    { q: "Comparative of 'BAD'?", options: ["Badder", "Worst", "Worse"], a: 2, type: "irreg" },
+    { q: "Comparative of 'BIG'?", options: ["Biger", "Bigger", "Biggest"], a: 1, type: "spell" },
+    { q: "Comparative of 'EASY'?", options: ["Easy", "Easier", "Easyer"], a: 1, type: "y" },
+    { q: "Comparative of 'EXPENSIVE'?", options: ["Expensiver", "More expensive", "Most expensive"], a: 1, type: "long" },
+    { q: "'Than' is used with:", options: ["Comparatives", "Superlatives", "Past"], a: 0, type: "comp" },
+
+    // ADJECTIVES
+    { q: "Means 'can be trusted':", options: ["Dangerous", "Reliable", "Cheap"], a: 1, type: "vocab" },
+    { q: "Means 'saves money':", options: ["Expensive", "Economical", "Safe"], a: 1, type: "vocab" },
+    { q: "Opposite of 'Safe':", options: ["Reliable", "Dangerous", "Cheap"], a: 1, type: "vocab" },
+    { q: "Opposite of 'Cheap':", options: ["Expensive", "Safe", "Low"], a: 0, type: "vocab" }
+          
+          
+        ];
+
+      let fullBank2 = [...questionsBank2];
+for (let i = 0; i < 20; i++) {
+    		fullBank2.push(...questionsBank2.map(q => ({...q})));
+}
+
+let currentQuestions2 = [];
+let score2 = 0;
+let answered2 = 0;
+let userErrors = []; // Guarda os erros da rodada
+
+function startQuiz2() {
+    score2 = 0;
+    answered2 = 0;
+    userErrors = [];
+    document.getElementById('score-board2').innerHTML = '';
+    document.getElementById('progress2').innerHTML = 'Carregando 10 novas questões...';
+
+    const shuffled = fullBank2.sort(() => 0.5 - Math.random());
+    currentQuestions2 = shuffled.slice(0, 10);
+
+    const quizArea2 = document.getElementById('quiz-area2');
+    quizArea2.innerHTML = '';
+
+    currentQuestions2.forEach((question, index) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question-box';
+        qDiv.innerHTML = `<div class="question-text">${index + 1}. ${question.q}</div>
+                          <span class="section-title">[Tópico: ${question.type.toUpperCase()}]</span>`;
+
+        // **Aqui substituímos ul/li por divs**
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options-list';
+
+        question.options.forEach((opt, optIndex) => {
+            const optDiv = document.createElement('div');
+            optDiv.className = 'option-item';
+            optDiv.innerText = opt;
+            optDiv.onclick = () => checkAnswer2(optDiv, index, optIndex);
+            optionsDiv.appendChild(optDiv);
+        });
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback';
+        feedback.id = `feedback2-${index}`;
+
+        qDiv.appendChild(optionsDiv);
+        qDiv.appendChild(feedback);
+        quizArea2.appendChild(qDiv);
+    });
+
+    setTimeout(() => {
+        document.getElementById('progress2').innerHTML = `Boa sorte! (Banco: ${fullBank2.length} questões aleatórias)`;
+    }, 500);
+}
+
+function checkAnswer2(selected, qIndex, optIndex) {
+    const question = currentQuestions2[qIndex];
+    const feedback = document.getElementById(`feedback2-${qIndex}`);
+    const siblings = selected.parentElement.getElementsByClassName('option-item');
+
+    for (let sib of siblings) sib.style.pointerEvents = 'none';
+
+    if (optIndex === question.a) {
+        selected.classList.add('correct');
+        feedback.innerHTML = '<span class="correct">✅ Correto!</span>';
+        score2++;
+    } else {
+        selected.classList.add('wrong');
+        siblings[question.a].classList.add('correct');
+        feedback.innerHTML = `<span class="wrong">❌ Errado. Correta: <strong>${question.options[question.a]}</strong></span>`;
+        userErrors.push({
+            pergunta: question.q,
+            topico: question.type.toUpperCase(),
+            respostaCorreta: question.options[question.a],
+            suaResposta: question.options[optIndex]
+        });
+    }
+    feedback.style.display = 'block';
+    answered2++;
+
+    if (answered2 === 10) {
+        setTimeout(() => {
+            let relatorioHTML = `<h3>Pontuação Final: ${score2}/10</h3>`;
+
+            if (userErrors.length > 0) {
+                relatorioHTML += `<h4>📋 Relatório de Erros para Estudo:</h4>`;
+                userErrors.forEach(erro => {
+                    relatorioHTML += `<div style="text-align: left; background: #fff5f5; padding: 15px; border-radius: 8px; border: 1px solid #ffcccc; margin-bottom: 10px;">
+                        <strong>Assunto:</strong> ${erro.topico}<br>
+                        <strong>Questão:</strong> ${erro.pergunta}<br>
+                        <span style="color: red;">Sua resposta: ${erro.suaResposta}</span><br>
+                        <span style="color: green;">Resposta certa: ${erro.respostaCorreta}</span>
+                    </div>`;
+                });
+            } else {
+                relatorioHTML += `<p style="color: green; font-weight: bold;">🎉 Incrível! Você não errou nenhuma questão nessa rodada!</p>`;
+            }
+
+            document.getElementById('score-board2').innerHTML = relatorioHTML;
+        }, 500);
+    }
+}
+
+// Iniciar Quiz 2 ao carregar
+startQuiz2();
+    </script>
+</body>
+</html>
