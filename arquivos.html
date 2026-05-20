@@ -1,9 +1,9 @@
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8"></meta>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
-    <meta content="ie=edge" http-equiv="X-UA-Compatible"></meta>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Arquivos - Comandos Básicos Linux e Inglês</title>
     <style>
         /* --- ESTILOS GERAIS E DAS ABAS --- */
@@ -109,7 +109,7 @@
         <div class="tab" onclick="showTab('ingles-9-10')">Ingles: 10.2 a 11.3</div>
     </div>
 
-    <div class="tab-content active" id="comandos-basicos">
+    <div id="comandos-basicos" class="tab-content active">
         <h2>Comandos Básicos do Linux</h2>
         <ul>
             <li><strong>ls</strong> - Lista arquivos e diretórios</li>
@@ -170,7 +170,7 @@
         </ul>
     </div>
 
-    <div class="tab-content" id="Ingles">
+    <div id="Ingles" class="tab-content">
         <header>
             <h1>Jogo de Inglês</h1>
             <p class="description">Teste Inglês, lição 6.2 a 7.3 - Mais de 100 questões</p>
@@ -208,10 +208,10 @@
         </div>
     </div>
 
-    <div class="tab-content" id="ingles-9-10">
+    <div id="ingles-9-10" class="tab-content">
         <div class="q2-container">
             <h1>Master English Quiz - Units 10.2 to 11.3</h1>
-            <div class="subtitle">vai q vai!</div>
+            <div class="subtitle">vai  que vai!</div>
 
             <div class="q2-progress" id="progress2">Clique para começar</div>
             <div id="quiz-area2"></div>
@@ -625,7 +625,44 @@
 
         // --- SCRIPT DO QUIZ 2 (Ingles 9.1 a 10.1) ---
         const questionsBank2 = [
-            // 10.2 MAKING CHOICES (SUPERLATIVES & OPINIONS)
+            
+    // 10.2 MAKING CHOICES (SUPERLATIVES & OPINIONS)
+    { q: "The French TGV is the ____ way to get from city centre to city centre.", options: ["quickest", "quicker", "quick"], a: 0, type: "superlative" }, // [1]
+    { q: "Compared with planes, the TGV has ____ seats.", options: ["bigger", "the biggest", "bigest"], a: 0, type: "comparative" }, // [1]
+    { q: "When you disagree: 'I'm not so ____ about that.'", options: ["right", "sure", "true"], a: 1, type: "opinion" }, // [2, 3]
+    { q: "Which is the superlative of 'good'?", options: ["the goodest", "the better", "the best"], a: 2, type: "superlative" }, // [1]
+    { q: "Low-cost airlines often fly to the ____ airports.", options: ["cheapest", "further out", "nearest"], a: 1, type: "superlative" }, // [4]
+
+    // 10.3 CHECKING IN (GRAMMAR & VOCABULARY)
+    { q: "Is the word 'Information' countable or uncountable?", options: ["Countable", "Uncountable"], a: 1, type: "nouns" }, // [5]
+    { q: "Negative sentence: 'I don't have ____ other bags.'", options: ["some", "any", "no"], a: 1, type: "grammar" }, // [6]
+    { q: "Positive sentence: 'There are ____ passengers at the check-in.'", options: ["some", "any", "no"], a: 0, type: "grammar" }, // [7]
+    { q: "I'm sorry, I have ____ other identification with me.", options: ["any", "no", "some"], a: 1, type: "grammar" }, // [8]
+    { q: "The flight to Jakarta is ____. There is no flight today.", options: ["delayed", "boarding", "cancelled"], a: 2, type: "airport" }, // [9]
+    { q: "Where you show your passport and leave your bags: the ____.", options: ["gate", "check-in", "security check"], a: 1, type: "airport" }, // [6, 10]
+
+    // 11.1 SEQUENCING & SUGGESTIONS
+    { q: "____ I send the email to you now?", options: ["Shall", "Let's", "Will"], a: 0, type: "suggestions" }, // [11]
+    { q: "To suggest an action: '____ talk again tomorrow.'", options: ["Shall", "Let's", "Do"], a: 1, type: "suggestions" }, // [11]
+    { q: "Order of ideas: '____, let's have a coffee and then we can work.'", options: ["Finally", "First", "Next"], a: 1, type: "sequencing" }, // [12]
+    { q: "The most ____ job is to finish the brochure.", options: ["urgent", "then", "next"], a: 0, type: "priority" }, // [3, 12]
+    { q: "____ we have dinner on Wednesday?", options: ["Let's", "Shall", "Are"], a: 1, type: "suggestions" }, // [13]
+
+    // 11.2 FUTURE WITH 'GOING TO'
+    { q: "Kristi ____ going to meet Akio in Tokyo.", options: ["am", "is", "are"], a: 1, type: "future" }, // [14]
+    { q: "Question: '____ you going to work late tonight?'", options: ["Is", "Am", "Are"], a: 2, type: "future" }, // [8]
+    { q: "Negative: 'I ____ not book the tickets on the Internet.'", options: ["am", "is", "are"], a: 0, type: "future" }, // [8]
+    { q: "What's the ____ date for having the website ready?", options: ["goal", "aim", "target"], a: 2, type: "future" }, // [15]
+
+    // 11.3 STAYING AT A HOTEL (HAVE GOT & VOCABULARY)
+    { q: "Sentence: 'I ____ got a reservation.'", options: ["have", "has", "'ve"], a: 2, type: "hotel" }, // [16, 17]
+    { q: "Negative: 'She ____ got a key.'", options: ["haven't", "hasn't", "don't"], a: 1, type: "hotel" }, // [16]
+    { q: "A room with two separate beds is a ____ room.", options: ["double", "single", "twin"], a: 2, type: "hotel" }, // [17]
+    { q: "You write your ____ on a cheque or form.", options: ["signature", "bill", "extras"], a: 0, type: "hotel" }, // [17, 18]
+    { q: "Phone calls and drinks are often called ____.", options: ["bills", "extras", "forms"], a: 1, type: "hotel" }, // [17, 18]
+    { q: "If you want a meal in your room, you phone room ____.", options: ["service", "check", "wake"], a: 0, type: "hotel" }, // [18]
+    
+    // ++
     { q: "Flying is the ____ way to travel.", options: ["safer", "safest", "most safe"], a: 1, type: "superlative" }, // [1, 2]
     { q: "The French TGV is the ____ train in Europe.", options: ["fastest", "faster", "most fast"], a: 0, type: "superlative" }, // [3]
     { q: "First class seats are the ____.", options: ["best", "goodest", "better"], a: 0, type: "superlative" }, // [3]
@@ -663,44 +700,117 @@
     { q: "When leaving the hotel: 'Could I ____ out, please?'", options: ["check", "sign", "fill"], a: 0, type: "hotel" }, // [24-26]
     { q: "I had some orange juice from the ____.", options: ["reception", "minibar", "bill"], a: 1, type: "hotel" }, // [24, 27]
     { q: "The company is paying the ____.", options: ["bill", "extras", "form"], a: 0, type: "hotel" }, // [24, 26]
-    { q: "A room with two separate beds is a ____ room.", options: ["double", "twin", "single"], a: 1, type: "hotel" } // [24, 27]
-}
-            { // 10.2 MAKING CHOICES (SUPERLATIVES & OPINIONS)
-    { q: "The French TGV is the ____ way to get from city centre to city centre.", options: ["quickest", "quicker", "quick"], a: 0, type: "superlative" }, // [1]
-    { q: "Compared with planes, the TGV has ____ seats.", options: ["bigger", "the biggest", "bigest"], a: 0, type: "comparative" }, // [1]
-    { q: "When you disagree: 'I'm not so ____ about that.'", options: ["right", "sure", "true"], a: 1, type: "opinion" }, // [2, 3]
-    { q: "Which is the superlative of 'good'?", options: ["the goodest", "the better", "the best"], a: 2, type: "superlative" }, // [1]
-    { q: "Low-cost airlines often fly to the ____ airports.", options: ["cheapest", "further out", "nearest"], a: 1, type: "superlative" }, // [4]
+    { q: "A room with two separate beds is a ____ room.", options: ["double", "twin", "single"], a: 1, type: "hotel" }, // [24, 27]
+    
+    { q: "Flying is the ____ way to travel.", options: ["safer", "safest", "most safe"], a: 1, type: "superlative" },
+    { q: "The French TGV is the ____ train in Europe.", options: ["fastest", "faster", "fastestest"], a: 0, type: "superlative" },
+    { q: "First-class seats are often the ____.", options: ["better", "goodest", "best"], a: 2, type: "superlative" },
+    { q: "Low-cost airlines offer the ____ fares.", options: ["cheapest", "cheaper", "most cheap"], a: 0, type: "superlative" },
+    { q: "Which is the superlative of 'bad'?", options: ["badder", "worse", "worst"], a: 2, type: "superlative" },
+    { q: "Which is the superlative of 'expensive'?", options: ["expensivest", "most expensive", "more expensive"], a: 1, type: "superlative" },
+    { q: "Air France-KLM is one of the ____ airlines in Europe.", options: ["larger", "largest", "most large"], a: 1, type: "superlative" },
+    { q: "The ____ journey is the one that takes you city centre to city centre.", options: ["most convenient", "convenientest", "more convenient"], a: 0, type: "superlative" },
+    { q: "In the air, technical problems are the ____ thing.", options: ["seriousest", "most serious", "more serious"], a: 1, type: "superlative" },
+    { q: "To agree with someone: 'You're ____.'", options: ["true", "right", "sure"], a: 1, type: "opinion" },
+    { q: "To express doubt: 'I'm not so ____ about that.'", options: ["agree", "sure", "true"], a: 1, type: "opinion" },
+    { q: "To agree: 'Yes, I ____.'", options: ["am agree", "agree", "think"], a: 1, type: "opinion" },
+    { q: "To disagree: 'I'm sorry, I ____ agree.'", options: ["no", "not", "don't"], a: 2, type: "opinion" },
+    { q: "To show preference: 'I ____ to fly.'", options: ["agree", "prefer", "think"], a: 1, type: "opinion" },
+    { q: "When you agree with a fact: 'That's ____.'", options: ["true", "right", "sure"], a: 0, type: "opinion" },
+    { q: "Superlative of 'difficult':", options: ["difficultest", "most difficult", "more difficult"], a: 1, type: "superlative" },
+    { q: "Which is the opposite of 'the worst'?", options: ["the goodest", "the best", "the better"], a: 1, type: "superlative" },
+    { q: "High-speed trains are often the ____ way to travel.", options: ["best", "goodest", "better"], a: 0, type: "superlative" },
+    { q: "Superlative of 'cheap':", options: ["cheapier", "the cheapest", "most cheap"], a: 1, type: "superlative" },
+    { q: "Waiters usually provide the ____ service in first class.", options: ["better", "best", "goodest"], a: 1, type: "superlative" },
 
-    // 10.3 CHECKING IN (GRAMMAR & VOCABULARY)
-    { q: "Is the word 'Information' countable or uncountable?", options: ["Countable", "Uncountable"], a: 1, type: "nouns" }, // [5]
-    { q: "Negative sentence: 'I don't have ____ other bags.'", options: ["some", "any", "no"], a: 1, type: "grammar" }, // [6]
-    { q: "Positive sentence: 'There are ____ passengers at the check-in.'", options: ["some", "any", "no"], a: 0, type: "grammar" }, // [7]
-    { q: "I'm sorry, I have ____ other identification with me.", options: ["any", "no", "some"], a: 1, type: "grammar" }, // [8]
-    { q: "The flight to Jakarta is ____. There is no flight today.", options: ["delayed", "boarding", "cancelled"], a: 2, type: "airport" }, // [9]
-    { q: "Where you show your passport and leave your bags: the ____.", options: ["gate", "check-in", "security check"], a: 1, type: "airport" }, // [6, 10]
+    // --- UNIT 10.3: CHECKING IN (Nouns & Airport Vocabulary) ---
+    { q: "Is 'luggage' countable or uncountable?", options: ["Countable", "Uncountable"], a: 1, type: "nouns" },
+    { q: "Is 'suitcase' countable or uncountable?", options: ["Countable", "Uncountable"], a: 0, type: "nouns" },
+    { q: "Question: 'Do you have ____ identification?'", options: ["some", "any", "no"], a: 1, type: "grammar" },
+    { q: "Negative: 'I have ____ luggage to check in.'", options: ["any", "no", "some"], a: 1, type: "grammar" },
+    { q: "Positive: 'There are ____ passengers at the gate.'", options: ["any", "no", "some"], a: 2, type: "grammar" },
+    { q: "A seat next to the window is a ____ seat.", options: ["aisle", "window", "boarding"], a: 1, type: "airport" },
+    { q: "A seat next to the corridor is an ____ seat.", options: ["aisle", "window", "middle"], a: 0, type: "airport" },
+    { q: "The paper you need to get on the plane:", options: ["passport", "boarding pass", "identity card"], a: 1, type: "airport" },
+    { q: "If a flight is late, it is ____.", options: ["cancelled", "delayed", "on time"], a: 1, type: "airport" },
+    { q: "If a flight is not going to fly at all, it is ____.", options: ["delayed", "on time", "cancelled"], a: 2, type: "airport" },
+    { q: "Where you leave your big bags: the ____.", options: ["gate", "security check", "check-in desk"], a: 2, type: "airport" },
+    { q: "A small bag for business papers is a ____.", options: ["suitcase", "briefcase", "luggage"], a: 1, type: "airport" },
+    { q: "Which of these is uncountable?", options: ["Ticket", "Information", "Bag"], a: 1, type: "nouns" },
+    { q: "We use 'any' in ____.", options: ["positive sentences", "questions", "neither"], a: 1, type: "grammar" },
+    { q: "Negative with a verb: 'I don't have ____ bags.'", options: ["some", "any", "no"], a: 1, type: "grammar" },
+    { q: "The opposite of 'delayed' is 'on ____'.", options: ["time", "boarding", "gate"], a: 0, type: "airport" },
+    { q: "Which gate ____ I go to?", options: ["do", "have", "am"], a: 0, type: "airport" },
+    { q: "Is 'passport' countable?", options: ["Yes", "No"], a: 0, type: "nouns" },
+    { q: "'Identification' is ____.", options: ["countable", "uncountable"], a: 1, type: "nouns" },
+    { q: "Is there ____ information on the screen?", options: ["some", "any", "no"], a: 1, type: "grammar" },
 
-    // 11.1 SEQUENCING & SUGGESTIONS
-    { q: "____ I send the email to you now?", options: ["Shall", "Let's", "Will"], a: 0, type: "suggestions" }, // [11]
-    { q: "To suggest an action: '____ talk again tomorrow.'", options: ["Shall", "Let's", "Do"], a: 1, type: "suggestions" }, // [11]
-    { q: "Order of ideas: '____, let's have a coffee and then we can work.'", options: ["Finally", "First", "Next"], a: 1, type: "sequencing" }, // [12]
-    { q: "The most ____ job is to finish the brochure.", options: ["urgent", "then", "next"], a: 0, type: "priority" }, // [3, 12]
-    { q: "____ we have dinner on Wednesday?", options: ["Let's", "Shall", "Are"], a: 1, type: "suggestions" }, // [13]
+    // --- UNIT 11.1: SEQUENCING & SUGGESTIONS ---
+    { q: "A suggestion with 'I': '____ I call you later?'", options: ["Shall", "Let's", "Will"], a: 0, type: "suggestions" },
+    { q: "A suggestion with 'we': '____ we meet next week?'", options: ["Let's", "Shall", "Do"], a: 1, type: "suggestions" },
+    { q: "An affirmative suggestion: '____ talk about the design.'", options: ["Shall", "Let's", "Will"], a: 1, type: "suggestions" },
+    { q: "To start a sequence: '____, let's check the prices.'", options: ["Then", "Finally", "First"], a: 2, type: "sequencing" },
+    { q: "To end a sequence: '____, we need to book a room.'", options: ["First", "Next", "Finally"], a: 2, type: "sequencing" },
+    { q: "After 'First', you can use ____.", options: ["Then", "Finally", "Shall"], a: 0, type: "sequencing" },
+    { q: "To agree: 'That's a ____ idea.'", options: ["best", "good", "well"], a: 1, type: "opinion" },
+    { q: "If something needs to be done now, it is ____.", options: ["urgent", "delayed", "late"], a: 0, type: "priority" },
+    { q: "____ talk again tomorrow.", options: ["Shall", "Let's", "Shall we"], a: 1, type: "suggestions" },
+    { q: "Where ____ we meet?", options: ["let's", "shall", "is"], a: 1, type: "suggestions" },
+    { q: "____ I send the email now?", options: ["Shall", "Let's", "Do"], a: 0, type: "suggestions" },
+    { q: "When you disagree politely: 'I'm ____, I don't agree.'", options: ["sad", "sorry", "right"], a: 1, type: "opinion" },
+    { q: "Is checking dates important? 'Yes, it's ____.'", options: ["right", "very important", "agree"], a: 1, type: "priority" },
+    { q: "Sequence: First -> Next -> ____ -> Finally.", options: ["Shall", "Then", "Begin"], a: 1, type: "sequencing" },
+    { q: "Let's ____ that.", options: ["do", "doing", "shall"], a: 0, type: "suggestions" },
+    { q: "Shall ____ plan the meeting?", options: ["I", "we", "Both are correct"], a: 2, type: "suggestions" },
+    { q: "The most ____ job is the brochure.", options: ["urgent", "finally", "then"], a: 0, type: "priority" },
+    { q: "What's a synonym for 'aim'?", options: ["first", "goal", "next"], a: 1, type: "future" },
+    { q: "If it's 'quite urgent', it is ____.", options: ["very urgent", "not urgent", "moderately urgent"], a: 2, type: "priority" },
+    { q: "Shall we ____ the brochure before the prices?", options: ["check", "checking", "checked"], a: 0, type: "suggestions" },
 
-    // 11.2 FUTURE WITH 'GOING TO'
-    { q: "Kristi ____ going to meet Akio in Tokyo.", options: ["am", "is", "are"], a: 1, type: "future" }, // [14]
-    { q: "Question: '____ you going to work late tonight?'", options: ["Is", "Am", "Are"], a: 2, type: "future" }, // [8]
-    { q: "Negative: 'I ____ not book the tickets on the Internet.'", options: ["am", "is", "are"], a: 0, type: "future" }, // [8]
-    { q: "What's the ____ date for having the website ready?", options: ["goal", "aim", "target"], a: 2, type: "future" }, // [15]
+    // --- UNIT 11.2: FUTURE WITH 'GOING TO' ---
+    { q: "I ____ going to meet Akio.", options: ["is", "am", "are"], a: 1, type: "future" },
+    { q: "She ____ going to change the design.", options: ["is", "am", "are"], a: 0, type: "future" },
+    { q: "We ____ going to work on the project.", options: ["is", "am", "are"], a: 2, type: "future" },
+    { q: "Negative: 'I ____ not going to book online.'", options: ["is", "am", "are"], a: 1, type: "future" },
+    { q: "Question: '____ they going to have dinner?'", options: ["Is", "Am", "Are"], a: 2, type: "future" },
+    { q: "Question: 'What ____ she going to present?'", options: ["is", "am", "are"], a: 0, type: "future" },
+    { q: "Kristi's flight ____ at 17:10.", options: ["arrives", "stays", "goes"], a: 0, type: "travel" },
+    { q: "I'm ____ to take a taxi.", options: ["go", "going", "goes"], a: 1, type: "future" },
+    { q: "Our ____ is to finish today.", options: ["goal", "aim", "target"], a: 2, type: "future" },
+    { q: "When are you going to ____ the website ready?", options: ["have", "has", "having"], a: 0, type: "future" },
+    { q: "I'm ____ at the New Empire Hotel.", options: ["living", "staying", "going"], a: 1, type: "hotel" },
+    { q: "Are you going to work ____ tonight?", options: ["late", "lately", "latests"], a: 0, type: "future" },
+    { q: "We ____ not going to talk about the website.", options: ["am", "is", "aren't"], a: 2, type: "future" },
+    { q: "What is your ____ date?", options: ["target", "next", "then"], a: 0, type: "future" },
+    { q: "Kristi is going to meet Akio ____ Tokyo.", options: ["on", "at", "in"], a: 2, type: "preposition" },
+    { q: "I look ____ to seeing you.", options: ["forward", "front", "next"], a: 0, type: "phrase" },
+    { q: "Shall we ____ dinner?", options: ["has", "have", "having"], a: 1, type: "suggestions" },
+    { q: "The website needs big ____.", options: ["changes", "change", "changing"], a: 0, type: "vocabulary" },
+    { q: "It's easier to ____ ideas outside the office.", options: ["have", "has", "do"], a: 0, type: "vocabulary" },
+    { q: "I'll ____ back later.", options: ["calling", "call", "calls"], a: 1, type: "future" },
 
-    // 11.3 STAYING AT A HOTEL (HAVE GOT & VOCABULARY)
-    { q: "Sentence: 'I ____ got a reservation.'", options: ["have", "has", "'ve"], a: 2, type: "hotel" }, // [16, 17]
-    { q: "Negative: 'She ____ got a key.'", options: ["haven't", "hasn't", "don't"], a: 1, type: "hotel" }, // [16]
-    { q: "A room with two separate beds is a ____ room.", options: ["double", "single", "twin"], a: 2, type: "hotel" }, // [17]
-    { q: "You write your ____ on a cheque or form.", options: ["signature", "bill", "extras"], a: 0, type: "hotel" }, // [17, 18]
-    { q: "Phone calls and drinks are often called ____.", options: ["bills", "extras", "forms"], a: 1, type: "hotel" }, // [17, 18]
-    { q: "If you want a meal in your room, you phone room ____.", options: ["service", "check", "wake"], a: 0, type: "hotel" }, // [18]
-
+    // --- UNIT 11.3: STAYING AT A HOTEL (Have Got & Vocabulary) ---
+    { q: "I ____ got a reservation.", options: ["have", "has", "'ve"], a: 2, type: "havegot" },
+    { q: "She ____ got a key.", options: ["haven't", "hasn't", "don't"], a: 1, type: "havegot" },
+    { q: "____ you got a pen?", options: ["Have", "Has", "Do"], a: 0, type: "havegot" },
+    { q: "____ the hotel got a restaurant?", options: ["Have", "Has", "Does"], a: 1, type: "havegot" },
+    { q: "I ____ got your extension number.", options: ["haven't", "hasn't", "no have"], a: 0, type: "havegot" },
+    { q: "A room with one bed for one person:", options: ["double", "twin", "single"], a: 2, type: "hotel" },
+    { q: "A room with two separate beds:", options: ["double", "twin", "single"], a: 1, type: "hotel" },
+    { q: "A room with one big bed for two people:", options: ["double", "twin", "single"], a: 0, type: "hotel" },
+    { q: "To leave the hotel, you ____ out.", options: ["check", "fill", "sign"], a: 0, type: "hotel" },
+    { q: "Could you ____ in this form, please?", options: ["sign", "fill", "check"], a: 1, type: "hotel" },
+    { q: "You write your ____ on a cheque or form.", options: ["name", "signature", "bill"], a: 1, type: "hotel" },
+    { q: "The final paper with all costs is the ____.", options: ["form", "bill", "extras"], a: 1, type: "hotel" },
+    { q: "Phone calls and minibar drinks are ____.", options: ["bills", "extras", "checks"], a: 1, type: "hotel" },
+    { q: "I had some juice from the ____.", options: ["reception", "minibar", "room service"], a: 1, type: "hotel" },
+    { q: "Can I pay by ____ card?", options: ["boarding", "credit", "identity"], a: 1, type: "hotel" },
+    { q: "I'd like a ____ call at 7:00 am.", options: ["wake-up", "breakfast", "phone"], a: 0, type: "hotel" },
+    { q: "My company is ____ the bill.", options: ["paying", "buying", "doing"], a: 0, type: "hotel" },
+    { q: "Breakfast is ____ 7:00 am.", options: ["at", "on", "from"], a: 2, type: "hotel" },
+    { q: "The ____ gives you a key.", options: ["receptionist", "stewardess", "pilot"], a: 0, type: "hotel" },
+    { q: "You have a ____ from Mr. Soga.", options: ["message", "reservation", "form"], a: 0, type: "hotel" }
+          
           
         ];
 
