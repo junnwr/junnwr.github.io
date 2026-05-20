@@ -552,17 +552,53 @@ div#sora_blogger_cntct_form span.clear-bg { display: none; }
       <div class='wrap-me wow fadeInLeft' data-wow-delay='0.2s'>
         <div class='contact-form-widget'>
           <div class='form'>
-            <form name='contact-form'>
-              <span class='name-bg'>Nome*</span><br/>
-              <input class='contact-form-name' name='name' size='30' type='text' value=''/>
-              <span class='email-bg'>E-mail*</span><br/>
-              <input class='contact-form-email' name='email' size='30' type='text' value=''/>
-              <span class='message-bg'>Mensagem*</span><br/>
-              <textarea class='contact-form-email-message' cols='25' name='email-message' rows='5'></textarea>
-              <span class='send-bg'>
-                <input class='contact-form-button contact-form-button-submit' value='Enviar' type='button'/>
-              </span>
-            </form>
+          <form 
+action="mailto:junnwr@usa.com"
+method="POST"
+enctype="text/plain"
+>
+
+    <span class='name-bg'>Nome*</span><br/>
+
+    <input
+    class='contact-form-name'
+    name='Nome'
+    size='30'
+    type='text'
+    required
+    />
+
+    <span class='email-bg'>E-mail*</span><br/>
+
+    <input
+    class='contact-form-email'
+    name='Email'
+    size='30'
+    type='email'
+    required
+    />
+
+    <span class='message-bg'>Mensagem*</span><br/>
+
+    <textarea
+    class='contact-form-email-message'
+    cols='25'
+    name='Mensagem'
+    rows='5'
+    required
+    ></textarea>
+
+    <span class='send-bg'>
+
+        <input
+        class='contact-form-button contact-form-button-submit'
+        value='Enviar'
+        type='submit'
+        />
+
+    </span>
+
+</form>
           </div>
         </div>
       </div>
