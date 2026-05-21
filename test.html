@@ -1,411 +1,790 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Practice - Lessons 10.2 to 11.3</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      background:#111827;
-      color:white;
-      margin:0;
-      padding:30px;
-    }
+<title>English Practice - Lessons 10.2 to 11.3</title>
 
-    h1,h2{
-      color:#60a5fa;
-    }
+<style>
 
-    .question{
-      background:#1f2937;
-      padding:20px;
-      margin-bottom:20px;
-      border-radius:10px;
-    }
+*{
+    box-sizing:border-box;
+}
 
-    .question p{
-      font-weight:bold;
-    }
+body{
+    margin:0;
+    padding:30px;
+    background:#0f172a;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-    input[type="text"]{
-      width:100%;
-      padding:10px;
-      margin-top:10px;
-      border:none;
-      border-radius:5px;
-      font-size:16px;
-    }
+.container{
+    max-width:1100px;
+    margin:auto;
+}
 
-    label{
-      display:block;
-      margin:8px 0;
-    }
+h1{
+    color:#60a5fa;
+    margin-bottom:10px;
+}
 
-    button{
-      background:#2563eb;
-      color:white;
-      border:none;
-      padding:15px 25px;
-      border-radius:8px;
-      font-size:18px;
-      cursor:pointer;
-      margin-top:20px;
-    }
+.subtitle{
+    color:#cbd5e1;
+    margin-bottom:30px;
+}
 
-    button:hover{
-      background:#1d4ed8;
-    }
+.question-box{
+    background:#1e293b;
+    padding:25px;
+    border-radius:14px;
+    margin-bottom:20px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
 
-    #result{
-      margin-top:30px;
-      font-size:24px;
-      font-weight:bold;
-      color:#34d399;
-    }
-  </style>
+.question{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+label{
+    display:block;
+    margin:12px 0;
+    background:#334155;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+label:hover{
+    background:#475569;
+}
+
+input[type="radio"]{
+    margin-right:10px;
+}
+
+input[type="text"]{
+    width:650px;
+    max-width:100%;
+    padding:16px;
+    border:none;
+    border-radius:10px;
+    background:#334155;
+    color:white;
+    font-size:17px;
+    outline:none;
+}
+
+.buttons{
+    margin-top:30px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+button{
+    background:#2563eb;
+    border:none;
+    padding:15px 25px;
+    border-radius:10px;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.correct{
+    margin-top:20px;
+    background:#14532d;
+    padding:15px;
+    border-radius:10px;
+    color:#bbf7d0;
+    line-height:1.7;
+}
+
+.wrong{
+    margin-top:20px;
+    background:#7f1d1d;
+    padding:15px;
+    border-radius:10px;
+    color:#fecaca;
+    line-height:1.8;
+}
+
+#score{
+    margin-top:40px;
+    font-size:32px;
+    font-weight:bold;
+    color:#4ade80;
+}
+
+.hidden{
+    display:none;
+}
+
+.block-title{
+    margin:40px 0 20px 0;
+    color:#93c5fd;
+    font-size:28px;
+}
+
+.progress{
+    margin-bottom:30px;
+    color:#94a3b8;
+    font-size:18px;
+}
+
+</style>
 </head>
+
 <body>
 
-<h1>English Practice - Lessons 10.2 to 11.3</h1>
+<div class="container">
 
-<form id="quizForm">
+<h1>English Practice</h1>
 
-<!-- COMPARATIVES -->
-
-<h2>Comparatives & Superlatives</h2>
-
-<div class="question">
-<p>1. A plane is ____ than a bus.</p>
-<label><input type="radio" name="q1" value="correct"> faster</label>
-<label><input type="radio" name="q1"> fastest</label>
-<label><input type="radio" name="q1"> more fast</label>
+<div class="subtitle">
+Lessons 10.2 → 11.3
 </div>
 
-<div class="question">
-<p>2. This is the ____ hotel in town.</p>
-<label><input type="radio" name="q2"> cheap</label>
-<label><input type="radio" name="q2" value="correct"> cheapest</label>
-<label><input type="radio" name="q2"> cheaper</label>
+<div class="progress" id="progress">
+Questions 1 - 10
 </div>
 
-<div class="question">
-<p>3. English is ____ than Chinese.</p>
-<input type="text" data-answer="easier">
+<div id="quiz"></div>
+
+<div class="buttons">
+<button onclick="checkAnswers()">
+Check Answers
+</button>
+
+<button onclick="nextQuestions()">
+Next 10 Questions
+</button>
 </div>
 
-<div class="question">
-<p>4. Flying is the ____ way to travel.</p>
-<input type="text" data-answer="fastest">
+<div id="score"></div>
+
 </div>
-
-<div class="question">
-<p>5. Modern planes are ____ economical than older planes.</p>
-<label><input type="radio" name="q5" value="correct"> more</label>
-<label><input type="radio" name="q5"> most</label>
-<label><input type="radio" name="q5"> much</label>
-</div>
-
-<div class="question">
-<p>6. Cars are ____ dangerous than planes.</p>
-<input type="text" data-answer="more">
-</div>
-
-<div class="question">
-<p>7. The TGV is the ____ train in Europe.</p>
-<input type="text" data-answer="fastest">
-</div>
-
-<div class="question">
-<p>8. This ticket is ____ expensive than the other one.</p>
-<input type="text" data-answer="less">
-</div>
-
-<div class="question">
-<p>9. Which is correct?</p>
-<label><input type="radio" name="q9"> more cheap</label>
-<label><input type="radio" name="q9" value="correct"> cheaper</label>
-<label><input type="radio" name="q9"> cheapest</label>
-</div>
-
-<div class="question">
-<p>10. Driving is the ____ option.</p>
-<input type="text" data-answer="worst">
-</div>
-
-<!-- AIRPORT -->
-
-<h2>Airport English</h2>
-
-<div class="question">
-<p>11. My flight is late. It is ____.</p>
-<input type="text" data-answer="delayed">
-</div>
-
-<div class="question">
-<p>12. Here is your ____ pass.</p>
-<input type="text" data-answer="boarding">
-</div>
-
-<div class="question">
-<p>13. I prefer a window ____.</p>
-<input type="text" data-answer="seat">
-</div>
-
-<div class="question">
-<p>14. Boarding starts at ____ 12.</p>
-<input type="text" data-answer="gate">
-</div>
-
-<div class="question">
-<p>15. Which word means "bagagem"?</p>
-<label><input type="radio" name="q15"> passport</label>
-<label><input type="radio" name="q15" value="correct"> luggage</label>
-<label><input type="radio" name="q15"> flight</label>
-</div>
-
-<div class="question">
-<p>16. The flight is ____.</p>
-<label><input type="radio" name="q16"> board</label>
-<label><input type="radio" name="q16" value="correct"> cancelled</label>
-<label><input type="radio" name="q16"> gate</label>
-</div>
-
-<div class="question">
-<p>17. Do you have any ____ luggage?</p>
-<input type="text" data-answer="hand">
-</div>
-
-<div class="question">
-<p>18. I need my ____ to travel internationally.</p>
-<input type="text" data-answer="passport">
-</div>
-
-<div class="question">
-<p>19. Window seat or ____ seat?</p>
-<input type="text" data-answer="aisle">
-</div>
-
-<div class="question">
-<p>20. We are boarding now.</p>
-<label><input type="radio" name="q20" value="correct"> embarcando</label>
-<label><input type="radio" name="q20"> atrasados</label>
-<label><input type="radio" name="q20"> cancelados</label>
-</div>
-
-<!-- SOME ANY NO -->
-
-<h2>Some / Any / No</h2>
-
-<div class="question">
-<p>21. Do you have ____ luggage?</p>
-<input type="text" data-answer="any">
-</div>
-
-<div class="question">
-<p>22. I have ____ tickets.</p>
-<input type="text" data-answer="some">
-</div>
-
-<div class="question">
-<p>23. There are ____ flights today.</p>
-<input type="text" data-answer="no">
-</div>
-
-<div class="question">
-<p>24. We don't have ____ information.</p>
-<input type="text" data-answer="any">
-</div>
-
-<div class="question">
-<p>25. I have ____ hand luggage.</p>
-<input type="text" data-answer="some">
-</div>
-
-<!-- SHALL / LET'S -->
-
-<h2>Suggestions</h2>
-
-<div class="question">
-<p>26. ____ we meet tomorrow?</p>
-<input type="text" data-answer="shall">
-</div>
-
-<div class="question">
-<p>27. Let's ____ the project now.</p>
-<input type="text" data-answer="discuss">
-</div>
-
-<div class="question">
-<p>28. Shall I ____ the email?</p>
-<input type="text" data-answer="send">
-</div>
-
-<div class="question">
-<p>29. Which expression is correct?</p>
-<label><input type="radio" name="q29" value="correct"> Let's talk later</label>
-<label><input type="radio" name="q29"> Let talk later</label>
-<label><input type="radio" name="q29"> Shall talk later</label>
-</div>
-
-<div class="question">
-<p>30. First, let's discuss prices. ____ we can talk about the website.</p>
-<input type="text" data-answer="then">
-</div>
-
-<!-- GOING TO -->
-
-<h2>Going To</h2>
-
-<div class="question">
-<p>31. I am going to ____ tomorrow.</p>
-<input type="text" data-answer="travel">
-</div>
-
-<div class="question">
-<p>32. She is ____ to call the client.</p>
-<input type="text" data-answer="going">
-</div>
-
-<div class="question">
-<p>33. We ____ going to discuss the website.</p>
-<input type="text" data-answer="are">
-</div>
-
-<div class="question">
-<p>34. They are not going to ____ the design.</p>
-<input type="text" data-answer="change">
-</div>
-
-<div class="question">
-<p>35. ____ you going to work tonight?</p>
-<input type="text" data-answer="are">
-</div>
-
-<div class="question">
-<p>36. What are you going to ____?</p>
-<input type="text" data-answer="do">
-</div>
-
-<div class="question">
-<p>37. Our ____ is to finish the project.</p>
-<input type="text" data-answer="goal">
-</div>
-
-<div class="question">
-<p>38. The target ____ is December.</p>
-<input type="text" data-answer="date">
-</div>
-
-<div class="question">
-<p>39. We are going to ____ a meeting.</p>
-<input type="text" data-answer="arrange">
-</div>
-
-<div class="question">
-<p>40. Which is correct?</p>
-<label><input type="radio" name="q40"> I going to travel</label>
-<label><input type="radio" name="q40" value="correct"> I'm going to travel</label>
-<label><input type="radio" name="q40"> I am go to travel</label>
-</div>
-
-<!-- HOTEL -->
-
-<h2>Hotel English</h2>
-
-<div class="question">
-<p>41. I've got a ____.</p>
-<input type="text" data-answer="reservation">
-</div>
-
-<div class="question">
-<p>42. Could I check ____ please?</p>
-<input type="text" data-answer="out">
-</div>
-
-<div class="question">
-<p>43. Can I pay by credit ____?</p>
-<input type="text" data-answer="card">
-</div>
-
-<div class="question">
-<p>44. Would you like a wake-up ____?</p>
-<input type="text" data-answer="call">
-</div>
-
-<div class="question">
-<p>45. Here's the key for your ____.</p>
-<input type="text" data-answer="room">
-</div>
-
-<div class="question">
-<p>46. My company is paying the ____.</p>
-<input type="text" data-answer="bill">
-</div>
-
-<div class="question">
-<p>47. I had juice from the mini____.</p>
-<input type="text" data-answer="bar">
-</div>
-
-<div class="question">
-<p>48. Which expression is correct?</p>
-<label><input type="radio" name="q48" value="correct"> Have you got a reservation?</label>
-<label><input type="radio" name="q48"> Have you reservation?</label>
-<label><input type="radio" name="q48"> You have got reservation?</label>
-</div>
-
-<div class="question">
-<p>49. I ____ got a passport.</p>
-<input type="text" data-answer="have">
-</div>
-
-<div class="question">
-<p>50. She ____ got the key.</p>
-<input type="text" data-answer="has">
-</div>
-
-<button type="button" onclick="checkQuiz()">Ver Resultado</button>
-
-</form>
-
-<div id="result"></div>
 
 <script>
-function checkQuiz(){
 
-  let score = 0;
+// ======================================
+// QUESTION BANK
+// ======================================
 
-  // Radio buttons
-  const radios = document.querySelectorAll('input[type="radio"]:checked');
+const allQuestions = [
 
-  radios.forEach(radio => {
-    if(radio.value === "correct"){
-      score++;
-    }
-  });
+{
+type:"multiple",
+question:"A plane is ____ than a bus.",
+options:["faster","fastest","more fast"],
+answer:"faster",
+explanation:"Comparatives compare TWO things. Fast → faster."
+},
 
-  // Text inputs
-  const texts = document.querySelectorAll('input[type="text"]');
+{
+type:"text",
+question:"Flying is the ____ way to travel.",
+answer:"fastest",
+explanation:"Superlative = the fastest."
+},
 
-  texts.forEach(input => {
-    const answer = input.dataset.answer;
+{
+type:"text",
+question:"English is ____ than Chinese.",
+answer:"easier",
+explanation:"Easy → easier."
+},
 
-    if(answer){
-      if(input.value.trim().toLowerCase() === answer.toLowerCase()){
-        score++;
-      }
-    }
-  });
+{
+type:"multiple",
+question:"Which is correct?",
+options:["more cheap","cheaper","cheapest"],
+answer:"cheaper",
+explanation:"Cheap is a short adjective. Use cheaper."
+},
 
-  document.getElementById("result").innerHTML =
-    "Your score: " + score + " / 50";
+{
+type:"text",
+question:"This is the ____ ticket.",
+answer:"cheapest",
+explanation:"Cheapest = superlative of cheap."
+},
+
+{
+type:"text",
+question:"Modern planes are ____ economical than older planes.",
+answer:"more",
+explanation:"Long adjectives use MORE."
+},
+
+{
+type:"text",
+question:"Cars are ____ dangerous than planes.",
+answer:"more",
+explanation:"Dangerous is long → more dangerous."
+},
+
+{
+type:"multiple",
+question:"Which is the superlative?",
+options:["better","best","more good"],
+answer:"best",
+explanation:"Good → best."
+},
+
+{
+type:"text",
+question:"Driving is the ____ option.",
+answer:"worst",
+explanation:"Bad → worse → worst."
+},
+
+{
+type:"text",
+question:"The TGV is the ____ train in Europe.",
+answer:"fastest",
+explanation:"Fastest = superlative."
+},
+
+{
+type:"text",
+question:"My flight is ____.",
+answer:"delayed",
+explanation:"Delayed = atrasado."
+},
+
+{
+type:"multiple",
+question:"Which word means 'bagagem'?",
+options:["passport","ticket","luggage"],
+answer:"luggage",
+explanation:"Luggage = bagagem."
+},
+
+{
+type:"text",
+question:"Boarding starts at ____ 15.",
+answer:"gate",
+explanation:"Gate = portão."
+},
+
+{
+type:"text",
+question:"I need my ____ to travel internationally.",
+answer:"passport",
+explanation:"Passport = passaporte."
+},
+
+{
+type:"multiple",
+question:"Window seat or ____ seat?",
+options:["aisle","hall","door"],
+answer:"aisle",
+explanation:"Aisle seat = corredor."
+},
+
+{
+type:"text",
+question:"Do you have any hand ____?",
+answer:"luggage",
+explanation:"Hand luggage = bagagem de mão."
+},
+
+{
+type:"text",
+question:"The flight is ____.",
+answer:"cancelled",
+explanation:"Cancelled = cancelado."
+},
+
+{
+type:"multiple",
+question:"We are boarding now.",
+options:["embarcando","cancelando","esperando"],
+answer:"embarcando",
+explanation:"Boarding = embarcando."
+},
+
+{
+type:"text",
+question:"Here is your boarding ____.",
+answer:"pass",
+explanation:"Boarding pass = cartão de embarque."
+},
+
+{
+type:"text",
+question:"I prefer a window ____.",
+answer:"seat",
+explanation:"Window seat = assento da janela."
+},
+
+{
+type:"text",
+question:"I have ____ tickets.",
+answer:"some",
+explanation:"Some = frases positivas."
+},
+
+{
+type:"text",
+question:"Do you have ____ luggage?",
+answer:"any",
+explanation:"Any = perguntas."
+},
+
+{
+type:"text",
+question:"There are ____ flights today.",
+answer:"no",
+explanation:"No = nenhum."
+},
+
+{
+type:"multiple",
+question:"We don't have ____ information.",
+options:["some","any","many"],
+answer:"any",
+explanation:"Any = negativas."
+},
+
+{
+type:"text",
+question:"I have ____ hand luggage.",
+answer:"some",
+explanation:"Some = positiva."
+},
+
+{
+type:"text",
+question:"____ we discuss the project tomorrow?",
+answer:"shall",
+explanation:"Shall we = sugestão."
+},
+
+{
+type:"text",
+question:"Let's ____ a meeting.",
+answer:"arrange",
+explanation:"Arrange = organizar."
+},
+
+{
+type:"multiple",
+question:"Which expression is correct?",
+options:[
+"Let's discuss now",
+"Let discuss now",
+"Shall discuss now"
+],
+answer:"Let's discuss now",
+explanation:"After let's → verb."
+},
+
+{
+type:"text",
+question:"First let's talk about prices. ____ we can discuss the website.",
+answer:"then",
+explanation:"Then = depois."
+},
+
+{
+type:"text",
+question:"This job is very ____.",
+answer:"urgent",
+explanation:"Urgent = urgente."
+},
+
+{
+type:"text",
+question:"I am going to ____ tomorrow.",
+answer:"travel",
+explanation:"Going to + verb."
+},
+
+{
+type:"multiple",
+question:"Which is correct?",
+options:[
+"I going to travel",
+"I'm going to travel",
+"I am go to travel"
+],
+answer:"I'm going to travel",
+explanation:"Correct structure: be + going to."
+},
+
+{
+type:"text",
+question:"She is ____ to call the client.",
+answer:"going",
+explanation:"Is going to."
+},
+
+{
+type:"text",
+question:"We are going to ____ the website.",
+answer:"discuss",
+explanation:"Discuss = discutir."
+},
+
+{
+type:"text",
+question:"Our ____ is to finish the project.",
+answer:"goal",
+explanation:"Goal = meta."
+},
+
+{
+type:"multiple",
+question:"The target ____ is December.",
+options:["goal","date","schedule"],
+answer:"date",
+explanation:"Target date = data alvo."
+},
+
+{
+type:"text",
+question:"They are not going to ____ the design.",
+answer:"change",
+explanation:"Change = mudar."
+},
+
+{
+type:"text",
+question:"What are you going to ____ tonight?",
+answer:"do",
+explanation:"Do = fazer."
+},
+
+{
+type:"multiple",
+question:"Which is correct?",
+options:[
+"We going to work",
+"We are going to work",
+"We are go to work"
+],
+answer:"We are going to work",
+explanation:"Correct future structure."
+},
+
+{
+type:"text",
+question:"We are going to ____ a meeting.",
+answer:"arrange",
+explanation:"Arrange a meeting."
+},
+
+{
+type:"text",
+question:"I've got a ____ at the hotel.",
+answer:"reservation",
+explanation:"Reservation = reserva."
+},
+
+{
+type:"text",
+question:"Could I check ____ please?",
+answer:"out",
+explanation:"Check out = sair do hotel."
+},
+
+{
+type:"multiple",
+question:"Can I pay by credit ____?",
+options:["ticket","card","reservation"],
+answer:"card",
+explanation:"Credit card."
+},
+
+{
+type:"text",
+question:"Would you like a wake-up ____?",
+answer:"call",
+explanation:"Wake-up call."
+},
+
+{
+type:"text",
+question:"Here's the key for your ____.",
+answer:"room",
+explanation:"Room = quarto."
+},
+
+{
+type:"multiple",
+question:"Have you got a reservation?",
+options:["Pergunta","Negativa","Afirmação"],
+answer:"Pergunta",
+explanation:"Have you got...? = pergunta."
+},
+
+{
+type:"text",
+question:"My company is paying the ____.",
+answer:"bill",
+explanation:"Bill = conta."
+},
+
+{
+type:"text",
+question:"I had juice from the mini____.",
+answer:"bar",
+explanation:"Minibar."
+},
+
+{
+type:"multiple",
+question:"Which is correct?",
+options:[
+"I've got a reservation",
+"I got reservation",
+"I have reservation"
+],
+answer:"I've got a reservation",
+explanation:"Estrutura correta com have got."
+},
+
+{
+type:"text",
+question:"She ____ got the key.",
+answer:"has",
+explanation:"She has got."
+},
+
+{
+type:"text",
+question:"We haven't got any ____.",
+answer:"tickets",
+explanation:"Any + plural."
+}
+
+];
+
+// ======================================
+// VARIABLES
+// ======================================
+
+let currentBlock = 0;
+let score = 0;
+
+const shuffledQuestions = shuffle(allQuestions);
+
+// ======================================
+// SHUFFLE
+// ======================================
+
+function shuffle(array){
+
+for(let i = array.length -1; i > 0; i--){
+
+const j = Math.floor(Math.random() * (i+1));
+
+[array[i],array[j]] = [array[j],array[i]];
 
 }
+
+return array;
+
+}
+
+// ======================================
+// RENDER QUESTIONS
+// ======================================
+
+function renderQuestions(){
+
+const quiz = document.getElementById("quiz");
+
+quiz.innerHTML = "";
+
+const start = currentBlock * 10;
+const end = start + 10;
+
+const blockQuestions = shuffledQuestions.slice(start,end);
+
+blockQuestions.forEach((q,index)=>{
+
+const realIndex = start + index;
+
+let html = `
+<div class="question-box">
+
+<div class="question">
+${realIndex + 1}. ${q.question}
+</div>
+`;
+
+if(q.type === "multiple"){
+
+q.options.forEach(option=>{
+
+html += `
+<label>
+
+<input type="radio"
+name="q${realIndex}"
+value="${option}">
+
+${option}
+
+</label>
+`;
+
+});
+
+}else{
+
+html += `
+<input type="text" id="q${realIndex}">
+`;
+
+}
+
+html += `
+<div id="feedback${realIndex}"></div>
+</div>
+`;
+
+quiz.innerHTML += html;
+
+});
+
+document.getElementById("progress").innerHTML =
+`Questions ${start+1} - ${end}`;
+
+}
+
+// ======================================
+// CHECK ANSWERS
+// ======================================
+
+function checkAnswers(){
+
+const start = currentBlock * 10;
+const end = start + 10;
+
+for(let i=start;i<end;i++){
+
+const q = shuffledQuestions[i];
+
+const feedback =
+document.getElementById(`feedback${i}`);
+
+let correct = false;
+let userAnswer = "";
+
+if(q.type === "multiple"){
+
+const checked =
+document.querySelector(`input[name="q${i}"]:checked`);
+
+if(checked){
+
+userAnswer = checked.value;
+
+if(userAnswer === q.answer){
+correct = true;
+}
+
+}
+
+}else{
+
+const input =
+document.getElementById(`q${i}`);
+
+userAnswer =
+input.value.trim().toLowerCase();
+
+if(userAnswer === q.answer.toLowerCase()){
+correct = true;
+}
+
+}
+
+if(correct){
+
+score++;
+
+feedback.innerHTML = `
+<div class="correct">
+
+✔ Correct!
+
+</div>
+`;
+
+}else{
+
+feedback.innerHTML = `
+<div class="wrong">
+
+✘ Wrong Answer<br><br>
+
+<b>Your answer:</b>
+${userAnswer || "No answer"}<br><br>
+
+<b>Correct answer:</b>
+${q.answer}<br><br>
+
+<b>Explanation:</b><br>
+${q.explanation}
+
+</div>
+`;
+
+}
+
+}
+
+document.getElementById("score").innerHTML =
+`Score: ${score}`;
+
+}
+
+// ======================================
+// NEXT QUESTIONS
+// ======================================
+
+function nextQuestions(){
+
+currentBlock++;
+
+if(currentBlock * 10 >= shuffledQuestions.length){
+
+document.getElementById("quiz").innerHTML = `
+<h2>Quiz Finished!</h2>
+`;
+
+document.getElementById("progress").innerHTML =
+"Completed";
+
+return;
+
+}
+
+renderQuestions();
+
+}
+
+// ======================================
+
+renderQuestions();
+
 </script>
 
 </body>
 </html>
-
