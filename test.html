@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>English Practice - Lessons 10.2 to 11.3</title>
+<title>English Study Quiz</title>
 
 <style>
 
@@ -16,23 +16,35 @@ body{
     margin:0;
     padding:30px;
     background:#0f172a;
+    font-family:Arial, sans-serif;
     color:white;
-    font-family:Arial, Helvetica, sans-serif;
 }
 
 .container{
-    max-width:1100px;
+    max-width:1000px;
     margin:auto;
 }
 
 h1{
     color:#60a5fa;
-    margin-bottom:10px;
 }
 
-.subtitle{
-    color:#cbd5e1;
+.topic-title{
+    margin-top:10px;
     margin-bottom:30px;
+    color:#93c5fd;
+    font-size:28px;
+}
+
+.topic-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.topic-buttons button{
+    background:#1d4ed8;
 }
 
 .question-box{
@@ -40,7 +52,6 @@ h1{
     padding:25px;
     border-radius:14px;
     margin-bottom:20px;
-    box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
 .question{
@@ -52,12 +63,11 @@ h1{
 
 label{
     display:block;
-    margin:12px 0;
-    background:#334155;
+    margin:10px 0;
     padding:12px;
+    background:#334155;
     border-radius:8px;
     cursor:pointer;
-    transition:0.2s;
 }
 
 label:hover{
@@ -77,70 +87,48 @@ input[type="text"]{
     background:#334155;
     color:white;
     font-size:17px;
-    outline:none;
-}
-
-.buttons{
-    margin-top:30px;
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
 }
 
 button{
-    background:#2563eb;
     border:none;
     padding:15px 25px;
     border-radius:10px;
     color:white;
-    font-size:18px;
+    font-size:17px;
     cursor:pointer;
-    transition:0.2s;
+    background:#2563eb;
 }
 
 button:hover{
-    background:#1d4ed8;
+    background:#1e40af;
 }
 
 .correct{
     margin-top:20px;
     background:#14532d;
+    color:#bbf7d0;
     padding:15px;
     border-radius:10px;
-    color:#bbf7d0;
-    line-height:1.7;
 }
 
 .wrong{
     margin-top:20px;
     background:#7f1d1d;
+    color:#fecaca;
     padding:15px;
     border-radius:10px;
-    color:#fecaca;
     line-height:1.8;
 }
 
 #score{
-    margin-top:40px;
-    font-size:32px;
-    font-weight:bold;
+    margin-top:30px;
+    font-size:30px;
     color:#4ade80;
+    font-weight:bold;
 }
 
 .hidden{
     display:none;
-}
-
-.block-title{
-    margin:40px 0 20px 0;
-    color:#93c5fd;
-    font-size:28px;
-}
-
-.progress{
-    margin-bottom:30px;
-    color:#94a3b8;
-    font-size:18px;
 }
 
 </style>
@@ -152,25 +140,45 @@ button:hover{
 
 <h1>English Practice</h1>
 
-<div class="subtitle">
-Lessons 10.2 → 11.3
+<div class="topic-title" id="topicTitle">
+Choose a topic
 </div>
 
-<div class="progress" id="progress">
-Questions 1 - 10
+<div class="topic-buttons">
+
+<button onclick="loadTopic('comparatives')">
+Comparatives
+</button>
+
+<button onclick="loadTopic('airport')">
+Airport English
+</button>
+
+<button onclick="loadTopic('someany')">
+Some / Any / No
+</button>
+
+<button onclick="loadTopic('suggestions')">
+Shall / Let's
+</button>
+
+<button onclick="loadTopic('goingto')">
+Going To
+</button>
+
+<button onclick="loadTopic('hotel')">
+Hotel English
+</button>
+
 </div>
 
 <div id="quiz"></div>
 
-<div class="buttons">
-<button onclick="checkAnswers()">
+<button id="checkBtn"
+class="hidden"
+onclick="checkAnswers()">
 Check Answers
 </button>
-
-<button onclick="nextQuestions()">
-Next 10 Questions
-</button>
-</div>
 
 <div id="score"></div>
 
@@ -178,11 +186,17 @@ Next 10 Questions
 
 <script>
 
-// ======================================
-// QUESTION BANK
-// ======================================
+// ====================================
+// QUESTION BANK BY TOPICS
+// ====================================
 
-const allQuestions = [
+const topics = {
+
+comparatives:[
+
+// ====================
+// COMPARATIVES 1-10
+// ====================
 
 {
 type:"multiple",
@@ -194,16 +208,16 @@ explanation:"Comparatives compare TWO things. Fast → faster."
 
 {
 type:"text",
-question:"Flying is the ____ way to travel.",
-answer:"fastest",
-explanation:"Superlative = the fastest."
+question:"English is ____ than Chinese.",
+answer:"easier",
+explanation:"Easy → easier."
 },
 
 {
 type:"text",
-question:"English is ____ than Chinese.",
-answer:"easier",
-explanation:"Easy → easier."
+question:"This hotel is ____ than the other one.",
+answer:"cheaper",
+explanation:"Cheap → cheaper."
 },
 
 {
@@ -211,51 +225,215 @@ type:"multiple",
 question:"Which is correct?",
 options:["more cheap","cheaper","cheapest"],
 answer:"cheaper",
-explanation:"Cheap is a short adjective. Use cheaper."
-},
-
-{
-type:"text",
-question:"This is the ____ ticket.",
-answer:"cheapest",
-explanation:"Cheapest = superlative of cheap."
-},
-
-{
-type:"text",
-question:"Modern planes are ____ economical than older planes.",
-answer:"more",
-explanation:"Long adjectives use MORE."
+explanation:"Short adjectives use ER."
 },
 
 {
 type:"text",
 question:"Cars are ____ dangerous than planes.",
 answer:"more",
-explanation:"Dangerous is long → more dangerous."
+explanation:"Long adjectives use MORE."
+},
+
+{
+type:"text",
+question:"Flying is the ____ way to travel.",
+answer:"fastest",
+explanation:"Fastest = superlative."
 },
 
 {
 type:"multiple",
-question:"Which is the superlative?",
-options:["better","best","more good"],
-answer:"best",
-explanation:"Good → best."
+question:"Good →",
+options:["gooder","better","best"],
+answer:"better",
+explanation:"Good is irregular."
 },
 
 {
 type:"text",
 question:"Driving is the ____ option.",
 answer:"worst",
-explanation:"Bad → worse → worst."
+explanation:"Worst = superlative of bad."
 },
 
 {
 type:"text",
+question:"This ticket is ____ expensive than the other one.",
+answer:"less",
+explanation:"Less expensive = menos caro."
+},
+
+{
+type:"multiple",
 question:"The TGV is the ____ train in Europe.",
+options:["faster","fastest","more fast"],
+answer:"fastest",
+explanation:"Superlative uses EST."
+},
+
+// ====================
+// COMPARATIVES 11-20
+// ====================
+
+{
+type:"text",
+question:"Tokyo is ____ than my city.",
+answer:"bigger",
+explanation:"Big → bigger."
+},
+
+{
+type:"multiple",
+question:"Which is correct?",
+options:["more easy","easier","easyer"],
+answer:"easier",
+explanation:"Easy → easier."
+},
+
+{
+type:"text",
+question:"Planes are ____ than cars.",
+answer:"safer",
+explanation:"Safe → safer."
+},
+
+{
+type:"text",
+question:"This is the ____ hotel here.",
+answer:"best",
+explanation:"Best = superlative of good."
+},
+
+{
+type:"multiple",
+question:"Expensive →",
+options:["expensiver","more expensive","most expensive"],
+answer:"more expensive",
+explanation:"Long adjectives use MORE."
+},
+
+{
+type:"text",
+question:"Math is ____ difficult than English.",
+answer:"more",
+explanation:"More difficult."
+},
+
+{
+type:"text",
+question:"This car is the ____ one.",
 answer:"fastest",
 explanation:"Fastest = superlative."
 },
+
+{
+type:"multiple",
+question:"Bad →",
+options:["badder","worse","worst"],
+answer:"worse",
+explanation:"Bad → worse."
+},
+
+{
+type:"text",
+question:"Buses are ____ comfortable than planes.",
+answer:"less",
+explanation:"Less comfortable."
+},
+
+{
+type:"text",
+question:"This exercise is ____ than the last one.",
+answer:"easier",
+explanation:"Easy → easier."
+},
+
+// ====================
+// COMPARATIVES 21-30
+// ====================
+
+{
+type:"multiple",
+question:"Which is a superlative?",
+options:["faster","fastest","more fast"],
+answer:"fastest",
+explanation:"Fastest = superlative."
+},
+
+{
+type:"text",
+question:"This phone is ____ modern than mine.",
+answer:"more",
+explanation:"More modern."
+},
+
+{
+type:"text",
+question:"Today is the ____ day of the week.",
+answer:"worst",
+explanation:"Worst = most bad."
+},
+
+{
+type:"multiple",
+question:"Cheap →",
+options:["cheapest","cheaper","cheap"],
+answer:"cheapest",
+explanation:"Cheapest = superlative."
+},
+
+{
+type:"text",
+question:"This train is ____ than the bus.",
+answer:"faster",
+explanation:"Fast → faster."
+},
+
+{
+type:"text",
+question:"This test is the ____ one.",
+answer:"most difficult",
+explanation:"Long adjectives use MOST."
+},
+
+{
+type:"multiple",
+question:"Safe →",
+options:["safer","safest","safe"],
+answer:"safer",
+explanation:"Safe → safer."
+},
+
+{
+type:"text",
+question:"My bag is ____ heavy than yours.",
+answer:"less",
+explanation:"Less heavy."
+},
+
+{
+type:"text",
+question:"English is the ____ language for me.",
+answer:"easiest",
+explanation:"Easy → easiest."
+},
+
+{
+type:"multiple",
+question:"Far →",
+options:["further","farer","most far"],
+answer:"further",
+explanation:"Irregular comparative."
+}
+
+],
+
+// ============================================
+// AIRPORT ENGLISH
+// ============================================
+
+airport:[
 
 {
 type:"text",
@@ -266,22 +444,22 @@ explanation:"Delayed = atrasado."
 
 {
 type:"multiple",
-question:"Which word means 'bagagem'?",
-options:["passport","ticket","luggage"],
+question:"Which word means bagagem?",
+options:["passport","luggage","seat"],
 answer:"luggage",
 explanation:"Luggage = bagagem."
 },
 
 {
 type:"text",
-question:"Boarding starts at ____ 15.",
+question:"Boarding starts at ____ 12.",
 answer:"gate",
 explanation:"Gate = portão."
 },
 
 {
 type:"text",
-question:"I need my ____ to travel internationally.",
+question:"I need my ____ to travel.",
 answer:"passport",
 explanation:"Passport = passaporte."
 },
@@ -296,303 +474,238 @@ explanation:"Aisle seat = corredor."
 
 {
 type:"text",
-question:"Do you have any hand ____?",
-answer:"luggage",
-explanation:"Hand luggage = bagagem de mão."
+question:"Here is your boarding ____.",
+answer:"pass",
+explanation:"Boarding pass."
 },
 
 {
 type:"text",
-question:"The flight is ____.",
-answer:"cancelled",
-explanation:"Cancelled = cancelado."
+question:"I have two ____.",
+answer:"suitcases",
+explanation:"Suitcase = mala."
 },
 
 {
 type:"multiple",
-question:"We are boarding now.",
-options:["embarcando","cancelando","esperando"],
-answer:"embarcando",
-explanation:"Boarding = embarcando."
+question:"Cancelled means:",
+options:["cancelado","embarcando","atrasado"],
+answer:"cancelado",
+explanation:"Cancelled = cancelado."
 },
 
 {
 type:"text",
-question:"Here is your boarding ____.",
-answer:"pass",
-explanation:"Boarding pass = cartão de embarque."
+question:"My flight leaves from ____ 9.",
+answer:"gate",
+explanation:"Gate = portão."
 },
 
 {
 type:"text",
 question:"I prefer a window ____.",
 answer:"seat",
-explanation:"Window seat = assento da janela."
-},
-
-{
-type:"text",
-question:"I have ____ tickets.",
-answer:"some",
-explanation:"Some = frases positivas."
-},
-
-{
-type:"text",
-question:"Do you have ____ luggage?",
-answer:"any",
-explanation:"Any = perguntas."
-},
-
-{
-type:"text",
-question:"There are ____ flights today.",
-answer:"no",
-explanation:"No = nenhum."
+explanation:"Window seat."
 },
 
 {
 type:"multiple",
-question:"We don't have ____ information.",
-options:["some","any","many"],
-answer:"any",
-explanation:"Any = negativas."
+question:"Boarding means:",
+options:["embarque","atraso","cancelamento"],
+answer:"embarque",
+explanation:"Boarding = embarque."
 },
 
 {
 type:"text",
-question:"I have ____ hand luggage.",
-answer:"some",
-explanation:"Some = positiva."
+question:"I only have hand ____.",
+answer:"luggage",
+explanation:"Hand luggage."
 },
 
 {
 type:"text",
-question:"____ we discuss the project tomorrow?",
-answer:"shall",
-explanation:"Shall we = sugestão."
-},
-
-{
-type:"text",
-question:"Let's ____ a meeting.",
-answer:"arrange",
-explanation:"Arrange = organizar."
+question:"The flight is ____ because of rain.",
+answer:"delayed",
+explanation:"Delayed = atrasado."
 },
 
 {
 type:"multiple",
-question:"Which expression is correct?",
-options:[
-"Let's discuss now",
-"Let discuss now",
-"Shall discuss now"
-],
-answer:"Let's discuss now",
-explanation:"After let's → verb."
-},
-
-{
-type:"text",
-question:"First let's talk about prices. ____ we can discuss the website.",
-answer:"then",
-explanation:"Then = depois."
-},
-
-{
-type:"text",
-question:"This job is very ____.",
-answer:"urgent",
-explanation:"Urgent = urgente."
-},
-
-{
-type:"text",
-question:"I am going to ____ tomorrow.",
+question:"Passport is used for:",
+options:["travel","food","shopping"],
 answer:"travel",
-explanation:"Going to + verb."
+explanation:"Passport for travel."
+},
+
+{
+type:"text",
+question:"Please show your boarding ____.",
+answer:"pass",
+explanation:"Boarding pass."
+},
+
+{
+type:"text",
+question:"My luggage is very ____.",
+answer:"heavy",
+explanation:"Heavy = pesado."
 },
 
 {
 type:"multiple",
-question:"Which is correct?",
-options:[
-"I going to travel",
-"I'm going to travel",
-"I am go to travel"
-],
-answer:"I'm going to travel",
-explanation:"Correct structure: be + going to."
+question:"Aisle seat means:",
+options:["janela","corredor","porta"],
+answer:"corredor",
+explanation:"Aisle = corredor."
 },
 
 {
 type:"text",
-question:"She is ____ to call the client.",
-answer:"going",
-explanation:"Is going to."
+question:"The plane is ready to ____.",
+answer:"board",
+explanation:"Board = embarcar."
 },
 
 {
 type:"text",
-question:"We are going to ____ the website.",
-answer:"discuss",
-explanation:"Discuss = discutir."
-},
-
-{
-type:"text",
-question:"Our ____ is to finish the project.",
-answer:"goal",
-explanation:"Goal = meta."
+question:"The airport is very ____ today.",
+answer:"busy",
+explanation:"Busy = movimentado."
 },
 
 {
 type:"multiple",
-question:"The target ____ is December.",
-options:["goal","date","schedule"],
-answer:"date",
-explanation:"Target date = data alvo."
+question:"Gate is:",
+options:["portão","cadeira","bagagem"],
+answer:"portão",
+explanation:"Gate = portão."
 },
 
 {
 type:"text",
-question:"They are not going to ____ the design.",
-answer:"change",
-explanation:"Change = mudar."
+question:"I lost my ____.",
+answer:"passport",
+explanation:"Passport."
 },
 
 {
 type:"text",
-question:"What are you going to ____ tonight?",
-answer:"do",
-explanation:"Do = fazer."
+question:"The plane was ____.",
+answer:"cancelled",
+explanation:"Cancelled."
 },
 
 {
 type:"multiple",
-question:"Which is correct?",
-options:[
-"We going to work",
-"We are going to work",
-"We are go to work"
-],
-answer:"We are going to work",
-explanation:"Correct future structure."
+question:"Suitcase means:",
+options:["passaporte","mala","avião"],
+answer:"mala",
+explanation:"Suitcase = mala."
 },
 
 {
 type:"text",
-question:"We are going to ____ a meeting.",
-answer:"arrange",
-explanation:"Arrange a meeting."
+question:"The airport has many ____.",
+answer:"gates",
+explanation:"Plural of gate."
 },
 
 {
 type:"text",
-question:"I've got a ____ at the hotel.",
-answer:"reservation",
-explanation:"Reservation = reserva."
-},
-
-{
-type:"text",
-question:"Could I check ____ please?",
-answer:"out",
-explanation:"Check out = sair do hotel."
+question:"I checked my ____.",
+answer:"luggage",
+explanation:"Checked luggage."
 },
 
 {
 type:"multiple",
-question:"Can I pay by credit ____?",
-options:["ticket","card","reservation"],
-answer:"card",
-explanation:"Credit card."
+question:"Flight means:",
+options:["hotel","voo","ônibus"],
+answer:"voo",
+explanation:"Flight = voo."
 },
 
 {
 type:"text",
-question:"Would you like a wake-up ____?",
-answer:"call",
-explanation:"Wake-up call."
+question:"I arrived at the airport very ____.",
+answer:"early",
+explanation:"Early = cedo."
 },
 
 {
 type:"text",
-question:"Here's the key for your ____.",
-answer:"room",
-explanation:"Room = quarto."
+question:"The airplane is very ____.",
+answer:"large",
+explanation:"Large = grande."
 },
 
 {
 type:"multiple",
-question:"Have you got a reservation?",
-options:["Pergunta","Negativa","Afirmação"],
-answer:"Pergunta",
-explanation:"Have you got...? = pergunta."
+question:"Delayed means:",
+options:["adiantado","atrasado","embarque"],
+answer:"atrasado",
+explanation:"Delayed = atrasado."
 },
 
 {
 type:"text",
-question:"My company is paying the ____.",
-answer:"bill",
-explanation:"Bill = conta."
-},
-
-{
-type:"text",
-question:"I had juice from the mini____.",
-answer:"bar",
-explanation:"Minibar."
-},
-
-{
-type:"multiple",
-question:"Which is correct?",
-options:[
-"I've got a reservation",
-"I got reservation",
-"I have reservation"
-],
-answer:"I've got a reservation",
-explanation:"Estrutura correta com have got."
-},
-
-{
-type:"text",
-question:"She ____ got the key.",
-answer:"has",
-explanation:"She has got."
-},
-
-{
-type:"text",
-question:"We haven't got any ____.",
-answer:"tickets",
-explanation:"Any + plural."
+question:"Please take your ____.",
+answer:"seat",
+explanation:"Take your seat."
 }
 
-];
+]
 
-// ======================================
+};
+
+
+
+// ====================================
 // VARIABLES
-// ======================================
+// ====================================
 
-let currentBlock = 0;
-let score = 0;
+let currentQuestions = [];
+let currentPage = 0;
+let totalScore = 0;
 
-const shuffledQuestions = shuffle(allQuestions);
+// ====================================
+// LOAD TOPIC
+// ====================================
 
-// ======================================
+function loadTopic(topic){
+
+// embaralha SOMENTE o tópico atual
+currentQuestions = shuffle([...topics[topic]]);
+
+currentPage = 0;
+
+totalScore = 0;
+
+document.getElementById("score").innerHTML = "";
+
+document.getElementById("topicTitle")
+.innerHTML = topic.toUpperCase();
+
+document.getElementById("checkBtn")
+.classList.remove("hidden");
+
+renderPage();
+
+}
+
+// ====================================
 // SHUFFLE
-// ======================================
+// ====================================
 
 function shuffle(array){
 
 for(let i = array.length -1; i > 0; i--){
 
-const j = Math.floor(Math.random() * (i+1));
+const j = Math.floor(Math.random() * (i + 1));
 
-[array[i],array[j]] = [array[j],array[i]];
+[array[i], array[j]] =
+[array[j], array[i]];
 
 }
 
@@ -600,22 +713,25 @@ return array;
 
 }
 
-// ======================================
-// RENDER QUESTIONS
-// ======================================
+// ====================================
+// RENDER PAGE
+// ====================================
 
-function renderQuestions(){
+function renderPage(){
 
-const quiz = document.getElementById("quiz");
+const quiz =
+document.getElementById("quiz");
 
 quiz.innerHTML = "";
 
-const start = currentBlock * 10;
+const start = currentPage * 10;
+
 const end = start + 10;
 
-const blockQuestions = shuffledQuestions.slice(start,end);
+const pageQuestions =
+currentQuestions.slice(start,end);
 
-blockQuestions.forEach((q,index)=>{
+pageQuestions.forEach((q,index)=>{
 
 const realIndex = start + index;
 
@@ -648,7 +764,8 @@ ${option}
 }else{
 
 html += `
-<input type="text" id="q${realIndex}">
+<input type="text"
+id="q${realIndex}">
 `;
 
 }
@@ -662,28 +779,56 @@ quiz.innerHTML += html;
 
 });
 
-document.getElementById("progress").innerHTML =
-`Questions ${start+1} - ${end}`;
+// botão próxima página
+if(document.getElementById("nextBtn")){
+
+document.getElementById("nextBtn").remove();
 
 }
 
-// ======================================
+if(end < currentQuestions.length){
+
+const nextBtn =
+document.createElement("button");
+
+nextBtn.id = "nextBtn";
+
+nextBtn.innerHTML =
+"Next 10 Questions";
+
+nextBtn.style.marginTop = "20px";
+
+nextBtn.onclick = nextPage;
+
+quiz.appendChild(nextBtn);
+
+}
+
+}
+
+// ====================================
 // CHECK ANSWERS
-// ======================================
+// ====================================
 
 function checkAnswers(){
 
-const start = currentBlock * 10;
+const start = currentPage * 10;
+
 const end = start + 10;
+
+let pageScore = 0;
 
 for(let i=start;i<end;i++){
 
-const q = shuffledQuestions[i];
+const q = currentQuestions[i];
+
+if(!q) continue;
 
 const feedback =
 document.getElementById(`feedback${i}`);
 
 let correct = false;
+
 let userAnswer = "";
 
 if(q.type === "multiple"){
@@ -696,7 +841,9 @@ if(checked){
 userAnswer = checked.value;
 
 if(userAnswer === q.answer){
+
 correct = true;
+
 }
 
 }
@@ -710,14 +857,17 @@ userAnswer =
 input.value.trim().toLowerCase();
 
 if(userAnswer === q.answer.toLowerCase()){
+
 correct = true;
+
 }
 
 }
 
 if(correct){
 
-score++;
+pageScore++;
+totalScore++;
 
 feedback.innerHTML = `
 <div class="correct">
@@ -750,39 +900,29 @@ ${q.explanation}
 
 }
 
-document.getElementById("score").innerHTML =
-`Score: ${score}`;
+document.getElementById("score")
+.innerHTML =
+`Page Score: ${pageScore}/10 |
+Total Score: ${totalScore}`;
 
 }
 
-// ======================================
-// NEXT QUESTIONS
-// ======================================
+// ====================================
+// NEXT PAGE
+// ====================================
 
-function nextQuestions(){
+function nextPage(){
 
-currentBlock++;
+currentPage++;
 
-if(currentBlock * 10 >= shuffledQuestions.length){
+renderPage();
 
-document.getElementById("quiz").innerHTML = `
-<h2>Quiz Finished!</h2>
-`;
-
-document.getElementById("progress").innerHTML =
-"Completed";
-
-return;
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
-
-renderQuestions();
-
-}
-
-// ======================================
-
-renderQuestions();
 
 </script>
 
