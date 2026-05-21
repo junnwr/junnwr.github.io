@@ -168,7 +168,7 @@ body { color: #2e2e2e; font-family: Montserrat; font-size: 14px; font-weight: no
       </div>
       <div class='scrolling-menu'>
         <ul id='nav'>
-          <li class='current'><a href='https://junnwr.github.io'>Início</a></li>
+          <li class='current'><a href='index.html'>Início</a></li>
         </ul>
         <div class='menu-mobile2'></div>
       </div>
@@ -194,7 +194,7 @@ body { color: #2e2e2e; font-family: Montserrat; font-size: 14px; font-weight: no
         </div>
 
         <div class='slide-in wow bounceInUp' data-wow-delay='1s' data-wow-duration='1s'>
-           <a class='pointer' href='/'></a>
+           <a class='pointer' href='index.html'></a>
         </div>
       </div>
     </div>
@@ -217,8 +217,7 @@ $(function() {
     });
     $('.scrolling-menu').slicknav({ prependTo: '.menu-mobile2', label: '' });
 
-    $('#nav').onePageNav();
-    $('.slide-in').onePageNav();
+  
 
     // Menu Sticky Scroll
     $(window).on('scroll', function() {
