@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prova de Inglês — 100 Questões</title><style>:root{--blue:#2457a6;--purple:#7541a8;--green:#d9f3df;--red:#ffe0e0}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#dce9ff,#f9e5ff);color:#263238}.app{max-width:980px;margin:auto;background:#fff;min-height:100vh;padding:22px}.hero{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;padding:25px;border-radius:16px;text-align:center}.hero h1{margin:0 0 8px}.hero p{margin:6px 0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:18px 0}.button{border:0;border-radius:8px;padding:11px 17px;cursor:pointer;font-weight:bold;background:var(--blue);color:#fff}.button.secondary{background:#607d8b}.button:hover{filter:brightness(.92)}.info{background:#eaf3ff;border-left:5px solid var(--blue);padding:14px;border-radius:8px;margin:15px 0}.progress{height:13px;background:#e5e7eb;border-radius:20px;overflow:hidden}.bar{height:100%;width:0;background:#27ae60;transition:.3s}.status{text-align:center;margin:10px;color:#546e7a}.question{border:1px solid #dbe2ea;border-radius:12px;padding:18px;margin:18px 0;background:#fcfdff}.question h3{margin:0 0 12px;font-size:1.05rem}.tag{display:inline-block;color:#fff;background:var(--purple);border-radius:20px;padding:4px 9px;font-size:.75rem;margin-bottom:10px}.options{display:grid;gap:9px}.option{border:2px solid #e0e6ed;border-radius:8px;padding:12px;cursor:pointer;background:#fff}.option:hover{border-color:#3979d7;background:#f4f8ff}.option.correct{background:var(--green);border-color:#2e9d4d;color:#145c28;font-weight:bold}.option.wrong{background:var(--red);border-color:#d04444;color:#8d1818;font-weight:bold}.feedback{display:none;margin-top:10px;padding:10px;border-radius:7px}.feedback.show{display:block}.feedback.good{background:var(--green);color:#145c28}.feedback.bad{background:var(--red);color:#8d1818}.result{display:none;margin-top:20px;padding:20px;border-radius:12px;background:#eef7ee;text-align:center}.error{background:#fff5f5;border:1px solid #f0b5b5;padding:12px;border-radius:8px;text-align:left;margin:9px 0}.review{background:#fff9df;border:1px solid #efd475;padding:16px;border-radius:10px;margin-top:20px}.review li{margin:8px 0}@media(max-width:600px){.app{padding:12px}.hero h1{font-size:1.55rem}}</style></head><body><main class="app"><section class="hero"><h1>English Exam Trainer — 100 Questions</h1><p>Lições 12.1 a 1.2 — 6º semestre</p><p>Questões focadas nas respostas, no significado e no uso correto das estruturas.</p></section><div class="toolbar"><button class="button" onclick="newRound()">Nova rodada — 20 questões</button><button class="button secondary" onclick="showAll()">Modo estudo — 100 questões</button></div><div class="info"><strong>Banco completo:</strong> 100 questões elaboradas apenas com o conteúdo das lições 12.1, 12.2, 12.3, 1.1 e 1.2, incluindo os exercícios complementares indicados nos PDFs.</div><div class="progress"><div class="bar" id="bar"></div></div><div class="status" id="status"></div><div id="quiz"></div><div class="result" id="result"></div><div class="review"><strong>Revisão essencial</strong><ul><li><b>Adverbs:</b> quick → quickly; easy → easily; good → well; hard e fast não mudam.</li><li><b>Hardly:</b> significa “quase não”, enquanto hard significa “com esforço/muito”.</li><li><b>Much/many:</b> many para contáveis no plural; much para incontáveis.</li><li><b>Demonstratives:</b> this/these para perto; that/those para longe.</li><li><b>Trabalho:</b> responsible for, report to, in charge of, deal with e look after.</li><li><b>Present Simple:</b> he/she/it + verbo com -s; negativas: doesn’t + verbo-base.</li></ul></div></main><script>
+const qs=[];const add=(t,q,o,a,e)=>qs.push({t,q,o,a,e});
+// 12.1 - adverbs and business results (20)
+add('12.1 · Adverbs','Choose the correct adverb: The team worked ______ to finish the project.',['hard','hardly','hards','hardlyly'],0,'Hard = com esforço. Hardly = quase não.');
+add('12.1 · Adverbs','What does “She hardly works” mean?',['Ela trabalha muito.','Ela quase não trabalha.','Ela trabalha rapidamente.','Ela trabalha bem.'],1,'Hardly significa quase não.');
+add('12.1 · Adverbs','Complete: The sales team solved the problem ______.',['quick','quickly','quickness','quicker'],1,'O advérbio de quick é quickly.');
+add('12.1 · Adverbs','Good becomes which adverb?',['goodly','well','better','best'],1,'Good → well.');
+add('12.1 · Adverbs','Choose the correct sentence.',['He drives fastly.','He drives fast.','He drive fast.','He drives fastlyly.'],1,'Fast permanece igual como advérbio.');
+add('12.1 · Adverbs','Easy becomes ______.',['easyly','easily','easiness','easly'],1,'Em easy, troca-se y por i: easily.');
+add('12.1 · Adverbs','Fluent becomes ______.',['fluentness','fluently','fluentic','fluented'],1,'Fluent → fluently.');
+add('12.1 · Adverbs','The meeting was quick. It went ______.',['quick','quickly','fastly','good'],1,'Usamos o advérbio quickly para modificar went.');
+add('12.1 · Adverbs','We had a good holiday. It went ______.',['good','well','goodly','best'],1,'Good é adjetivo; well é advérbio.');
+add('12.1 · Adverbs','It was a bad project. The project went ______.',['bad','badly','badness','worse'],1,'Bad → badly.');
+add('12.1 · Business','If sales go up, they ______.',['decrease','increase','lose','fall'],1,'Increase significa aumentar.');
+add('12.1 · Business','If costs go down, they ______.',['increase','decrease','improve','export'],1,'Decrease significa diminuir.');
+add('12.1 · Business','What is a profit margin?',['Total money spent','Percentage of sales that is profit','Number of stores','A customer discount'],1,'Profit margin é margem de lucro.');
+add('12.1 · Business','A quarter in financial reporting is ______.',['one month','three months','six months','one year'],1,'Quarter significa trimestre: três meses.');
+add('12.1 · Business','To make money is to make a ______.',['loss','profit','cost','sale'],1,'Profit significa lucro.');
+add('12.1 · Business','To lose money is to make a ______.',['profit','margin','loss','sale'],2,'Loss significa prejuízo.');
+add('12.1 · Business','How much a company sells is its ______.',['costs','sales','losses','margins'],1,'Sales são as vendas de uma empresa.');
+add('12.1 · Business','What a company spends are its ______.',['profits','costs','quarters','goods'],1,'Costs são os custos/gastos.');
+add('12.1 · Business','Business is getting better. Business is ______.',['decreasing','improving','losing','exporting'],1,'Improve significa melhorar.');
+add('12.1 · Business','The opposite of “getting better” is ______.',['improving','increasing','getting worse','making profit'],2,'Getting worse significa piorar.');
+// 12.2 - much many sales retail (20)
+add('12.2 · Quantifiers','How ______ competitors does the company have?',['much','many','little','any'],1,'Competitors é contável e plural: many.');
+add('12.2 · Quantifiers','How ______ demand is there for this product?',['many','much','few','numbers'],1,'Demand é incontável: much.');
+add('12.2 · Quantifiers','We didn’t make ______ profit last quarter.',['many','much','few','a lot'],1,'Profit é incontável nessa frase: much.');
+add('12.2 · Quantifiers','Do you have ______ products in stock?',['much','many','little','a little'],1,'Products são contáveis no plural.');
+add('12.2 · Quantifiers','Is there ______ competition in this market?',['many','much','few','number'],1,'Competition é substantivo incontável.');
+add('12.2 · Quantifiers','How ______ discount can we get?',['many','much','few','a few'],1,'Discount é incontável.');
+add('12.2 · Sales','A company that provides goods to stores is a ______.',['customer','supplier','competitor','manager'],1,'Supplier significa fornecedor.');
+add('12.2 · Sales','A company that sells the same products as yours is a ______.',['supplier','competitor','customer','receipt'],1,'Competitor significa concorrente.');
+add('12.2 · Sales','What does goods mean in business English?',['Good behaviour','Products or items produced and sold','Profits','Customers'],1,'Goods significa mercadorias/bens.');
+add('12.2 · Sales','What are groceries?',['Financial reports','Food and household items','Machines','Clothes only'],1,'Groceries são alimentos e itens domésticos.');
+add('12.2 · Sales','If a product costs less than usual, it has a ______.',['profit','discount','loss','quarter'],1,'Discount significa desconto.');
+add('12.2 · Sales','A lot of people want to buy a product. There is strong ______.',['competition','demand','discount','supply'],1,'Demand é demanda/procura.');
+add('12.2 · Sales','Many companies sell the same product. There is a lot of ______.',['profit','competition','change','service'],1,'Competition significa concorrência.');
+add('12.2 · Sales','If a market has many competing companies, it is very ______.',['expensive','competitive','quiet','private'],1,'Competitive significa competitivo.');
+add('12.2 · Sales','We sell the same goods as another company. We ______ with them.',['supply','compete','deliver','install'],1,'Compete significa competir.');
+add('12.2 · Sales','A large quantity of items ordered from a supplier is a ______ order.',['small','big','slow','cheap'],1,'Big orders podem gerar maiores descontos.');
+add('12.2 · Sales','Supermarkets can often negotiate discounts because they order ______ quantities.',['small','large','no','few'],1,'Large quantities = grandes quantidades.');
+add('12.2 · Sales','A store has 5,000 products in stock. It has a large ______.',['discount','stock','receipt','loss'],1,'Stock é o estoque disponível.');
+add('12.2 · Sales','“A small margin” means the company makes ______ profit per product.',['a lot of','a little','no products','many'],1,'Small margin = pouco lucro por item.');
+add('12.2 · Sales','Which question is correct?',['How many profit did you make?','How much profit did you make?','How much products did you sell?','How many demand is there?'],1,'Profit é incontável: how much profit.');
+// 12.3 shopping demonstratives (20)
+add('12.3 · Demonstratives','The shoes are far away. How much are ______ shoes?',['this','that','these','those'],3,'Shoes é plural e distante: those.');
+add('12.3 · Demonstratives','You are holding one shirt. Can I try ______ shirt on?',['this','those','these','that'],0,'Singular e perto: this.');
+add('12.3 · Demonstratives','Which pair is correct for plural objects near and far?',['this / that','these / those','that / these','those / this'],1,'These = plural perto; those = plural longe.');
+add('12.3 · Demonstratives','Look at the phone in the shop window. I like ______ phone.',['this','these','that','those'],2,'Phone é singular e está longe: that.');
+add('12.3 · Demonstratives','______ jeans here are in the sale.',['This','That','These','It'],2,'Jeans é plural e está perto: these.');
+add('12.3 · Demonstratives','______ is the price of that watch over there?',['How many','How much','What many','Which much'],1,'Usamos how much para perguntar o preço.');
+add('12.3 · Shopping','What is a receipt?',['A proof of purchase','A changing room','A discount','A PIN'],0,'Receipt é recibo/comprovante de compra.');
+add('12.3 · Shopping','You pay €20 for something costing €15. You receive €5 ______.',['receipt','change','PIN','discount'],1,'Change significa troco.');
+add('12.3 · Shopping','What do you do in a fitting room?',['Pay for products','Try on clothes','Ask for a discount','Receive a receipt'],1,'Fitting room é provador.');
+add('12.3 · Shopping','Try on means ______.',['Return clothes','Put on clothes to check them','Pay by card','Ask for a receipt'],1,'Try on significa experimentar/provar.');
+add('12.3 · Shopping','When paying with a card, you enter your ______ number.',['change','receipt','PIN','sale'],2,'PIN é a senha do cartão.');
+add('12.3 · Shopping','You can pay with a credit card, cash or a ______.',['cheque','receipt','size','sale'],0,'Cheque é cheque.');
+add('12.3 · Shopping','The usual T-shirt sizes are small, medium and ______.',['long','large','biggest','extra'],1,'O tamanho é large.');
+add('12.3 · Shopping','Everything is half price. There is a 50% ______.',['profit','discount','receipt','change'],1,'Half price representa 50% discount.');
+add('12.3 · Shopping','“Can I pay by credit card?” asks about the ______ method.',['delivery','payment','size','colour'],1,'A pergunta é sobre forma de pagamento.');
+add('12.3 · Shopping','A person who helps customers in a store is a shop ______.',['assistant','supplier','competitor','director'],0,'Shop assistant é atendente de loja.');
+add('12.3 · Shopping','“I’ll have the blue one” means the customer chooses ______.',['the blue item','a receipt','a change','a discount'],0,'One substitui o produto singular mencionado.');
+add('12.3 · Shopping','“Could I have one of those sandwiches?” refers to ______ sandwiches.',['one near','many far away','one far away','no sandwiches'],1,'Those = plural e distante.');
+add('12.3 · Shopping','If the product is not the right size, the customer may ask for a ______ size.',['receipt','bigger','cash','PIN'],1,'Bigger size = tamanho maior.');
+add('12.3 · Shopping','“I’m just looking” normally means the customer ______.',['is not ready to buy yet','wants to pay now','needs a receipt','has a discount'],0,'É uma resposta comum quando ainda está olhando.');
+// 1.1 work responsibilities and present simple (20)
+add('1.1 · Work','I am responsible ______ managing the sales team.',['to','for','of','with'],1,'A expressão é responsible for.');
+add('1.1 · Work','He reports directly ______ the managing director.',['for','with','to','at'],2,'Report to indica o superior hierárquico.');
+add('1.1 · Work','She is in charge ______ the customer service department.',['of','for','to','with'],0,'A expressão fixa é in charge of.');
+add('1.1 · Work','The factory manager deals ______ production problems.',['for','to','with','of'],2,'Deal with significa lidar com.');
+add('1.1 · Work','I look ______ customers in the after-sales department.',['at','after','to','for'],1,'Look after significa cuidar de/atender.');
+add('1.1 · Work','Which sentence is correct?',["I'm responsible to exports.","I report for the manager.","I'm in charge of the design team.","I deal for complaints."],2,'A expressão correta é in charge of.');
+add('1.1 · Work','A managing director normally manages a company or several ______.',['departments','receipts','sizes','quarters'],0,'Departments são departamentos.');
+add('1.1 · Work','A person who works with you is a ______.',['colleague','customer','supplier','competitor'],0,'Colleague significa colega de trabalho.');
+add('1.1 · Work','The person you report to is your ______.',['boss','customer','assistant','client'],0,'Boss significa chefe.');
+add('1.1 · Work','A customer service manager works in ______ service.',['after','customer','fast','profit'],1,'Customer service = atendimento ao cliente.');
+add('1.1 · Present Simple','She ______ for a multinational company.',['work','works','working','is work'],1,'She é terceira pessoa: works.');
+add('1.1 · Present Simple','They ______ in the London office.',['doesn’t work','don’t work','not works','isn’t work'],1,'They usa don’t + verbo-base.');
+add('1.1 · Present Simple','The manager ______ have an assistant.',["don't","doesn't","isn't","not"],1,'The manager = he/she; use doesn’t + verbo-base.');
+add('1.1 · Present Simple','______ she responsible for customer service?',['Is','Does','Are','Do'],0,'Responsible é adjetivo: use Is she…?');
+add('1.1 · Present Simple','We ______ customer service every week.',['check','checks','checking','does check'],0,'We usa verbo-base: check.');
+add('1.1 · Present Simple','He ______ a report every month.',['write','writes','writing','does writes'],1,'He usa writes.');
+add('1.1 · Present Simple','It ______ long.',['don’t take','doesn’t take','doesn’t takes','isn’t take'],1,'It usa doesn’t + take.');
+add('1.1 · Present Simple','They ______ a lot for work.',['travel','travels','travelling is','does travel'],0,'They usa travel sem -s.');
+add('1.1 · Present Simple','She ______ a new job.',['have','has','haves','does has'],1,'Have é irregular: she has.');
+add('1.1 · Present Simple','We ______ an assistant.',['doesn’t have','don’t have','aren’t have','not have'],1,'We usa don’t have.');
+// 1.2 company products services food (20)
+add('1.2 · Products','What does manufacture mean?',['Make or produce goods','Transport products','Give advice','Sell abroad'],0,'Manufacture significa fabricar.');
+add('1.2 · Products','To sell goods to other countries means to ______.',['import','export','deliver','manufacture'],1,'Export significa vender/enviar para outros países.');
+add('1.2 · Products','Engineers ______ the equipment at the customer’s site.',['install','export','advise','supply'],0,'Install significa instalar.');
+add('1.2 · Products','We ______ customers about maintenance and safety.',['advise','deliver','export','manufacture'],0,'Advise significa aconselhar/orientar.');
+add('1.2 · Products','The company ______ the parts to the customer’s site.',['delivers','advises','designs','changes'],0,'Deliver significa entregar/transportar.');
+add('1.2 · Products','Which verb means “fornecer peças de reposição”?',['design','supply','install','improve'],1,'Supply significa fornecer.');
+add('1.2 · Products','The engineers ______ a product to meet the customer’s needs.',['design','deliver','export','change'],0,'Design significa projetar.');
+add('1.2 · Products','A company that sells products worldwide has customers ______.',['locally only','around the world','in one office','in one department'],1,'Worldwide significa ao redor do mundo.');
+add('1.2 · Products','After-sales service happens ______ the customer buys a product.',['before','after','without','instead of'],1,'After-sales é serviço pós-venda.');
+add('1.2 · Products','Spare parts are parts used to ______ broken equipment.',['replace or repair','export','pay','discount'],0,'Spare parts são peças de reposição.');
+add('1.2 · Food','Salmon is a type of ______.',['meat','vegetable','fish','fruit'],2,'Salmon é peixe.');
+add('1.2 · Food','Broccoli, carrot and leek are ______.',['meat','vegetables','fish','desserts'],1,'São vegetais.');
+add('1.2 · Food','Roast beef is a ______ dish.',['meat','fish','fruit','drink'],0,'Beef significa carne bovina.');
+add('1.2 · Food','Mashed potato means potato that is ______.',['fried','grilled','cooked and crushed','raw'],2,'Mashed potato é purê de batata.');
+add('1.2 · Food','Grilled salmon is salmon cooked on a ______.',['grill','receipt','supplier','fitting room'],0,'Grilled significa grelhado.');
+add('1.2 · Food','Apple pie is normally a ______.',['starter','main course','dessert','drink'],2,'Apple pie é sobremesa.');
+add('1.2 · Food','Chicken and leek soup is a ______.',['starter','dessert','drink','bill'],0,'Soup pode ser entrada.');
+add('1.2 · Food','Which is a fruit?',['carrot','broccoli','strawberry','pea'],2,'Strawberry é morango.');
+add('1.2 · Food','Which is a fish?',['lamb','cod','beef','chicken'],1,'Cod é bacalhau/peixe.');
+add('1.2 · Food','A vegetarian salad does not contain ______.',['vegetables','meat','cheese','salad'],1,'Vegetarian indica sem carne.');
+if(qs.length!==100)console.error('Expected 100 questions, got '+qs.length);
+let current=[],answers=0,score=0,errors=[];
+function draw(list){current=list;answers=0;score=0;errors=[];document.getElementById('result').style.display='none';const el=document.getElementById('quiz');el.innerHTML='';list.forEach((x,i)=>{const d=document.createElement('article');d.className='question';d.innerHTML=`<span class="tag">${x.t}</span><h3>${i+1}. ${x.q}</h3><div class="options"></div><div class="feedback" id="f${i}"></div>`;const opts=d.querySelector('.options');x.o.forEach((text,j)=>{const b=document.createElement('div');b.className='option';b.textContent=text;b.onclick=()=>answer(b,i,j);opts.appendChild(b)});el.appendChild(d)});update()}
+function answer(btn,i,j){const x=current[i],box=btn.parentElement,fb=document.getElementById('f'+i);if([...box.children].some(b=>b.style.pointerEvents==='none'))return;[...box.children].forEach(b=>b.style.pointerEvents='none');if(j===x.a){btn.classList.add('correct');fb.className='feedback show good';fb.textContent='✅ Correto!';score++}else{btn.classList.add('wrong');box.children[x.a].classList.add('correct');fb.className='feedback show bad';fb.innerHTML=`❌ Incorreto. ${x.e}<br><b>Resposta:</b> ${x.o[x.a]}`;errors.push({x,wrong:x.o[j]})}answers++;update();if(answers===current.length)setTimeout(finish,350)}
+function update(){document.getElementById('bar').style.width=(answers/current.length*100)+'%';document.getElementById('status').textContent=`Respondidas: ${answers}/${current.length} · Pontuação: ${score}`}
+function finish(){let r=document.getElementById('result');r.style.display='block';let html=`<h2>Resultado: ${score}/${current.length}</h2>`;html+=score/current.length>=.7?'<p>Bom trabalho! Revise os erros abaixo para consolidar o conteúdo.</p>':'<p>Revise o mapa da matéria e tente uma nova rodada.</p>';if(errors.length){html+='<h3>Questões para revisar</h3>';errors.forEach(e=>html+=`<div class="error"><b>${e.x.t}</b><br>${e.x.q}<br>Sua resposta: ${e.wrong}<br>Correta: ${e.x.o[e.x.a]}<br><small>${e.x.e}</small></div>`)}else html+='<p>🎉 Você acertou tudo!</p>';r.innerHTML=html;window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
+function newRound(){draw([...qs].sort(()=>Math.random()-.5).slice(0,20));window.scrollTo({top:0,behavior:'smooth'})}function showAll(){draw(qs);window.scrollTo({top:0,behavior:'smooth'})}newRound();
+</script></body></html>
