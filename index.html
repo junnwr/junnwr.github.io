@@ -1,51 +1,568 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Portfólio experimental de tecnologia: suporte técnico, redes, infraestrutura, segurança e desenvolvimento Android.">
-<meta name="theme-color" content="#e9e7dd">
-<title>JUNNWR</title>
-   <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisoQE2KaY8ib6K0MgByOCkDcQvwJd9zuJo3vzEopaKAG66Nss8UCITMri6h58XRLWjFCoXbmoq6vBnedmOMfwlZFSNLt7_BER9qw7rpeb1Ft-M4AXluJWPAz2gbrxHUakKH4teCwXCEXiokLJPS08sEzggtItRBVbP76_VBQC-GAl6cM8zXSpcaGoE5CU/s1600/3610266e298681202fe222fbbe3a9bb0.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{--paper:#e9e7dd;--ink:#0d1717;--muted:#52605e;--acid:#d5ff3f;--cyan:#57e8dc;--coral:#ff7549;--violet:#796cf2;--line:rgba(13,23,23,.16);--dark:#0a1010}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}::selection{background:var(--acid);color:var(--ink)}
-#loader{position:fixed;inset:0;z-index:1000;background:var(--dark);display:grid;place-items:center;transition:opacity .7s,visibility .7s}#loader.done{visibility:hidden;opacity:0}.loader-word{color:var(--paper);font:500 12px "DM Mono",monospace;letter-spacing:.22em;overflow:hidden}.loader-word span{display:block;animation:load 1.3s cubic-bezier(.7,0,.2,1) infinite}@keyframes load{0%{transform:translateY(100%)}45%,65%{transform:translateY(0)}100%{transform:translateY(-100%)}}
-.cursor-dot,.cursor-ring{position:fixed;z-index:999;pointer-events:none;mix-blend-mode:difference;border-radius:50%;transform:translate(-50%,-50%)}.cursor-dot{width:7px;height:7px;background:#fff}.cursor-ring{width:34px;height:34px;border:1px solid #fff;transition:width .25s,height .25s}.cursor-ring.big{width:70px;height:70px}
-.wrap{width:min(1440px,calc(100% - 48px));margin:auto}.nav{position:fixed;z-index:100;top:0;left:0;width:100%;padding:18px 0;mix-blend-mode:multiply}.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}.logo{font:500 13px "DM Mono",monospace;letter-spacing:.17em}.logo b{color:var(--coral)}.nav-center{display:flex;gap:20px;font:500 10px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}.nav-center a{padding:8px 0;position:relative}.nav-center a::after{content:"";position:absolute;bottom:2px;left:0;width:0;height:1px;background:currentColor;transition:width .25s}.nav-center a:hover::after{width:100%}.nav-right{justify-self:end;display:flex;align-items:center;gap:10px;font:500 10px "DM Mono",monospace;text-transform:uppercase}.live{width:9px;height:9px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 0 rgba(255,117,73,.4);animation:pulse 1.8s infinite}@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(255,117,73,0)}100%{box-shadow:0 0 0 0 rgba(255,117,73,0)}}.menu{display:none;background:none;border:0;font-size:18px;color:var(--ink)}
-.hero{height:100svh;min-height:680px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 0 58px}.hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}.hero::after{content:"";position:absolute;inset:auto 0 0;height:38%;pointer-events:none;background:linear-gradient(transparent,var(--paper))}.hero-content{position:relative;z-index:1}.kicker{display:flex;align-items:center;gap:9px;font:500 10px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}.kicker::before{content:"";width:26px;height:1px;background:currentColor}.hero h1{font-size:clamp(4rem,11.5vw,11.8rem);line-height:.77;letter-spacing:-.105em;margin:18px 0 23px;max-width:1180px;font-weight:800}.hero h1 em{display:block;font-family:"Instrument Serif",serif;font-weight:400;letter-spacing:-.06em;color:var(--coral)}.hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end}.hero-copy{max-width:460px;color:var(--muted);font-size:14px;line-height:1.75}.hero-meta{justify-self:end;display:flex;align-items:center;gap:18px;font:500 10px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}.round-link{display:grid;place-items:center;width:56px;height:56px;border:1px solid var(--ink);border-radius:50%;transition:.3s}.round-link:hover{background:var(--ink);color:var(--acid);transform:rotate(45deg)}.scroll-mark{position:absolute;z-index:2;bottom:23px;right:24px;writing-mode:vertical-rl;font:500 9px "DM Mono",monospace;letter-spacing:.2em;text-transform:uppercase}.scroll-mark i{margin-top:8px;animation:down 1.5s infinite}@keyframes down{50%{transform:translateY(6px)}}
-.ticker{background:var(--dark);color:var(--paper);overflow:hidden;white-space:nowrap;padding:13px 0;font:500 10px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}.ticker-track{display:inline-block;animation:marquee 23s linear infinite}.ticker b{color:var(--acid);margin:0 28px}@keyframes marquee{to{transform:translateX(-50%)}}
-section{padding:150px 0}.section-grid{display:grid;grid-template-columns:4fr 8fr;gap:50px}.section-index{font:500 10px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;position:sticky;top:105px;height:max-content}.section-index b{color:var(--coral);font-size:16px;margin-right:9px}.section-head h2{font-size:clamp(3rem,6vw,6.6rem);line-height:.9;letter-spacing:-.09em;margin:0 0 29px}.section-head h2 em{font-family:"Instrument Serif",serif;font-weight:400}.section-head>p{max-width:610px;color:var(--muted);font-size:16px;line-height:1.75}.intro-rule{margin-top:45px;border-top:1px solid var(--line)}
-.abilities{margin-top:50px;border-top:1px solid var(--line)}.ability{display:grid;grid-template-columns:75px 1fr 1.1fr 25px;gap:24px;align-items:center;border-bottom:1px solid var(--line);padding:24px 0;cursor:default;transition:padding .3s}.ability:hover{padding-left:13px;padding-right:13px;background:rgba(13,23,23,.035)}.ability-num{font:500 10px "DM Mono",monospace;color:var(--coral)}.ability h3{margin:0;font-size:19px;letter-spacing:-.04em}.ability p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}.ability-icon{font-size:18px;text-align:right}.ability:nth-child(3) .ability-num{color:var(--violet)}.ability:nth-child(4) .ability-num{color:#13a99b}.ability:nth-child(5) .ability-num{color:#be8c00}
-.living-map{position:relative;margin-top:92px;min-height:570px;background:var(--dark);border-radius:5px;overflow:hidden}.living-map canvas{position:absolute;inset:0;width:100%;height:100%}.map-caption{position:absolute;z-index:1;top:22px;left:23px;color:#e9e7dd;font:500 9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase}.map-caption b{color:var(--acid)}.map-caption-right{position:absolute;z-index:1;right:23px;bottom:21px;color:#e9e7dd;font:500 9px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;text-align:right}
-.projects{background:var(--dark);color:var(--paper)}.projects .section-index{color:#e9e7dd}.projects .section-head h2{color:#e9e7dd}.projects .section-head>p{color:#aeb9b6}.projects .section-index b{color:var(--acid)}.project-list{margin-top:65px}.project{position:relative;display:grid;grid-template-columns:100px 1fr 240px;gap:25px;border-top:1px solid rgba(233,231,221,.22);padding:28px 0;transition:.35s}.project:last-child{border-bottom:1px solid rgba(233,231,221,.22)}.project:hover{padding-left:17px;padding-right:17px;background:rgba(233,231,221,.07)}.project-id{font:500 10px "DM Mono",monospace;color:var(--acid);letter-spacing:.08em}.project h3{font-size:clamp(2rem,3.6vw,4rem);letter-spacing:-.075em;line-height:.9;margin:0 0 14px}.project h3 em{font-family:"Instrument Serif",serif;font-weight:400;color:var(--cyan)}.project p{max-width:590px;color:#aeb9b6;font-size:13px;line-height:1.7;margin:0}.project-side{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end}.project-icon{display:grid;place-items:center;width:51px;height:51px;border:1px solid rgba(233,231,221,.35);border-radius:50%;font-size:18px;color:var(--acid);transition:.25s}.project:hover .project-icon{background:var(--acid);color:var(--dark);transform:rotate(25deg)}.project-link{font:500 10px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#e9e7dd}.project-link i{color:var(--acid);margin-left:6px}.tech{margin-top:22px;display:flex;flex-wrap:wrap;gap:7px}.tech span{border:1px solid rgba(233,231,221,.22);padding:5px 7px;font:500 8px "DM Mono",monospace;letter-spacing:.04em}
-.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:58px}.process-card{min-height:290px;padding:25px;border:1px solid var(--line);position:relative;overflow:hidden;transition:background .25s,color .25s}.process-card:hover{background:var(--ink);color:var(--paper)}.process-card:hover p{color:#afbbb8}.process-card:hover .process-orb{transform:scale(1.4)}.process-num{font:500 10px "DM Mono",monospace;color:var(--coral)}.process-card h3{margin:58px 0 11px;font-size:27px;letter-spacing:-.06em}.process-card p{margin:0;max-width:320px;color:var(--muted);font-size:12px;line-height:1.7}.process-orb{position:absolute;right:-35px;top:-35px;width:135px;height:135px;border-radius:50%;background:var(--acid);opacity:.78;transition:transform .5s cubic-bezier(.2,.8,.2,1)}.process-card:nth-child(2) .process-orb{background:var(--cyan)}.process-card:nth-child(3) .process-orb{background:var(--violet)}.process-card:nth-child(4) .process-orb{background:var(--coral)}
-.note{margin-top:22px;border-left:2px solid var(--coral);padding:14px 16px;background:rgba(255,117,73,.08);font-size:12px;line-height:1.7;color:var(--muted)}.note b{color:var(--ink)}
-.contact{padding:35px 0 28px}.contact-panel{background:var(--acid);padding:clamp(30px,7vw,84px);min-height:560px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.contact-panel::before{content:"";position:absolute;width:min(55vw,760px);aspect-ratio:1;border:1px solid rgba(13,23,23,.4);border-radius:50%;right:-15%;top:-45%;box-shadow:0 0 0 60px rgba(13,23,23,.045),0 0 0 125px rgba(13,23,23,.04),0 0 0 205px rgba(13,23,23,.03)}.contact-top,.contact-bottom{position:relative}.contact-label{font:500 10px "DM Mono",monospace;letter-spacing:.13em;text-transform:uppercase}.contact h2{max-width:1050px;margin:21px 0 0;font-size:clamp(3.5rem,9vw,9.7rem);line-height:.78;letter-spacing:-.105em}.contact h2 em{font-family:"Instrument Serif",serif;font-weight:400}.contact-bottom{display:flex;justify-content:space-between;align-items:end;gap:20px}.contact-bottom p{max-width:450px;font-size:14px;line-height:1.7}.contact-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}.contact-button{padding:13px 15px;background:var(--ink);color:var(--paper);font:500 10px "DM Mono",monospace;letter-spacing:.07em;text-transform:uppercase;transition:.25s}.contact-button:hover{background:var(--coral);color:var(--ink);transform:translateY(-3px)}footer{padding:18px 0 35px;font:500 9px "DM Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}.footer-row{display:flex;justify-content:space-between;gap:15px}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.show{opacity:1;transform:none}
-@media(max-width:800px){.cursor-dot,.cursor-ring{display:none}.nav{mix-blend-mode:normal}.nav-center{display:none}.menu{display:block}.nav-center.open{display:flex;position:absolute;top:51px;left:0;right:0;padding:14px;flex-direction:column;background:var(--paper);border:1px solid var(--line)}.nav-right{font-size:8px}.hero{min-height:630px}.hero-bottom{grid-template-columns:1fr;gap:22px}.hero-meta{justify-self:start}.section-grid{grid-template-columns:1fr;gap:26px}.section-index{position:static}.ability{grid-template-columns:43px 1fr 20px;gap:11px}.ability p{display:none}.living-map{min-height:380px}.project{grid-template-columns:55px 1fr}.project-side{grid-column:2;align-items:flex-start;gap:20px}.project-icon{display:none}.project-list{margin-top:43px}.process-grid{grid-template-columns:1fr}.contact-bottom{align-items:flex-start;flex-direction:column}.contact-actions{justify-content:flex-start}.scroll-mark{display:none}section{padding:90px 0}.wrap{width:min(100% - 28px,1440px)}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Portfólio com foco em suporte técnico, redes, infraestrutura, segurança da informação e desenvolvimento Android." />
+  <meta name="keywords" content="suporte técnico, redes, infraestrutura, segurança da informação, desenvolvimento Android, Kotlin, monitoramento, Python" />
+  <meta name="theme-color" content="#10151d" />
+  <title>J U N N W R</title>
+
+  <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisoQE2KaY8ib6K0MgByOCkDcQvwJd9zuJo3vzEopaKAG66Nss8UCITMri6h58XRLWjFCoXbmoq6vBnedmOMfwlZFSNLt7_BER9qw7rpeb1Ft-M4AXluJWPAz2gbrxHUakKH4teCwXCEXiokLJPS08sEzggtItRBVbP76_VBQC-GAl6cM8zXSpcaGoE5CU/s1600/3610266e298681202fe222fbbe3a9bb0.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;700&family=Righteous&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --yellow: #ffbd2f;
+      --dark: #121212;
+      --dark-2: #1b1b1b;
+      --text: #2e2e2e;
+      --muted: #606060;
+      --line: #e4e4e4;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    html { overflow-x: hidden; scroll-behavior: smooth; }
+    body { margin: 0; color: var(--text); font-family: Montserrat, sans-serif; font-size: 14px; line-height: 1.7; background: #fff; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; vertical-align: middle; border: 0; }
+    h1, h2, h3, h4, h5, h6 { font-family: "Playfair Display", serif; font-weight: 400; color: #151515; margin: 0; }
+    p { margin: 0; }
+    .row { width: min(1170px, calc(100% - 40px)); margin: 0 auto; }
+
+    #preloader { position: fixed; z-index: 3000; inset: 0; background: #fff; display: grid; place-items: center; }
+    #loader { width: 42px; height: 42px; border: 3px solid #e5e5e5; border-top-color: var(--yellow); border-radius: 50%; animation: rotate .75s linear infinite; }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+
+    .scroll-header { z-index: 999; position: absolute; top: 0; left: 0; width: 100%; padding: 10px 0; transition: all .35s ease; }
+    .scroll-header.scrolled-header { background-color: rgba(18,18,18,.95); border-bottom: 1px solid #303030; position: fixed; box-shadow: 0 4px 20px rgba(0,0,0,.16); }
+    .scroll-head-wrap { min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .scrollin-logo { color: #fff; font-family: Righteous, sans-serif; letter-spacing: 4px; font-size: 18px; }
+    .scrollin-logo a { display: inline-flex; align-items: center; color: #fff; }
+    .scrollin-logo .angle { color: var(--yellow); }
+    .scrolling-menu #nav { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; gap: 26px; }
+    .scrolling-menu #nav a { display: block; color: #fff; font-size: 12px; padding: 10px 0; position: relative; text-transform: uppercase; font-weight: 700; letter-spacing: 1.2px; }
+    .scrolling-menu #nav a:hover, .scrolling-menu #nav a.active { color: var(--yellow); }
+    .scrolling-menu #nav a.active::after { content: ""; position: absolute; left: 0; bottom: 3px; width: 100%; height: 1px; background: var(--yellow); }
+    .menu-toggle { display: none; background: transparent; border: 0; color: #fff; font-size: 21px; cursor: pointer; }
+
+    #header-wrapper {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiagVvxajfB8py60P6cfQb-qjaTYeyomCmu4xui-v-QyEDYHukzM0ID1DOEOJBBxMAtTP-FXiRhqIpxu1tW_BBRZa_oojaEwDElEFM_P1pR2_tvQZYiCHZbaZKTarnah1EAaSsHKLNSt4In5dFF1GgLolDQ1p3EOfdy5UqBb2QrNtoKYvYybOZHu-2H19rF/s1600/1331368.png') no-repeat center bottom;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    #header-wrapper::before { content: ""; position: absolute; inset: 0; background: rgba(10,10,10,.58); z-index: 1; }
+    #network-canvas { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; }
+    .fenix-head { position: relative; z-index: 3; width: 100%; }
+    .fenix-sub-head { padding: 140px 0 110px; }
+    .header-text p { color: #fff; font-size: clamp(35px, 6vw, 64px); line-height: 1.2; text-transform: uppercase; letter-spacing: 1px; font-family: Righteous, cursive; margin-bottom: 13px; }
+    .header-logo-desc { min-height: 48px; margin: 0 0 25px; text-transform: uppercase; }
+    .header-logo-desc .prefix { color: var(--yellow); font-size: clamp(17px, 2vw, 25px); font-weight: 700; }
+    .header-logo-desc .typed-text { display: inline-block; min-width: 255px; color: #fff; margin-left: 10px; font-size: clamp(17px, 2vw, 25px); line-height: 1.45; font-weight: 500; }
+    .typed-text::after { content: "|"; color: var(--yellow); margin-left: 3px; animation: blink 1s infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-description { max-width: 690px; margin: 0 auto 28px; color: rgba(255,255,255,.9); font-size: 15px; }
+    .hero-social { display: flex; justify-content: center; gap: 16px; margin-top: 13px; }
+    .hero-social a { display: grid; place-items: center; width: 42px; height: 42px; color: #fff; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; font-size: 18px; transition: all .25s ease; }
+    .hero-social a:hover { color: #151515; background: var(--yellow); border-color: var(--yellow); transform: translateY(-3px); }
+    .hero-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-button { display: inline-flex; align-items: center; gap: 8px; padding: 11px 17px; border: 1px solid rgba(255,255,255,.75); color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; transition: .25s; }
+    .hero-button.primary, .hero-button:hover { background: var(--yellow); border-color: var(--yellow); color: #151515; }
+    .slide-in { position: absolute; z-index: 4; bottom: 38px; left: 50%; transform: translateX(-50%); }
+    .pointer { display: block; width: 27px; height: 43px; border: 2px solid #fff; border-radius: 20px; position: relative; }
+    .pointer::after { content: ""; position: absolute; left: 50%; top: 7px; width: 4px; height: 4px; background: #fff; border-radius: 50%; transform: translateX(-50%); animation: scrollDown 1.7s infinite; }
+    @keyframes scrollDown { 0% { opacity: 1; transform: translate(-50%,0); } 100% { opacity: 0; transform: translate(-50%,22px); } }
+
+    section { padding: 82px 0; }
+    .sora-special-box, .sora-about-box { background: #fff; }
+    .sora-works-box { background: #f4f4f4; }
+    .section-title { text-align: center; max-width: 780px; margin: 0 auto 42px; }
+    .section-title h4 { font-size: clamp(28px, 4vw, 39px); line-height: 1.22; color: #303030; margin-bottom: 9px; }
+    .section-title span { color: #777; font-size: 14px; }
+
+    .competency-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; }
+    .competency-card { display: flex; gap: 18px; padding: 25px; border: 1px solid #ececec; background: #fff; transition: transform .25s, box-shadow .25s; }
+    .competency-card:hover { transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,0,0,.09); }
+    .special-icons { flex: 0 0 52px; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; color: #fff; background: #303030; font-size: 21px; }
+    .competency-card:nth-child(2) .special-icons, .competency-card:nth-child(4) .special-icons { background: var(--yellow); color: #222; }
+    .special-heading { font-family: Montserrat, sans-serif; font-size: 15px; line-height: 1.4; color: #303030; letter-spacing: .6px; margin: 1px 0 8px; font-weight: 700; }
+    .special-text { color: #606060; font-size: 13px; }
+
+    .works-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; }
+    .works-tiles { text-align: center; padding: 10px; }
+    .works-icons { display: inline-grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; background: var(--yellow); color: #fff; font-size: 25px; box-shadow: 0 15px 34px rgba(0,0,0,.18); margin-bottom: 19px; }
+    .works-heading { font-family: Montserrat, sans-serif; font-size: 16px; color: #202020; letter-spacing: .5px; margin-bottom: 9px; font-weight: 700; }
+    .works-text { color: #707070; font-size: 13px; }
+
+    .counter-box { position: relative; background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGKmz7Stz-JthKB2seRFhyphenhyphenn36n9IjPYKVt14CR47t3ZPG_a4SbBA8em1StmH7GQ5io5mUgQNa8XyITY2atoiNFWYUhjOrlk8P27wd8LxChCgDBmGnFu6vcSo2FcY-Sf9iVn6S9HgHPLJc/s1600/sg-back.jpg') no-repeat center / cover; padding: 46px 0; color: #fff; }
+    .counter-box::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.8); }
+    .counter-box-wrap { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 15px; }
+    .counter-box-item { text-align: center; padding: 10px; }
+    .counter-box-item i { font-size: 24px; color: var(--yellow); }
+    .counter-sora { color: #fff; font-size: 19px; line-height: 1.35; font-family: Montserrat, sans-serif; font-weight: 700; margin: 11px 0 8px; }
+    .counter-sora-text { color: #ddd; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+    .project-card { border: 1px solid #e6e6e6; padding: 31px; background: #fff; position: relative; overflow: hidden; }
+    .project-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-label { display: inline-block; color: #946700; background: #fff3d4; padding: 5px 9px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
+    .project-card h3 { font-family: Montserrat, sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .project-card p { color: #606060; font-size: 13px; }
+    .tech-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+    .tech { padding: 5px 8px; color: #555; background: #f4f4f4; font-size: 10px; font-weight: 700; letter-spacing: .3px; }
+    .project-link { display: inline-flex; gap: 8px; align-items: center; color: #222; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; }
+    .project-link:hover { color: #b67e00; }
+
+    .security-box { background: #151515; color: #fff; }
+    .security-box h4 { color: #fff; }
+    .security-box .section-title span { color: #c5c5c5; }
+    .security-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+    .security-card { border: 1px solid #313131; padding: 26px; background: #1b1b1b; }
+    .security-card i { display: block; color: var(--yellow); font-size: 29px; margin-bottom: 16px; }
+    .security-card h3 { color: #fff; font-family: Montserrat, sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 9px; }
+    .security-card p { color: #c7c7c7; font-size: 13px; }
+    .security-note { max-width: 900px; margin: 25px auto 0; padding: 14px 18px; border-left: 3px solid var(--yellow); background: rgba(255,189,47,.08); color: #ddd; font-size: 12px; }
+
+    .contact-section { background: #fff; }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #e7e7e7; }
+    .contact-info { padding: 43px; background: #f8f8f8; }
+    .contact-info h3 { font-size: 31px; margin-bottom: 10px; }
+    .contact-info > p { color: #666; margin-bottom: 24px; }
+    .con-list { list-style: none; padding: 0; margin: 0; }
+    .con-list li { display: flex; align-items: center; gap: 14px; color: #333; margin-bottom: 15px; font-size: 13px; word-break: break-word; }
+    .con-list li i { display: grid; place-items: center; width: 39px; height: 39px; background: #202020; color: #fff; }
+    .contact-cta { display: flex; flex-direction: column; justify-content: center; padding: 43px; background: #202020; color: #fff; }
+    .contact-cta h3 { font-family: Montserrat, sans-serif; font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .contact-cta p { color: #d0d0d0; margin-bottom: 24px; }
+    .contact-button { align-self: flex-start; padding: 12px 16px; border: 1px solid #fff; color: #fff; font-size: 12px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; transition: .25s; }
+    .contact-button:hover { color: #161616; background: var(--yellow); border-color: var(--yellow); }
+    .contact-social { display: flex; gap: 12px; margin-top: 23px; }
+    .contact-social a { color: #fff; font-size: 19px; transition: color .2s; }
+    .contact-social a:hover { color: var(--yellow); }
+
+    .bot-bar-menu { background: #222; padding: 21px 0; color: #fff; }
+    .bot-menu-wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .jugas_footer_copyright { font-size: 12px; }
+    .jugas_footer_copyright a { color: var(--yellow); }
+    .footer-icons { display: flex; gap: 14px; }
+    .footer-icons a { color: #fff; font-size: 18px; transition: .2s; }
+    .footer-icons a:hover { color: var(--yellow); }
+
+    @media (max-width: 900px) {
+      .works-grid { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 32px; }
+      .security-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .row { width: min(100% - 30px, 1170px); }
+      .menu-toggle { display: block; }
+      .scrolling-menu #nav { display: none; position: absolute; top: 74px; left: 15px; right: 15px; padding: 12px 18px; flex-direction: column; align-items: stretch; gap: 0; background: rgba(18,18,18,.98); border: 1px solid #333; }
+      .scrolling-menu #nav.open { display: flex; }
+      .scrolling-menu #nav a { padding: 10px 0; }
+      .competency-grid, .project-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .counter-box-wrap { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .header-logo-desc .typed-text { display: block; min-width: 0; margin: 5px 0 0; }
+    }
+    @media (max-width: 450px) {
+      .works-grid { grid-template-columns: 1fr; }
+      .hero-social { gap: 10px; }
+      .counter-box-wrap { grid-template-columns: 1fr; }
+      .bot-menu-wrap { flex-direction: column; text-align: center; }
+      .fenix-sub-head { padding-top: 128px; }
+    }
+  </style>
 </head>
 <body>
-<div id="loader"><div class="loader-word"><span>INICIALIZANDO SINAL...</span></div></div>
-<div class="cursor-dot"></div><div class="cursor-ring"></div>
-<nav class="nav"><div class="wrap nav-inner"><a class="logo" href="#topo"><b>&lt;</b>JUNNWR<b>/&gt;</b></a><div class="nav-center" id="navLinks"><a href="#capacidades">Capacidades</a><a href="#projetos">Projetos</a><a href="#processo">Processo</a><a href="#contato">Contato</a></div><div class="nav-right"><span class="live"></span><span>Transmitindo</span><button class="menu" id="menu" aria-label="Menu"><i class="fa-solid fa-bars"></i></button></div></div></nav>
-<main id="topo">
-<section class="hero"><canvas class="hero-canvas" id="heroCanvas"></canvas><div class="wrap hero-content"><div class="kicker">Portfólio em movimento / 2026</div><h1>Infraestrutura<br>para ideias <em>vivas.</em></h1><div class="hero-bottom"><p class="hero-copy">Tecnologia não é uma lista de ferramentas. É a arte de observar sinais, conectar sistemas e transformar obstáculos em experiências que funcionam.</p><div class="hero-meta"><span>Suporte · Redes · Segurança · Android</span><a class="round-link" href="#capacidades" aria-label="Explorar"><i class="fa-solid fa-arrow-down"></i></a></div></div></div><a class="scroll-mark" href="#capacidades">descer <i class="fa-solid fa-arrow-down"></i></a></section>
-<div class="ticker"><div class="ticker-track">SUPORTE TÉCNICO <b>✦</b> REDES &amp; CONECTIVIDADE <b>✦</b> ANDROID &amp; KOTLIN <b>✦</b> AUTOMAÇÃO <b>✦</b> SEGURANÇA APLICADA <b>✦</b> SUPORTE TÉCNICO <b>✦</b> REDES &amp; CONECTIVIDADE <b>✦</b> ANDROID &amp; KOTLIN <b>✦</b> AUTOMAÇÃO <b>✦</b> SEGURANÇA APLICADA <b>✦</b></div></div>
-<section id="capacidades"><div class="wrap section-grid"><aside class="section-index"><b>01</b> Capacidades</aside><div><div class="section-head reveal"><h2>Um sistema é forte quando suas partes <em>conversam.</em></h2><p>Experiência prática em operações e uma formação voltada a redes, segurança e software. Estas áreas não vivem isoladas: elas formam uma mesma topologia de resolução de problemas.</p></div><div class="abilities reveal"><article class="ability"><span class="ability-num">A.01</span><h3>Suporte técnico e operações</h3><p>Disponibilidade, ordens de serviço, apoio ao campo e resposta a ocorrências de rede.</p><i class="fa-solid fa-headset ability-icon"></i></article><article class="ability"><span class="ability-num">A.02</span><h3>Redes e infraestrutura</h3><p>TCP/IP, DNS, conectividade, fibra óptica, cabeamento e fundamentos de observabilidade.</p><i class="fa-solid fa-network-wired ability-icon"></i></article><article class="ability"><span class="ability-num">A.03</span><h3>Android e software</h3><p>Aplicações nativas em Kotlin com foco em utilidade, experiência e proteção de dados.</p><i class="fa-brands fa-android ability-icon"></i></article><article class="ability"><span class="ability-num">A.04</span><h3>Segurança e automação</h3><p>Autenticação, criptografia, privacidade, Python e laboratórios realizados de forma ética.</p><i class="fa-solid fa-shield-halved ability-icon"></i></article></div><div class="living-map reveal"><canvas id="mapCanvas"></canvas><div class="map-caption">Mapa de interdependências<br><b>clique no mapa para alterar o pulso</b></div><div class="map-caption-right">Nós: 28<br>Estado: responsivo</div></div></div></div></section>
-<section class="projects" id="projetos"><div class="wrap section-grid"><aside class="section-index"><b>02</b> Projetos</aside><div><div class="section-head reveal"><h2>Coisas que saíram da tela e foram <em>funcionar.</em></h2><p>Projetos são a melhor maneira de converter estudo em evidência. Cada um nasce de uma pergunta técnica e tenta oferecer uma resposta útil.</p></div><div class="project-list reveal"><article class="project"><span class="project-id">PROJETO / 01</span><div><h3>Ping &amp; <em>DNS Monitor</em></h3><p>Aplicativo Android para medir ping, comparar servidores DNS e testar endereços personalizados com retorno de latência em tempo real.</p><div class="tech"><span>KOTLIN</span><span>ANDROID STUDIO</span><span>DNS</span><span>ICMP</span><span>REDES</span></div></div><div class="project-side"><span class="project-icon"><i class="fa-solid fa-tower-broadcast"></i></span><a class="project-link" href="https://play.google.com/store/apps/details?id=com.junnwr.medidordeping" target="_blank" rel="noopener noreferrer">Google Play <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></article><article class="project"><span class="project-id">PROJETO / 02</span><div><h3>2Fat — <em>Offline TOTP</em></h3><p>Autenticador de dois fatores desenvolvido para funcionar offline, combinando TOTP, criptografia do banco local e proteção de secrets.</p><div class="tech"><span>RFC 6238</span><span>SQLCIPHER</span><span>PBKDF2</span><span>KEYSTORE</span><span>ZXING</span></div></div><div class="project-side"><span class="project-icon"><i class="fa-solid fa-fingerprint"></i></span><a class="project-link" href="https://github.com/junnwr/2Fat" target="_blank" rel="noopener noreferrer">GitHub <i class="fa-brands fa-github"></i></a></div></article><article class="project"><span class="project-id">PROJETO / 03</span><div><h3>Labs de <em>infraestrutura</em></h3><p>Ambientes de estudo para explorar Linux, conectividade, regras de firewall, NAT, logs, monitoramento e rotinas de administração.</p><div class="tech"><span>LINUX</span><span>TCP/IP</span><span>FIREWALL</span><span>ZABBIX</span><span>GRAFANA</span></div></div><div class="project-side"><span class="project-icon"><i class="fa-solid fa-cubes"></i></span><a class="project-link" href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer">Explorar <i class="fa-brands fa-github"></i></a></div></article></div></div></div></section>
-<section id="processo"><div class="wrap section-grid"><aside class="section-index"><b>03</b> Processo</aside><div><div class="section-head reveal"><h2>Não é magia. É curiosidade, método e <em>validação.</em></h2><p>Um modelo de trabalho adaptável para uma ocorrência de rede, uma funcionalidade de aplicativo, uma automação ou um laboratório de segurança.</p></div><div class="process-grid reveal"><article class="process-card"><span class="process-num">01 / OUVIR</span><span class="process-orb"></span><h3>Ler o cenário</h3><p>Entender o ambiente, o impacto, os sintomas e as restrições antes de tocar na solução.</p></article><article class="process-card"><span class="process-num">02 / RASTREAR</span><span class="process-orb"></span><h3>Seguir os sinais</h3><p>Investigar configurações, logs, conectividade, métricas, código e hipóteses.</p></article><article class="process-card"><span class="process-num">03 / CONSTRUIR</span><span class="process-orb"></span><h3>Fazer acontecer</h3><p>Configurar, automatizar ou desenvolver uma resposta clara e controlada para o problema.</p></article><article class="process-card"><span class="process-num">04 / CUIDAR</span><span class="process-orb"></span><h3>Validar e registrar</h3><p>Testar o resultado, registrar o aprendizado e deixar o caminho mais simples para a próxima vez.</p></article></div><div class="note reveal"><b>Princípio de segurança:</b> todo estudo de vulnerabilidades é feito somente em laboratórios, aplicações próprias ou ambientes que possuem autorização explícita.</div></div></div></section>
-<section class="contact" id="contato"><div class="wrap"><div class="contact-panel reveal"><div class="contact-top"><div class="contact-label">Canal aberto / 24h</div><h2>Vamos criar o<br>próximo <em>sinal.</em></h2></div><div class="contact-bottom"><p>Aberto a conversar sobre suporte técnico, redes, infraestrutura, segurança da informação, projetos Android e oportunidades onde curiosidade e responsabilidade importam.</p><div class="contact-actions"><a class="contact-button" href="mailto:junnwr@usa.com"><i class="fa-solid fa-envelope"></i> E-mail</a><a class="contact-button" href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a><a class="contact-button" href="https://www.linkedin.com/in/-hacker-/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a><a class="contact-button" href="https://www.instagram.com/junnwr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram</a></div></div></div></div></section>
-</main><footer><div class="wrap footer-row"><span>JUNNWR / SIGNAL GARDEN © <span id="year"></span></span><span>Feito para explorar, não para parecer igual.</span></div></footer>
-<script>
-const $=s=>document.querySelector(s);$('#year').textContent=new Date().getFullYear();window.addEventListener('load',()=>setTimeout(()=>$('#loader').classList.add('done'),650));
-const menu=$('#menu'),links=$('#navLinks');menu.addEventListener('click',()=>links.classList.toggle('open'));links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
-const dot=$('.cursor-dot'),ring=$('.cursor-ring');let mx=-50,my=-50,rx=-50,ry=-50;window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});function cursor(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cursor)}cursor();document.querySelectorAll('a,button,.project,.process-card,.ability').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('big'));el.addEventListener('mouseleave',()=>ring.classList.remove('big'))});
-const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');reveal.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>reveal.observe(e));
-function makeCanvas(canvas,mode){const ctx=canvas.getContext('2d');let W,H,pts=[],mouse={x:null,y:null},raf,phase=0;function resize(){const d=Math.min(devicePixelRatio||1,2);W=canvas.clientWidth;H=canvas.clientHeight;canvas.width=W*d;canvas.height=H*d;ctx.setTransform(d,0,0,d,0,0);let n=mode==='hero'?(innerWidth<700?32:64):28;pts=Array.from({length:n},(_,i)=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*(mode==='hero'?.34:.22),vy:(Math.random()-.5)*(mode==='hero'?.34:.22),r:Math.random()*2+1,seed:i}));}function draw(){ctx.clearRect(0,0,W,H);phase+=.006;if(mode==='map'){ctx.fillStyle='#0a1010';ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(213,255,63,.06)';ctx.lineWidth=1;for(let x=0;x<W;x+=42){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}for(let y=0;y<H;y+=42){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}}let limit=mode==='hero'?132:175;for(let i=0;i<pts.length;i++){let p=pts[i];if(mode==='map'){let cx=W/2,cy=H/2;p.x+=Math.cos(phase+p.seed)*.17+p.vx;p.y+=Math.sin(phase*.8+p.seed)*.17+p.vy}else{p.x+=p.vx;p.y+=p.vy}if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;for(let j=i+1;j<pts.length;j++){let q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<limit){ctx.beginPath();let a=(1-d/limit)*(mode==='hero'?.25:.42);ctx.strokeStyle=mode==='hero'?`rgba(13,23,23,${a})`:`rgba(87,232,220,${a})`;ctx.lineWidth=.8;ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}}if(mouse.x!==null){let d=Math.hypot(p.x-mouse.x,p.y-mouse.y);if(d<170){ctx.beginPath();ctx.strokeStyle=mode==='hero'?`rgba(255,117,73,${(1-d/170)*.55})`:`rgba(213,255,63,${(1-d/170)*.65})`;ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke()}}ctx.beginPath();ctx.fillStyle=mode==='hero'?(i%5===0?'#ff7549':'#0d1717'):(i%4===0?'#d5ff3f':'#57e8dc');ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}if(mode==='map'){ctx.beginPath();ctx.arc(W/2,H/2,90+Math.sin(phase)*8,0,Math.PI*2);ctx.strokeStyle='rgba(213,255,63,.35)';ctx.stroke()}raf=requestAnimationFrame(draw)}canvas.addEventListener('mousemove',e=>{let r=canvas.getBoundingClientRect();mouse={x:e.clientX-r.left,y:e.clientY-r.top}});canvas.addEventListener('mouseleave',()=>mouse={x:null,y:null});canvas.addEventListener('click',()=>{pts.forEach(p=>{p.vx=(Math.random()-.5)*1.8;p.vy=(Math.random()-.5)*1.8})});window.addEventListener('resize',()=>{cancelAnimationFrame(raf);resize();draw()});resize();draw()}makeCanvas($('#heroCanvas'),'hero');makeCanvas($('#mapCanvas'),'map');
-</script>
-</body></html>
+  <div id="preloader"><div id="loader"></div></div>
+
+  <div class="scroll-header" id="head-trigger">
+    <div class="scroll-head-wrap row">
+      <div class="scrollin-logo">
+        <a href="#header-wrapper" aria-label="Início"><span class="angle">&lt;</span>JUNNWR<span class="angle">/&gt;</span></a>
+      </div>
+      <div class="scrolling-menu">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
+        <nav>
+          <ul id="nav">
+            <li><a class="active" href="#header-wrapper">Início</a></li>
+            <li><a href="#competencias">Competências</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#seguranca">Segurança</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <header id="header-wrapper">
+    <canvas id="network-canvas" aria-hidden="true"></canvas>
+    <div class="fenix-head">
+      <div class="fenix-sub-head row">
+        <div class="header-text"><p>TECNOLOGIA APLICADA</p></div>
+        <div class="header-logo-desc">
+          <span class="prefix">Foco em</span><span class="typed-text" id="typedText"></span>
+        </div>
+        <p class="hero-description">
+          Portfólio voltado a suporte técnico, redes, infraestrutura, monitoramento,
+          segurança da informação e desenvolvimento de aplicações Android.
+        </p>
+        <div class="hero-buttons">
+          <a class="hero-button primary" href="#projetos"><i class="fa-solid fa-code"></i> Ver projetos</a>
+          <a class="hero-button" href="#contato"><i class="fa-solid fa-paper-plane"></i> Contato</a>
+        </div>
+        <div class="hero-social">
+          <a href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/-hacker-/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/junnwr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="mailto:brazil.junnior@gmail.com" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="slide-in"><a class="pointer" href="#competencias" aria-label="Ir para competências"></a></div>
+  </header>
+
+  <main>
+    <section class="sora-special-box" id="competencias">
+      <div class="row">
+        <div class="section-title">
+          <h4>Competências e áreas de atuação</h4>
+          <span>Experiência prática, formação técnica e aprendizado contínuo.</span>
+        </div>
+        <div class="competency-grid">
+          <article class="competency-card">
+            <div class="special-icons"><i class="fa-solid fa-headset"></i></div>
+            <div>
+              <h3 class="special-heading">Suporte Técnico e Operações</h3>
+              <p class="special-text">Apoio a técnicos de campo, consulta de disponibilidade, liberação de portas em CTOs, acompanhamento de ordens de serviço e apoio na resolução de ocorrências de rede.</p>
+            </div>
+          </article>
+          <article class="competency-card">
+            <div class="special-icons"><i class="fa-solid fa-network-wired"></i></div>
+            <div>
+              <h3 class="special-heading">Redes e Infraestrutura</h3>
+              <p class="special-text">Fundamentos de TCP/IP, DNS, conectividade, cabeamento estruturado, fibra óptica, redes locais e práticas de monitoramento.</p>
+            </div>
+          </article>
+          <article class="competency-card">
+            <div class="special-icons"><i class="fa-brands fa-android"></i></div>
+            <div>
+              <h3 class="special-heading">Desenvolvimento Android</h3>
+              <p class="special-text">Aplicativos nativos com Kotlin e Android Studio, integrando redes, armazenamento local, interfaces funcionais e proteção de dados.</p>
+            </div>
+          </article>
+          <article class="competency-card">
+            <div class="special-icons"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <h3 class="special-heading">Segurança da Informação</h3>
+              <p class="special-text">Estudos e projetos com autenticação, criptografia, privacidade, desenvolvimento seguro e análise de vulnerabilidades em ambientes controlados.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sora-works-box" id="processo">
+      <div class="row">
+        <div class="section-title">
+          <h4>Meu processo técnico</h4>
+          <span>Da identificação do problema à documentação da solução.</span>
+        </div>
+        <div class="works-grid">
+          <article class="works-tiles">
+            <div class="works-icons"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <h3 class="works-heading">1. Entendimento</h3>
+            <p class="works-text">Identificação do contexto, requisitos, sintomas e impacto técnico do problema ou projeto.</p>
+          </article>
+          <article class="works-tiles">
+            <div class="works-icons"><i class="fa-solid fa-diagram-project"></i></div>
+            <h3 class="works-heading">2. Investigação</h3>
+            <p class="works-text">Análise de conectividade, configurações, logs, métricas, código e possíveis causas.</p>
+          </article>
+          <article class="works-tiles">
+            <div class="works-icons"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <h3 class="works-heading">3. Implementação</h3>
+            <p class="works-text">Aplicação de uma solução, configuração, melhoria ou funcionalidade em ambiente controlado.</p>
+          </article>
+          <article class="works-tiles">
+            <div class="works-icons"><i class="fa-solid fa-file-lines"></i></div>
+            <h3 class="works-heading">4. Validação</h3>
+            <p class="works-text">Testes, documentação dos resultados e registro de aprendizados para evolução contínua.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="counter-box" aria-label="Áreas em destaque">
+      <div class="row counter-box-wrap">
+        <div class="counter-box-item"><i class="fa-solid fa-headset"></i><h3 class="counter-sora">Suporte técnico</h3><div class="counter-sora-text">Operação e atendimento</div></div>
+        <div class="counter-box-item"><i class="fa-solid fa-network-wired"></i><h3 class="counter-sora">Redes</h3><div class="counter-sora-text">Conectividade e infraestrutura</div></div>
+        <div class="counter-box-item"><i class="fa-brands fa-android"></i><h3 class="counter-sora">Android</h3><div class="counter-sora-text">Projetos em Kotlin</div></div>
+        <div class="counter-box-item"><i class="fa-solid fa-shield-halved"></i><h3 class="counter-sora">Segurança</h3><div class="counter-sora-text">Prática responsável</div></div>
+      </div>
+    </section>
+
+    <section class="sora-about-box" id="projetos">
+      <div class="row">
+        <div class="section-title">
+          <h4>Projetos em destaque</h4>
+          <span>Aplicações práticas de redes, privacidade e segurança da informação.</span>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-label">Android • Redes</div>
+            <h3>Ping &amp; DNS Monitor</h3>
+            <p>Aplicativo Android nativo para medição de ping e comparação de servidores DNS. Permite testar servidores públicos ou DNS personalizado, apresentando resultados de latência em tempo real.</p>
+            <div class="tech-list"><span class="tech">Kotlin</span><span class="tech">Android Studio</span><span class="tech">DNS</span><span class="tech">ICMP</span><span class="tech">Redes</span></div>
+            <a class="project-link" href="https://play.google.com/store/apps/details?id=com.junnwr.medidordeping" target="_blank" rel="noopener noreferrer">Ver na Google Play <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </article>
+          <article class="project-card">
+            <div class="project-label">Android • Segurança</div>
+            <h3>2Fat — Autenticador TOTP offline</h3>
+            <p>Aplicativo de autenticação de dois fatores baseado em TOTP, desenvolvido com foco em operação offline, privacidade, criptografia do banco local e proteção de dados sensíveis.</p>
+            <div class="tech-list"><span class="tech">Kotlin</span><span class="tech">TOTP / RFC 6238</span><span class="tech">SQLCipher</span><span class="tech">Android Keystore</span><span class="tech">ZXing</span></div>
+            <a class="project-link" href="https://github.com/junnwr/2Fat" target="_blank" rel="noopener noreferrer">Ver repositório <i class="fa-brands fa-github"></i></a>
+          </article>
+          <article class="project-card">
+            <div class="project-label">Infraestrutura • Linux</div>
+            <h3>Laboratórios de redes e Linux</h3>
+            <p>Estudos práticos de conectividade, serviços Linux, NAT, regras de firewall, análise de logs e ambientes virtuais para consolidação de fundamentos técnicos.</p>
+            <div class="tech-list"><span class="tech">Linux</span><span class="tech">TCP/IP</span><span class="tech">Firewall</span><span class="tech">NAT</span><span class="tech">Logs</span></div>
+            <a class="project-link" href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer">Acessar GitHub <i class="fa-brands fa-github"></i></a>
+          </article>
+          <article class="project-card">
+            <div class="project-label">Observabilidade • Automação</div>
+            <h3>Monitoramento e automação</h3>
+            <p>Estudos com acompanhamento de serviços, métricas e automação de tarefas técnicas para auxiliar na identificação de falhas e na organização de operações.</p>
+            <div class="tech-list"><span class="tech">Python</span><span class="tech">Zabbix</span><span class="tech">Grafana</span><span class="tech">Ansible</span></div>
+            <a class="project-link" href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer">Ver estudos <i class="fa-brands fa-github"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="security-box" id="seguranca">
+      <div class="row">
+        <div class="section-title">
+          <h4>Segurança em evolução</h4>
+          <span>Segurança aplicada a projetos, redes, privacidade e ambientes de estudo autorizados.</span>
+        </div>
+        <div class="security-grid">
+          <article class="security-card"><i class="fa-solid fa-lock"></i><h3>Autenticação e proteção de dados</h3><p>Aplicação de TOTP, criptografia local, derivação de chaves e Android Keystore no desenvolvimento de aplicativos.</p></article>
+          <article class="security-card"><i class="fa-solid fa-globe"></i><h3>Redes e aplicações</h3><p>Estudos de DNS, protocolos, conectividade, validação de entradas, vulnerabilidades comuns e desenvolvimento seguro.</p></article>
+          <article class="security-card"><i class="fa-solid fa-flask"></i><h3>Laboratórios e aprendizado ético</h3><p>Prática em CTFs, ambientes virtuais e laboratórios voltados ao entendimento de falhas e medidas de proteção.</p></article>
+        </div>
+        <p class="security-note">Todos os estudos de análise de vulnerabilidades e segurança ofensiva são realizados apenas em laboratórios, aplicações próprias ou ambientes com autorização explícita.</p>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contato">
+      <div class="row">
+        <div class="section-title">
+          <h4>Entre em contato</h4>
+          <span>Disponível para networking, projetos e oportunidades na área de tecnologia.</span>
+        </div>
+        <div class="contact-wrap">
+          <div class="contact-info">
+            <h3>Contato profissional</h3>
+            <p>Interesse em oportunidades de suporte técnico, infraestrutura, redes, segurança da informação e desenvolvimento mobile.</p>
+            <ul class="con-list">
+              <li><i class="lnr lnr-map"></i>Ourinhos / São Paulo - BR</li>
+              <li><i class="lnr lnr-envelope"></i><a href="mailto:brazil.junnior@gmail.com">brazil.junnior@gmail.com</a></li>
+              <li><i class="lnr lnr-earth"></i><a href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer">github.com/junnwr</a></li>
+              <li><i class="lnr lnr-user"></i><a href="https://www.linkedin.com/in/-hacker-/" target="_blank" rel="noopener noreferrer">linkedin.com/in/-hacker-/</a></li>
+            </ul>
+          </div>
+          <div class="contact-cta">
+            <h3>Vamos conversar sobre tecnologia.</h3>
+            <p>Use o e-mail para entrar em contato ou acesse os projetos e estudos disponíveis no GitHub.</p>
+            <a class="contact-button" href="mailto:brazil.junnior@gmail.com"><i class="fa-solid fa-envelope"></i> Enviar e-mail</a>
+            <div class="contact-social">
+              <a href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/-hacker-/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/junnwr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bot-bar-menu">
+    <div class="bot-menu-wrap row">
+      <div class="jugas_footer_copyright">Desenvolvido por <a href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer">Junnwr</a></div>
+      <div class="footer-icons">
+        <a href="https://github.com/junnwr" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.instagram.com/junnwr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="mailto:brazil.junnior@gmail.com" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('header-wrapper');
+    const nav = document.getElementById('head-trigger');
+    const menu = document.getElementById('nav');
+    const menuToggle = document.getElementById('menuToggle');
+
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled-header', window.scrollY > 120);
+    });
+
+    menuToggle.addEventListener('click', () => menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => menu.classList.remove('open')));
+
+    const typedText = document.getElementById('typedText');
+    const phrases = [
+      'suporte técnico e redes.',
+      'infraestrutura e monitoramento.',
+      'segurança da informação.',
+      'desenvolvimento Android.',
+      'automação e projetos práticos.'
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeLoop() {
+      const phrase = phrases[phraseIndex];
+      typedText.textContent = deleting ? phrase.substring(0, charIndex--) : phrase.substring(0, charIndex++);
+      let delay = deleting ? 34 : 67;
+      if (!deleting && charIndex > phrase.length) {
+        deleting = true;
+        delay = 1750;
+      }
+      if (deleting && charIndex < 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        delay = 330;
+      }
+      setTimeout(typeLoop, delay);
+    }
+    typeLoop();
+
+    const canvas = document.getElementById('network-canvas');
+    const ctx = canvas.getContext('2d');
+    const hero = document.getElementById('header-wrapper');
+    let particles = [];
+    let animationId;
+    let mouse = { x: null, y: null };
+
+    function setCanvasSize() {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = hero.clientWidth * ratio;
+      canvas.height = hero.clientHeight * ratio;
+      canvas.style.width = hero.clientWidth + 'px';
+      canvas.style.height = hero.clientHeight + 'px';
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function createParticles() {
+      const compact = window.innerWidth < 720;
+      const count = compact ? 36 : 68;
+      const width = hero.clientWidth;
+      const height = hero.clientHeight;
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * (compact ? 0.28 : 0.42),
+        vy: (Math.random() - 0.5) * (compact ? 0.28 : 0.42),
+        radius: Math.random() * 1.65 + 0.65
+      }));
+    }
+
+    function drawNetwork() {
+      const width = hero.clientWidth;
+      const height = hero.clientHeight;
+      ctx.clearRect(0, 0, width, height);
+      const maxDistance = window.innerWidth < 720 ? 92 : 135;
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < maxDistance) {
+            const opacity = (1 - distance / maxDistance) * 0.44;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 205, 86, ${opacity})`;
+            ctx.lineWidth = 0.7;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x !== null) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / 150) * .30})`;
+            ctx.lineWidth = 0.75;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255, 235, 180, .88)';
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      animationId = requestAnimationFrame(drawNetwork);
+    }
+
+    function resetNetwork() {
+      cancelAnimationFrame(animationId);
+      setCanvasSize();
+      createParticles();
+      drawNetwork();
+    }
+
+    hero.addEventListener('mousemove', event => {
+      const rect = hero.getBoundingClientRect();
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
+    });
+    hero.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+    window.addEventListener('resize', resetNetwork);
+    resetNetwork();
+
+    const sections = [...document.querySelectorAll('header[id], section[id]')];
+    const navLinks = [...document.querySelectorAll('#nav a')];
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
