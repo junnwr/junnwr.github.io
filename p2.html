@@ -1,0 +1,2838 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="briefing">
+  <title>Business Start-Up 2 — Quiz Interativo (Tópicos 1.3 a 2.2)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces: warm stone-white paper */
+      --background: #faf9f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #f1efe8;
+      --surface-container-high: #e6e2d6;
+
+      /* Ink */
+      --on-surface: #17181a;
+      --on-surface-variant: #56585c;
+
+      /* Rules & borders */
+      --outline: #17181a;
+      --outline-variant: #dedad0;
+      --border-control: #c8c4b8;
+
+      /* Accents */
+      --primary: #17181a;
+      --on-primary: #faf9f5;
+      --primary-container: #f2b705;
+      --on-primary-container: #17181a;
+      --secondary: #1f4e5f;
+      --on-secondary: #ffffff;
+      --secondary-soft: #e8f1f4;
+      --tertiary: #785008;
+      --tag-bg: #f5e6c4;
+      --error: #b42318;
+      --on-error: #ffffff;
+      --error-soft: #fef2f2;
+
+      /* Data series */
+      --data-1: #1f4e5f;
+      --data-2: #d99000;
+      --data-3: #2b6e52;
+      --data-4: #b84a39;
+      --data-context: #c4bfb2;
+
+      /* Semantic */
+      --positive: #2b6e52;
+      --on-positive: #ffffff;
+      --positive-soft: #edf6f1;
+      --warning: #785008;
+      --focus: #1f4e5f;
+
+      /* Fonts */
+      --font-headline: 'Source Serif 4', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Geist Mono', monospace;
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+      --headline-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      --subhead-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+      --label-size: 0.75rem;
+
+      /* Shape & effects */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --badge-radius: 2px;
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --control-border: 1px solid var(--border-control);
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.08em;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Briefing Dossier Header */
+    .dossier-header {
+      padding-bottom: var(--space-sm);
+    }
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.6875rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--badge-radius);
+      display: inline-block;
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.1;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      color: var(--secondary);
+      margin: var(--space-xs) 0 0 0;
+      max-width: 68ch;
+      line-height: 1.45;
+    }
+
+    /* Topic Selector Grid */
+    .selector-section {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .section-label-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .section-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .topic-btn {
+      appearance: none;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-height: 44px;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+      color: var(--on-surface);
+    }
+    .topic-btn:hover {
+      background: var(--surface-container);
+    }
+    .topic-btn:active {
+      transform: translateY(1px);
+    }
+    .topic-btn.is-active {
+      background: var(--surface-container-low);
+      box-shadow: inset 0 0 0 2px var(--secondary);
+    }
+    .topic-btn-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      width: 100%;
+    }
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      background: var(--surface-container);
+      padding: 0.125rem 0.375rem;
+      border-radius: var(--badge-radius);
+    }
+    .topic-btn.is-active .index-num {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .topic-count {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+    .topic-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      line-height: 1.3;
+      color: var(--on-surface);
+    }
+    .topic-sub {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      line-height: 1.35;
+    }
+
+    /* Main Workspace: Asymmetric 2:1 Briefing Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    /* Figure Card */
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    /* Quiz Header inside Card */
+    .quiz-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--card-border);
+    }
+    .quiz-badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .tag-chip {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      background: var(--tag-bg);
+      color: var(--tertiary);
+    }
+    .tag-chip-slate {
+      background: var(--secondary-soft);
+      color: var(--secondary);
+    }
+    .question-counter {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.06em;
+    }
+
+    /* Segmented 10-step progress strip */
+    .progress-strip {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: var(--space-xs);
+      margin: var(--space-md) 0;
+    }
+    .progress-pip {
+      height: 8px;
+      border-radius: var(--badge-radius);
+      background: var(--surface-container-high);
+      transition: background-color var(--dur-short) var(--ease-out);
+    }
+    .progress-pip.is-current {
+      background: var(--secondary);
+    }
+    .progress-pip.is-correct {
+      background: var(--positive);
+    }
+    .progress-pip.is-wrong {
+      background: var(--error);
+    }
+
+    /* Question Prompt */
+    .question-block {
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .question-text {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+      max-width: 60ch;
+    }
+    .question-quote {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      background: var(--surface-container);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--on-surface);
+      max-width: 62ch;
+    }
+    .question-quote em {
+      font-style: italic;
+    }
+
+    /* Options List */
+    .options-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .option-btn {
+      appearance: none;
+      width: 100%;
+      min-height: 50px;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--control-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-md);
+      color: var(--on-surface);
+      font-size: var(--body-size);
+      line-height: 1.45;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .option-btn:hover:not(:disabled) {
+      background: var(--surface-container);
+      box-shadow: inset 0 0 0 1px var(--secondary);
+    }
+    .option-btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-key {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--badge-radius);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      flex-shrink: 0;
+    }
+    .option-label {
+      font-weight: 500;
+    }
+    .option-status-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .option-btn.is-correct {
+      background: var(--positive-soft);
+      box-shadow: inset 0 0 0 2px var(--positive);
+      color: var(--on-surface);
+    }
+    .option-btn.is-correct .option-key {
+      background: var(--positive);
+      color: var(--on-positive);
+    }
+    .option-btn.is-wrong {
+      background: var(--error-soft);
+      box-shadow: inset 0 0 0 2px var(--error);
+      color: var(--on-surface);
+    }
+    .option-btn.is-wrong .option-key {
+      background: var(--error);
+      color: var(--on-error);
+    }
+    .option-btn.is-dimmed {
+      opacity: 0.62;
+    }
+
+    /* Feedback Panel */
+    .feedback-box {
+      margin-top: var(--space-lg);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded);
+      border-top: 3px solid var(--secondary);
+      background: var(--surface-container);
+      display: grid;
+      gap: var(--space-sm);
+      animation: fadeSlide var(--dur-short) var(--ease-out);
+    }
+    .feedback-box.is-correct {
+      background: var(--positive-soft);
+      border-top-color: var(--positive);
+    }
+    .feedback-box.is-wrong {
+      background: var(--error-soft);
+      border-top-color: var(--error);
+    }
+    .feedback-verdict {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .feedback-box.is-correct .feedback-verdict {
+      color: var(--positive);
+    }
+    .feedback-box.is-wrong .feedback-verdict {
+      color: var(--error);
+    }
+    .feedback-explanation {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      line-height: 1.55;
+      max-width: 64ch;
+    }
+    .feedback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-top: var(--space-xs);
+    }
+    .kbd-hint {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+    }
+
+    /* Buttons */
+    .btn {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--secondary);
+      color: var(--on-secondary);
+    }
+    .btn-secondary {
+      background: var(--surface-container-low);
+      border: var(--control-border);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .btn-accent {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--outline);
+    }
+    .btn-accent:hover:not(:disabled) {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    /* Round Summary View */
+    .summary-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--section-rule);
+    }
+    .summary-score-big {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+      line-height: 1;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+    }
+    .summary-score-sub {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+    .summary-verdict {
+      margin: var(--space-md) 0;
+      padding: var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      border-left: 3px solid var(--primary-container);
+    }
+    .summary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin: var(--space-md) 0 var(--space-lg) 0;
+    }
+
+    .review-list {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .review-item {
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      background: var(--surface-container-low);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .review-item.is-wrong {
+      border-left: 3px solid var(--error);
+    }
+    .review-item.is-correct {
+      border-left: 3px solid var(--positive);
+    }
+    .review-item-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .review-q {
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .review-answers {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      display: grid;
+      gap: 2px;
+    }
+    .review-exp {
+      font-size: 0.875rem;
+      color: var(--on-surface);
+      background: var(--surface-container);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      margin-top: var(--space-xs);
+    }
+
+    /* Warm Stone Sidebar (Aside) */
+    .sidebar-stack {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      padding: var(--space-md);
+      border-radius: 0 0 var(--rounded) var(--rounded);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .aside-title {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .kpi-grid {
+      container-type: inline-size;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .kpi-tile {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .kpi-val {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+    }
+    .kpi-lbl {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+    }
+
+    .pool-meter {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .pool-bar-track {
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--badge-radius);
+      overflow: hidden;
+    }
+    .pool-bar-fill {
+      height: 100%;
+      background: var(--secondary);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+    .pool-text {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      display: flex;
+      justify-content: space-between;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .topic-stats-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .topic-stat-row {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .topic-stat-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    .topic-stat-nums {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+    .mini-bar-track {
+      height: 6px;
+      background: var(--surface-container-high);
+      border-radius: var(--badge-radius);
+      overflow: hidden;
+    }
+    .mini-bar-fill {
+      height: 100%;
+      background: var(--positive);
+    }
+
+    .study-cheat-list {
+      margin: 0;
+      padding-left: var(--space-md);
+      font-size: 0.875rem;
+      color: var(--on-surface);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .study-cheat-list strong {
+      color: var(--secondary);
+    }
+
+    .inline-notice {
+      font-size: 0.8125rem;
+      color: var(--secondary);
+      background: var(--secondary-soft);
+      padding: var(--space-sm);
+      border-radius: var(--rounded);
+    }
+
+    .footer-credit {
+      border-top: var(--card-border);
+      padding-top: var(--space-md);
+      margin-top: var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @container (max-width: 240px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .figure-card {
+        padding: var(--space-md);
+      }
+      .question-text {
+        font-size: 1.1875rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <header class="dossier-header">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">Business Start-Up 2</span>
+          <span class="dossier-meta">Unidades 1.3 – 2.2 · Rodadas de 10 Questões</span>
+        </div>
+        <span class="dossier-meta" id="bank-total-meta">110 Questões Revisadas</span>
+      </div>
+      <h1 class="title">Quiz Interativo de Business English</h1>
+      <p class="standfirst">
+        Treine vocabulário, gramática e diálogos reais do livro Business Start-Up 2 por tópico específico ou no modo mesclado, com explicações imediatas e novas rodadas sem repetição.
+      </p>
+    </header>
+
+    <section class="selector-section" aria-label="Escolha do tópico de estudo">
+      <div class="section-label-row">
+        <h2 class="section-kicker">01 · Selecione o modo ou tópico para jogar (10 questões por rodada)</h2>
+        <span class="dossier-meta" id="active-mode-label">Modo atual: Todos os tópicos</span>
+      </div>
+      <div class="topic-grid" id="topic-selector"></div>
+    </section>
+
+    <main class="workspace-grid">
+      <section class="figure-card" id="quiz-stage" aria-live="polite">
+        <!-- Rendered dynamically -->
+      </section>
+
+      <aside class="sidebar-stack" aria-label="Painel de pontuação e guia rápido">
+        <div class="aside-box">
+          <h2 class="aside-title">02 · Placar &amp; Progresso</h2>
+          <div class="kpi-grid">
+            <div class="kpi-tile">
+              <div class="kpi-val" id="kpi-round-score">0 / 10</div>
+              <div class="kpi-lbl">Nesta rodada</div>
+            </div>
+            <div class="kpi-tile">
+              <div class="kpi-val" id="kpi-streak">0</div>
+              <div class="kpi-lbl">Sequência atual</div>
+            </div>
+            <div class="kpi-tile">
+              <div class="kpi-val" id="kpi-total-acc">0%</div>
+              <div class="kpi-lbl">Precisão geral</div>
+            </div>
+            <div class="kpi-tile">
+              <div class="kpi-val" id="kpi-rounds-done">0</div>
+              <div class="kpi-lbl">Rodadas fechadas</div>
+            </div>
+          </div>
+
+          <div class="pool-meter">
+            <div class="pool-text">
+              <span>Questões inéditas no modo</span>
+              <span id="pool-remaining-text">110 / 110</span>
+            </div>
+            <div class="pool-bar-track">
+              <div class="pool-bar-fill" id="pool-bar-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-accent" id="btn-new-round-side" onclick="startNewRound()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+              <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+              <path d="M16 16h5v5"></path>
+            </svg>
+            Reiniciar com 10 novas
+          </button>
+
+          <div id="pool-reset-notice" class="inline-notice" style="display: none;"></div>
+        </div>
+
+        <div class="aside-box">
+          <h2 class="aside-title">03 · Guia Rápido do Tópico</h2>
+          <ul class="study-cheat-list" id="topic-cheat-list"></ul>
+        </div>
+
+        <div class="aside-box">
+          <div class="section-label-row">
+            <h2 class="aside-title">04 · Desempenho por Tópico</h2>
+          </div>
+          <div class="topic-stats-list" id="topic-stats-list"></div>
+          <button type="button" class="btn btn-secondary" id="btn-reset-history" onclick="handleResetHistory(this)">
+            Zerar histórico salvo
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer-credit">
+      <span>Fonte: <em>Business Start-Up 2</em> (Cambridge University Press), Unidades 1.3 a 2.2, Practice &amp; Grammar Reference.</span>
+      <span>Atalhos de teclado: 1–4 para responder · Enter para avançar</span>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const TOPICS = [
+      {
+        id: `all`,
+        code: `00`,
+        title: `Modo Mesclado`,
+        short: `Todos os tópicos (1.3 – 2.2)`,
+        tips: [
+          `<strong>1.3 Eating Out:</strong> Starters, Main courses, Side dishes, Desserts; <em>I'd like...</em>, <em>Could we have the bill?</em>`,
+          `<strong>1.4 Skills &amp; Gerunds:</strong> <em>enjoy/like + -ing</em>, <em>good at + -ing</em>, gerúndio como sujeito.`,
+          `<strong>1.5 Time Out:</strong> <em>can't stand</em>, <em>hopeless at</em>, <em>not my cup of tea</em>, <em>have a go at</em>.`,
+          `<strong>2.1 Teamwork:</strong> <em>be + verb + -ing</em> para ações em andamento agora.`,
+          `<strong>2.2 Schedules &amp; Budgets:</strong> <em>ahead of / on / behind schedule</em>; <em>under / on / over budget</em>.`
+        ]
+      },
+      {
+        id: `1.3`,
+        code: `01`,
+        title: `1.3 Eating Out`,
+        short: `Cardápio, pedidos & Simply Delicious`,
+        tips: [
+          `<strong>Seções do menu:</strong> <em>Starters</em> (entradas), <em>Main courses</em> (pratos principais), <em>Side dishes</em> (acompanhamentos), <em>Desserts</em> (sobremesas).`,
+          `<strong>Preparo:</strong> <em>roast</em> (assado: chicken, beef, lamb), <em>grilled</em> (grelhado: steak, salmon), <em>fried</em> (frito: haddock, cod), <em>mashed</em> (purê: potato).`,
+          `<strong>Frases-chave:</strong> <em>We have a reservation</em>; <em>The same for me, please</em>; <em>I'm full, thank you</em>; <em>Could we have the bill, please?</em>`,
+          `<strong>Acento tônico (2ª sílaba):</strong> <em>de-SSERT</em>, <em>po-TA-to</em>, <em>to-MA-to</em>.`
+        ]
+      },
+      {
+        id: `1.4`,
+        code: `02`,
+        title: `1.4 Skills & Gerunds`,
+        short: `Habilidades, características & -ing`,
+        tips: [
+          `<strong>Adjetivos-chave:</strong> <em>reliable</em> (pontual/confiável), <em>adaptable</em> (lida bem com mudanças), <em>analytical</em> (detalhista), <em>hard-working</em>, <em>creative</em>.`,
+          `<strong>Gerúndio após gosto:</strong> <em>like / love / enjoy / hate + -ing</em> (ex.: <em>He enjoys working here</em>).`,
+          `<strong>Gerúndio após preposição:</strong> <em>good at + -ing</em> (ex.: <em>good at solving problems</em>).`,
+          `<strong>Gerúndio como sujeito:</strong> <em>Managing a big department isn't easy.</em>`
+        ]
+      },
+      {
+        id: `1.5`,
+        code: `03`,
+        title: `1.5 Time Out`,
+        short: `Esportes, lazer & Likes/Dislikes`,
+        tips: [
+          `<strong>Aversão forte:</strong> <em>I hate it</em> = <em>I can't stand it</em>.`,
+          `<strong>Sem habilidade:</strong> <em>I can't play</em> = <em>I'm hopeless at it</em>.`,
+          `<strong>Desinteresse:</strong> <em>I'm not interested in it</em> = <em>It's not my cup of tea</em>.`,
+          `<strong>Vontade de testar:</strong> <em>I'd love to have a go at...</em> + <em>I bet it's good fun</em>.`
+        ]
+      },
+      {
+        id: `2.1`,
+        code: `04`,
+        title: `2.1 Teamwork`,
+        short: `Projeto na França & Present Continuous`,
+        tips: [
+          `<strong>Estrutura:</strong> <em>am / is / are + verbo + -ing</em> (ex.: <em>We're working on the bathrooms</em>).`,
+          `<strong>Negativa:</strong> <em>She isn't working</em> / <em>She's not working</em>; <em>The lights aren't working</em>.`,
+          `<strong>Grafia (-ing):</strong> cai o <em>-e</em> final (<em>make → making</em>); C-V-C dobra a consoante (<em>run → running</em>, <em>travel → travelling</em>).`,
+          `<strong>Caso John Perry:</strong> arquiteto britânico convertendo fazenda em hotel no Jura (França), orçamento de €560.000.`
+        ]
+      },
+      {
+        id: `2.2`,
+        code: `05`,
+        title: `2.2 Schedules & Budgets`,
+        short: `Cronogramas, prazos & orçamentos`,
+        tips: [
+          `<strong>Cronograma:</strong> <em>ahead of schedule</em> (adiantado), <em>on schedule</em> (no prazo), <em>behind schedule</em> (atrasado = <em>running late</em>).`,
+          `<strong>Orçamento:</strong> <em>under budget</em> (abaixo), <em>on budget</em> (dentro), <em>over budget</em> (acima).`,
+          `<strong>Sinônimos dos e-mails:</strong> <em>complete</em> = finish; <em>having trouble</em> = having problems.`,
+          `<strong>Caso do hotel:</strong> construção <em>on schedule</em>, decoração <em>behind schedule</em>, site <em>ahead of schedule</em> e £1.200 <em>under budget</em>.`
+        ]
+      }
+    ];
+
+    const QUESTION_BANK = [
+      // ==========================================
+      // 1.3 EATING OUT (22 questões)
+      // ==========================================
+      {
+        id: `q13_01`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `No cardápio do restaurante Simply Delicious, em qual seção você encontra opções como "tomato soup" e "mixed salad"?`,
+        quote: `Start simply with one of our light and tasty ______.`,
+        options: [`Starters`, `Main courses`, `Side dishes`, `Desserts`],
+        correct: 0,
+        explanation: `Na abertura do cardápio do Simply Delicious, as entradas leves são chamadas de "Starters" (ex.: tomato soup, chicken and leek soup, mixed salad).`
+      },
+      {
+        id: `q13_02`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `O que significa a expressão "side dishes" no cardápio da unidade 1.3?`,
+        quote: `Main courses: Meat or fish + 2 side dishes. You choose.`,
+        options: [
+          `Acompanhamentos escolhidos pelo cliente junto ao prato principal`,
+          `Pratos vegetarianos servidos apenas no jantar`,
+          `Sobremesas servidas com creme fresco ou sorvete`,
+          `Bebidas quentes pedidas após a refeição`
+        ],
+        correct: 0,
+        explanation: `"Side dishes" são os acompanhamentos (como chips, mashed potato, rice, mixed vegetables, leeks in cheese sauce) servidos com a carne ou peixe do prato principal.`
+      },
+      {
+        id: `q13_03`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `Qual das opções abaixo faz parte da seção "Desserts" do restaurante Simply Delicious?`,
+        options: [
+          `Apple pie with fresh cream or ice cream`,
+          `Leeks in cheese sauce`,
+          `Grilled salmon with rice`,
+          `Roast lamb with mashed potato`
+        ],
+        correct: 0,
+        explanation: `Entre as sobremesas ("Desserts") do Simply Delicious estão "apple pie with fresh cream or ice cream", "fruit salad" e "strawberries and cream".`
+      },
+      {
+        id: `q13_04`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `Na classificação de alimentos da página 95, qual item pertence ao grupo dos peixes ("fish")?`,
+        options: [`Haddock`, `Lamb`, `Leek`, `Beef`],
+        correct: 0,
+        explanation: `Os três peixes listados na unidade são "haddock", "cod" e "salmon". "Lamb" e "beef" são carnes, e "leek" (alho-poró) é um legume.`
+      },
+      {
+        id: `q13_05`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `No vocabulário da unidade 1.3, as palavras "beef", "chicken" e "lamb" pertencem a qual categoria?`,
+        options: [`Meat`, `Fish`, `Side dishes`, `Vegetables`],
+        correct: 0,
+        explanation: `"Beef" (carne bovina), "chicken" (frango) e "lamb" (cordeiro) são classificados como "Meat" (carnes).`
+      },
+      {
+        id: `q13_06`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `Qual destas palavras do livro pertence ao grupo dos vegetais/legumes ("vegetables")?`,
+        options: [`Leek`, `Cod`, `Strawberry`, `Salmon`],
+        correct: 0,
+        explanation: `"Leek" (alho-poró) é um vegetal da lista ("broccoli, carrot, leek, pea, potato"). "Cod" e "salmon" são peixes; "strawberry" é fruta.`
+      },
+      {
+        id: `q13_07`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `Quais são as duas frutas ("fruit") presentes na tabela de vocabulário alimentar da página 95?`,
+        options: [`Apple and strawberry`, `Pea and carrot`, `Broccoli and leek`, `Cod and haddock`],
+        correct: 0,
+        explanation: `Na tabela de classificação de alimentos da página 95, a categoria "fruit" inclui "apple" (maçã) e "strawberry" (morango).`
+      },
+      {
+        id: `q13_08`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `De acordo com o cardápio do Simply Delicious, qual modo de preparo é usado para "steak" e "salmon"?`,
+        options: [`Grilled`, `Fried`, `Mashed`, `Boiled`],
+        correct: 0,
+        explanation: `O cardápio traz "grilled steak" (bife grelhado) e "grilled salmon" (salmão grelhado).`
+      },
+      {
+        id: `q13_09`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `Como os peixes "haddock" e "cod" são servidos no menu do Simply Delicious?`,
+        options: [`Fried`, `Roast`, `Mashed`, `Raw`],
+        correct: 0,
+        explanation: `O extrato do cardápio especifica "fried haddock or cod" (peixes fritos), enquanto "salmon" é grelhado ("grilled").`
+      },
+      {
+        id: `q13_10`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `Qual expressão do cardápio significa "purê de batata"?`,
+        options: [`Mashed potato`, `Roast potato`, `Mixed vegetables`, `Chips`],
+        correct: 0,
+        explanation: `"Mashed potato" significa purê de batata (de "mash", amassar).`
+      },
+      {
+        id: `q13_11`,
+        topic: `1.3`,
+        focus: `Vocabulário`,
+        prompt: `No inglês britânico adotado pelo livro Business Start-Up 2, qual palavra designa as batatas fritas que Ivan pede com seu bife?`,
+        quote: `Can I have steak, ______ and peas, please?`,
+        options: [`chips`, `crisps`, `leeks`, `strawberries`],
+        correct: 0,
+        explanation: `No diálogo da lição, Ivan pede "steak, chips and peas, please". Em inglês britânico, "chips" são batatas fritas servidas quentes em refeições.`
+      },
+      {
+        id: `q13_12`,
+        topic: `1.3`,
+        focus: `Pronúncia`,
+        prompt: `No exercício de acentuação tônica (word stress) da página 10, qual palavra tem a sílaba forte na SEGUNDA sílaba?`,
+        options: [`dessert`, `carrot`, `chicken`, `salad`],
+        correct: 0,
+        explanation: `Pronuncia-se "de-SSERT" (sílaba tônica no final), ao passo que "CAR-rot", "CHI-cken" e "SA-lad" têm a tônica na primeira sílaba.`
+      },
+      {
+        id: `q13_13`,
+        topic: `1.3`,
+        focus: `Pronúncia`,
+        prompt: `Qual dupla de palavras de alimentação da unidade 1.3 tem o acento tônico na SEGUNDA sílaba (oOo)?`,
+        options: [`potato e tomato`, `broccoli e strawberry`, `haddock e salmon`, `vegetable e chicken`],
+        correct: 0,
+        explanation: `Ambas seguem o padrão oOo: "po-TA-to" e "to-MA-to". Já "broccoli", "strawberry", "vegetable", "haddock", "salmon" e "chicken" são acentuadas na primeira sílaba.`
+      },
+      {
+        id: `q13_14`,
+        topic: `1.3`,
+        focus: `Pronúncia`,
+        prompt: `Qual destas palavras de três sílabas tem a sílaba tônica na PRIMEIRA sílaba (Ooo)?`,
+        options: [`broccoli`, `tomato`, `potato`, `dessert`],
+        correct: 0,
+        explanation: `"BRO-cco-li" (assim como "STRAW-be-rry" e "VEGE-ta-ble") tem o acento tônico na primeira sílaba.`
+      },
+      {
+        id: `q13_15`,
+        topic: `1.3`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Ao chegar ao restaurante com Ella e David, como Ivan confirma a reserva ao garçom?`,
+        quote: `Hello. We have a ______. The name's Magnusson. A ______ for three.`,
+        options: [`reservation / table`, `menu / chair`, `starter / course`, `bill / reservation`],
+        correct: 0,
+        explanation: `A fórmula ensinada no quadro Useful Language e no diálogo é "We have a reservation" e "A table for three".`
+      },
+      {
+        id: `q13_16`,
+        topic: `1.3`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Ella pede "To start, the tomato soup, please." Como David indica ao garçom que quer exatamente o mesmo prato?`,
+        options: [
+          `Yes, the same for me, please.`,
+          `Yes, nothing for me, please.`,
+          `I'm full, thank you.`,
+          `No thanks, just a main course.`
+        ],
+        correct: 0,
+        explanation: `David usa a expressão-padrão da unidade: "The same for me, please" ("O mesmo para mim, por favor").`
+      },
+      {
+        id: `q13_17`,
+        topic: `1.3`,
+        focus: `Diálogo & Contexto`,
+        prompt: `No diálogo 4, Ivan pede bife e o garçom pergunta: "How would you like the steak?" Qual é a resposta de Ivan?`,
+        options: [`Medium, please.`, `Grilled, please.`, `For three, please.`, `Just a starter, please.`],
+        correct: 0,
+        explanation: `Ao perguntar o ponto da carne ("How would you like the steak?"), Ivan responde "Medium, please" (ao ponto).`
+      },
+      {
+        id: `q13_18`,
+        topic: `1.3`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Complete a frase de Ivan explicando que quer ir direto ao prato principal:`,
+        quote: `I don't want a ______, just a main course.`,
+        options: [`starter`, `dessert`, `bill`, `side dish`],
+        correct: 0,
+        explanation: `Ivan dispensa a entrada ("starter") e pede apenas o prato principal ("just a main course").`
+      },
+      {
+        id: `q13_19`,
+        topic: `1.3`,
+        focus: `Diálogo & Contexto`,
+        prompt: `O garçom pergunta se Ivan deseja mais alguma coisa para beber ou comer. Como Ivan diz que já está satisfeito ("cheio")?`,
+        options: [
+          `No thanks. I'm full, thank you.`,
+          `No thanks. I'm ready, thank you.`,
+          `No thanks. I'm empty, thank you.`,
+          `Yes, the same for me, thank you.`
+        ],
+        correct: 0,
+        explanation: `"I'm full, thank you" é a expressão usada por Ivan no diálogo para dizer educadamente que já comeu o suficiente e está satisfeito.`
+      },
+      {
+        id: `q13_20`,
+        topic: `1.3`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Na hora de pagar para voltar ao curso, qual frase David usa no diálogo?`,
+        quote: `I think it's time to get back, actually. Could we have ______, please?`,
+        options: [`the bill`, `the starter`, `a reservation`, `the menu`],
+        correct: 0,
+        explanation: `"Could we have the bill, please?" (ou "Could I have the bill, please?") é a forma educada de pedir a conta no restaurante.`
+      },
+      {
+        id: `q13_21`,
+        topic: `1.3`,
+        focus: `Gramática`,
+        prompt: `Complete a frase do exercício de prática da página 96 com a preposição correta:`,
+        quote: `I'd like soup ______ the starter.`,
+        options: [`for`, `to`, `at`, `with`],
+        correct: 0,
+        explanation: `Para indicar a finalidade da escolha no cardápio, o livro usa "for": "for the starter", "for the main course", "for dessert".`
+      },
+      {
+        id: `q13_22`,
+        topic: `1.3`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Qual pergunta o garçom faz no início do atendimento para saber se o grupo já escolheu os pratos?`,
+        options: [
+          `Are you ready to order now?`,
+          `Would you like the bill now?`,
+          `Do you have a reservation?`,
+          `How would you like your dessert?`
+        ],
+        correct: 0,
+        explanation: `"Are you ready to order (now)?" significa "Vocês já estão prontos para fazer o pedido?".`
+      },
+
+      // ==========================================
+      // 1.4 SKILLS, CHARACTERISTICS & GERUNDS (22 questões)
+      // ==========================================
+      {
+        id: `q14_01`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `De acordo com o exercício 1a da unidade, qual característica descreve uma pessoa que "works well with other people"?`,
+        options: [`A good team player`, `Analytical`, `Reliable`, `Independent`],
+        correct: 0,
+        explanation: `Quem trabalha bem em conjunto com os colegas é "a good team player" (um bom integrante de equipe).`
+      },
+      {
+        id: `q14_02`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Qual adjetivo da unidade significa que a pessoa "always completes work on time" e não costuma atrasar?`,
+        options: [`Reliable`, `Creative`, `Analytical`, `Experienced`],
+        correct: 0,
+        explanation: `"Reliable" (confiável/pontual) descreve quem cumpre prazos e entregas no horário, como destacado na conversa da agência PAF.`
+      },
+      {
+        id: `q14_03`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Complete a frase do exercício de vocabulário (p. 96) sobre dedicação ao trabalho:`,
+        quote: `She only takes a 20-minute break for lunch. She's really ______.`,
+        options: [`hard-working`, `adaptable`, `creative`, `analytical`],
+        correct: 0,
+        explanation: `"Hard-working" (trabalhador/dedicado) define quem realiza muito trabalho e frequentemente fica até mais tarde ou faz pausas curtas.`
+      },
+      {
+        id: `q14_04`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Qual palavra corresponde à descrição: "Things are changing fast, but he's coping well"?`,
+        options: [`Adaptable`, `Reliable`, `Experienced`, `Confident`],
+        correct: 0,
+        explanation: `"Adaptable" descreve alguém que lida bem com mudanças rápidas e consegue atuar em diferentes situações e equipes.`
+      },
+      {
+        id: `q14_05`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Se um colaborador é "good at looking at problems in detail", ele é:`,
+        options: [`analytical`, `creative`, `a team player`, `hard-working`],
+        correct: 0,
+        explanation: `"Analytical" (analítico) refere-se à capacidade de examinar problemas em detalhe para encontrar a causa e a solução.`
+      },
+      {
+        id: `q14_06`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Qual perfil descreve alguém que "is very good at making presentations" e fala bem até com desconhecidos?`,
+        options: [`A confident communicator`, `An experienced worker`, `A hard-working assistant`, `An analytical planner`],
+        correct: 0,
+        explanation: `"A confident communicator" é a pessoa segura para apresentar, explicar ideias e conversar com clientes ou públicos variados.`
+      },
+      {
+        id: `q14_07`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Qual expressão completa a ideia: "There's a lot of stress, but he can deal with it"?`,
+        options: [`Can cope with pressure`, `Is a strong leader`, `Is experienced`, `Is a good team player`],
+        correct: 0,
+        explanation: `"Can cope with pressure" significa conseguir lidar com pressão e estresse sem perder o controle.`
+      },
+      {
+        id: `q14_08`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Complete a frase da página 96 sobre tempo de carreira:`,
+        quote: `She's very ______, after 15 years in the job.`,
+        options: [`experienced`, `creative`, `adaptable`, `reliable`],
+        correct: 0,
+        explanation: `"Experienced" (experiente) refere-se a quem já conhece bem o negócio após muitos anos de atuação.`
+      },
+      {
+        id: `q14_09`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Qual característica corresponde a alguém que "has some really good ideas" e pensa em novas formas de fazer as coisas?`,
+        options: [`Creative`, `Reliable`, `Analytical`, `Hard-working`],
+        correct: 0,
+        explanation: `"Creative" (criativo) descreve pessoas que geram boas ideias e inovam nos projetos.`
+      },
+      {
+        id: `q14_10`,
+        topic: `1.4`,
+        focus: `Vocabulário`,
+        prompt: `Complete a frase do exercício 3 da página 96:`,
+        quote: `He sets clear objectives for his team. He's a very ______ leader.`,
+        options: [`strong`, `heavy`, `creative`, `reliable`],
+        correct: 0,
+        explanation: `A colocação padrão ensinada no livro é "a strong leader" (um líder forte/firme, que define objetivos claros para a equipe).`
+      },
+      {
+        id: `q14_11`,
+        topic: `1.4`,
+        focus: `Pronúncia`,
+        prompt: `Na lista de pronúncia da página 14 (exercício 1d), qual adjetivo tem a sílaba tônica na PRIMEIRA sílaba?`,
+        options: [`confident`, `reliable`, `adaptable`, `creative`],
+        correct: 0,
+        explanation: `"CON-fi-dent" é acentuado na 1ª sílaba. Já "re-LI-a-ble", "a-DAP-ta-ble" e "cre-A-tive" têm a tônica na 2ª sílaba.`
+      },
+      {
+        id: `q14_12`,
+        topic: `1.4`,
+        focus: `Pronúncia`,
+        prompt: `Qual dos adjetivos abaixo tem o acento tônico na TERCEIRA sílaba?`,
+        options: [`analytical`, `experienced`, `adaptable`, `reliable`],
+        correct: 0,
+        explanation: `"a-na-LY-ti-cal" recebe a ênfase na terceira sílaba, diferentemente de "ex-PE-ri-enced", "a-DAP-ta-ble" e "re-LI-a-ble" (2ª sílaba).`
+      },
+      {
+        id: `q14_13`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `De acordo com as regras de gerúndio do livro, qual forma completa corretamente a frase?`,
+        quote: `He's good at ______ problems.`,
+        options: [`solving`, `solve`, `to solve`, `solves`],
+        correct: 0,
+        explanation: `Após expressões terminadas com a preposição "at" (como "good at" e "not very good at"), o verbo vai sempre para o gerúndio (-ing): "good at solving".`
+      },
+      {
+        id: `q14_14`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Complete a frase seguindo a regra do gerúndio após verbos de preferência:`,
+        quote: `I enjoy ______ in very small teams.`,
+        options: [`working`, `work`, `to working`, `worked`],
+        correct: 0,
+        explanation: `Verbos de gosto e aversão como "like", "love", "enjoy" e "hate" são seguidos de verbo com "-ing": "enjoy working".`
+      },
+      {
+        id: `q14_15`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Qual opção está gramaticalmente correta usando o gerúndio como sujeito da oração?`,
+        options: [
+          `Managing a big department isn't easy.`,
+          `Manage a big department isn't easy.`,
+          `To managing a big department isn't easy.`,
+          `Manages a big department isn't easy.`
+        ],
+        correct: 0,
+        explanation: `Conforme a seção Grammar Reference e o quadro da página 15, quando uma ação é usada como substantivo/sujeito, empregamos o gerúndio: "Managing a big department isn't easy."`
+      },
+      {
+        id: `q14_16`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Complete a frase de Judith sobre Marco Stone na conversa da agência PAF:`,
+        quote: `We know Marco's a good salesman. He likes ______ ideas.`,
+        options: [`selling`, `sell`, `sells`, `sold`],
+        correct: 0,
+        explanation: `Após o verbo "likes", usa-se o gerúndio "selling": "He likes selling ideas".`
+      },
+      {
+        id: `q14_17`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Atenção ao contraste entre estruturas na página 15! Complete a frase corretamente:`,
+        quote: `We want someone ______ the new department.`,
+        options: [`to manage`, `managing`, `manage`, `managed`],
+        correct: 0,
+        explanation: `Com "want someone..." e "need a manager...", não usamos gerúndio, e sim o infinitivo com "to": "We want someone to manage the new department."`
+      },
+      {
+        id: `q14_18`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Complete outra frase da conversa sobre Marco Stone usando o infinitivo após "has to":`,
+        quote: `The manager has to ______ the new strategy to the team.`,
+        options: [`sell`, `selling`, `sold`, `sells`],
+        correct: 0,
+        explanation: `Após "has to" / "have to", o verbo permanece na forma base (infinitivo sem -ing): "has to sell".`
+      },
+      {
+        id: `q14_19`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Qual alternativa apresenta a grafia correta do gerúndio na frase abaixo?`,
+        quote: `I'm not very good at ______ presentations.`,
+        options: [`making`, `makeing`, `make`, `to make`],
+        correct: 0,
+        explanation: `Verbos terminados em "-e" mudo perdem o "-e" antes de receber "-ing": "make → making". Além disso, "good at" exige gerúndio.`
+      },
+      {
+        id: `q14_20`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Complete a frase bem-humorada do exercício 4 (página 96):`,
+        quote: `The manager is only good at ______ our coffee break!`,
+        options: [`organising`, `organise`, `to organise`, `organises`],
+        correct: 0,
+        explanation: `Após "good at", usamos o gerúndio: "organising" (note o uso da grafia britânica "organise → organising" no livro).`
+      },
+      {
+        id: `q14_21`,
+        topic: `1.4`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Na agência de publicidade PAF, qual é a preocupação de Judith Lehman sobre nomear Marco Stone como gerente do departamento criativo?`,
+        options: [
+          `Ele vende bem ideias e conhece a empresa, mas isso não garante que seja bom em gerenciar a equipe.`,
+          `Ele não tem experiência alguma na agência PAF e nunca trabalhou com os colegas atuais.`,
+          `Ele não gosta de trabalhar na empresa e quer sair para abrir outro negócio.`,
+          `Ele é analítico demais e recusa fazer apresentações para clientes.`
+        ],
+        correct: 0,
+        explanation: `Judith reconhece que Marco é um bom vendedor, mas pondera que promovê-lo a chefe dos colegas atuais é um risco, pois vender bem não significa saber gerir uma equipe.`
+      },
+      {
+        id: `q14_22`,
+        topic: `1.4`,
+        focus: `Gramática`,
+        prompt: `Qual opção segue corretamente a regra ortográfica de formação da forma "-ing" apresentada na Grammar Reference?`,
+        options: [
+          `swim → swimming / phone → phoning`,
+          `swim → swiming / phone → phoneing`,
+          `run → runing / have → haveing`,
+          `travel → traveling / make → makeing`
+        ],
+        correct: 0,
+        explanation: `Segundo a Grammar Reference (p. 107), verbos terminados em "-e" perdem o "-e" ("phone → phoning"), e verbos C-V-C dobram a consoante final ("swim → swimming", "run → running", "travel → travelling").`
+      },
+
+      // ==========================================
+      // 1.5 TIME OUT: LIKES & DISLIKES (22 questões)
+      // ==========================================
+      {
+        id: `q15_01`,
+        topic: `1.5`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Na lista de buscas do Google da unidade "Time Out" (p. 16), qual atividade curiosa aparece na última posição, com apenas 0,3 milhão de páginas?`,
+        options: [`Elephant polo`, `Underwater hockey`, `Ice skating`, `Knitting`],
+        correct: 0,
+        explanation: `A tabela da página 16 termina com "elephant polo" (0,3 milhão de páginas), logo abaixo de "aerobics", "ice skating" e "horse riding".`
+      },
+      {
+        id: `q15_02`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Qual das atividades abaixo fazia parte das seis palavras do quadro na página 16 para completar o ranking de lazer do Google?`,
+        options: [`Underwater hockey`, `Football`, `Tennis`, `Surfing`],
+        correct: 0,
+        explanation: `As seis palavras no quadro da página 16 eram: "bowling", "fishing", "jogging", "knitting", "golf" e "underwater hockey".`
+      },
+      {
+        id: `q15_03`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Qual atividade da lista da página 16 é um passatempo manual (não um esporte)?`,
+        options: [`Knitting`, `Jogging`, `Bowling`, `Hiking`],
+        correct: 0,
+        explanation: `"Knitting" significa tricô / tricotar, sendo a atividade manual presente na lista ao lado de esportes e lazer.`
+      },
+      {
+        id: `q15_04`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Qual atividade listada na tabela do Google significa caminhada/trilha na natureza?`,
+        options: [`Hiking`, `Fishing`, `Chess`, `Aerobics`],
+        correct: 0,
+        explanation: `"Hiking" refere-se a caminhadas em trilhas (22,7 milhões de páginas na tabela), enquanto "chess" é xadrez e "fishing" é pescaria.`
+      },
+      {
+        id: `q15_05`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `No exercício de sinônimos da página 17, qual frase tem o mesmo significado de "I hate it"?`,
+        options: [
+          `I can't stand it.`,
+          `It's not my cup of tea.`,
+          `I'm hopeless at it.`,
+          `I bet it's good fun.`
+        ],
+        correct: 0,
+        explanation: `"I can't stand it" ("Não suporto isso") equivale a "I hate it" ("Eu odeio isso").`
+      },
+      {
+        id: `q15_06`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Qual frase da unidade expressa exatamente a mesma ideia de "I can't play, that's my problem"?`,
+        options: [
+          `I'm hopeless at it!`,
+          `I can't stand it!`,
+          `It's great fun!`,
+          `It's not my cup of tea.`
+        ],
+        correct: 0,
+        explanation: `No diálogo e no exercício 2d, "I'm hopeless at it!" significa "Sou péssimo nisso / Não levo o menor jeito para isso".`
+      },
+      {
+        id: `q15_07`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Qual expressão idiomática equivale a "I'm not interested in it"?`,
+        options: [
+          `It's not my cup of tea.`,
+          `I'm hopeless at it.`,
+          `I'd love to have a go.`,
+          `I bet it's good fun.`
+        ],
+        correct: 0,
+        explanation: `"It's not my cup of tea" é uma expressão idiomática muito comum para dizer que algo não faz seu estilo ou não lhe interessa.`
+      },
+      {
+        id: `q15_08`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Na frase "I'd love to have a go at riding", o que significa a expressão "have a go at"?`,
+        options: [
+          `Experimentar / tentar fazer algo`,
+          `Desistir definitivamente de algo`,
+          `Assistir pela televisão`,
+          `Reclamar do preço de algo`
+        ],
+        correct: 0,
+        explanation: `"Have a go at (something)" significa tentar ou experimentar uma atividade pela primeira vez.`
+      },
+      {
+        id: `q15_09`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Complete a frase do exercício 5 da página 96 sobre experimentar um esporte diferente:`,
+        quote: `I'd love to have a go at underwater hockey. I ______ it's good fun.`,
+        options: [`bet`, `stand`, `hopeless`, `cup`],
+        correct: 0,
+        explanation: `"I bet it's good fun" ("Aposto que é bem divertido") aparece tanto na conversa sobre hipismo quanto no exercício de revisão.`
+      },
+      {
+        id: `q15_10`,
+        topic: `1.5`,
+        focus: `Gramática`,
+        prompt: `Complete a frase do quadro Useful Language com a preposição correta:`,
+        quote: `I'm hopeless ______ tennis!`,
+        options: [`at`, `in`, `on`, `for`],
+        correct: 0,
+        explanation: `Assim como "good at", o adjetivo oposto "hopeless" exige a preposição "at": "hopeless at tennis".`
+      },
+      {
+        id: `q15_11`,
+        topic: `1.5`,
+        focus: `Gramática`,
+        prompt: `Escolha a preposição correta que acompanha "interested":`,
+        quote: `I'm not interested ______ football.`,
+        options: [`in`, `at`, `for`, `about`],
+        correct: 0,
+        explanation: `Em inglês, a colocação fixa é "interested in" (nunca "interested at" ou "interested on").`
+      },
+      {
+        id: `q15_12`,
+        topic: `1.5`,
+        focus: `Gramática`,
+        prompt: `Qual frase está gramaticalmente correta segundo os modelos da unidade 1.5?`,
+        options: [
+          `I like watching ice skating.`,
+          `I like watch ice skating.`,
+          `I enjoy to play golf.`,
+          `I'm hopeless in tennis.`
+        ],
+        correct: 0,
+        explanation: `Verbos de gosto como "like" e "enjoy" são seguidos por gerúndio (-ing): "I like watching ice skating" e "I enjoy playing golf".`
+      },
+      {
+        id: `q15_13`,
+        topic: `1.5`,
+        focus: `Gramática`,
+        prompt: `Complete a frase do quadro Useful Language (p. 17):`,
+        quote: `I enjoy ______ golf.`,
+        options: [`playing`, `play`, `to play`, `played`],
+        correct: 0,
+        explanation: `O verbo "enjoy" exige sempre outro verbo no gerúndio (-ing): "I enjoy playing golf".`
+      },
+      {
+        id: `q15_14`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Quando a colega confirma que cavalgar é ótimo no diálogo, qual expressão ela usa?`,
+        options: [
+          `Oh, it's great fun.`,
+          `Oh, I can't stand it.`,
+          `Oh, I'm hopeless at it.`,
+          `Oh, it's not my cup of tea.`
+        ],
+        correct: 0,
+        explanation: `"It's great fun" (é muito divertido) expressa entusiasmo positivo sobre uma atividade de lazer.`
+      },
+      {
+        id: `q15_15`,
+        topic: `1.5`,
+        focus: `Vocabulário`,
+        prompt: `Como você diria, usando o vocabulário da lição, que detesta futebol?`,
+        options: [
+          `I can't stand football!`,
+          `I'd love to have a go at football!`,
+          `I bet football is good fun!`,
+          `I enjoy watching football!`
+        ],
+        correct: 0,
+        explanation: `"I can't stand football!" é a forma enfática ensinada para expressar forte aversão (= "I hate football!").`
+      },
+      {
+        id: `q15_16`,
+        topic: `1.5`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Na conversa da faixa 15 (entre os dois colegas), por que o homem não assiste futebol na TV?`,
+        options: [
+          `Porque ele não sabe jogar e não gosta de assistir a esportes em que não é bom.`,
+          `Porque ele acha que futebol é muito caro para acompanhar.`,
+          `Porque ele prefere assistir apenas a campeonatos de xadrez.`,
+          `Porque ele viaja demais a trabalho e não tem televisão.`
+        ],
+        correct: 0,
+        explanation: `Ele explica: "I can't play, that's my problem. I'm hopeless at it! If I'm not very good at a sport, I don't like watching it."`
+      },
+      {
+        id: `q15_17`,
+        topic: `1.5`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Na mesma conversa, qual esporte o homem joga, mas a mulher afirma que "is not my cup of tea"?`,
+        options: [`Golf`, `Horse riding`, `Football`, `Polo`],
+        correct: 0,
+        explanation: `O homem diz "I play golf", e a mulher comenta que o marido joga, mas ela não se interessa por golfe ("It's not my cup of tea").`
+      },
+      {
+        id: `q15_18`,
+        topic: `1.5`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Qual esporte/atividade a mulher pratica enquanto o marido joga golfe?`,
+        options: [`Horse riding`, `Ice skating`, `Bowling`, `Underwater hockey`],
+        correct: 0,
+        explanation: `A mulher diz: "He plays golf, I go horse riding."`
+      },
+      {
+        id: `q15_19`,
+        topic: `1.5`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Por que o homem brinca sugerindo que a colega e o marido joguem polo juntos?`,
+        options: [
+          `Porque, segundo ele, o polo é "metade hipismo, metade golfe" (half horse riding, half golf).`,
+          `Porque o polo é um esporte muito barato e fácil de praticar em casa.`,
+          `Porque nenhum dos dois gosta de cavalos ou de tacos.`,
+          `Porque ele já foi campeão mundial de polo na Índia.`
+        ],
+        correct: 0,
+        explanation: `Ele faz a piada unindo os dois interesses do casal: "Well you could play polo - both of you. That's half horse riding, half golf!"`
+      },
+      {
+        id: `q15_20`,
+        topic: `1.5`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Por que a mulher ainda não tem seu próprio cavalo ("her own horse")?`,
+        options: [
+          `Porque é muito caro ("it's expensive").`,
+          `Porque ela tem medo de cavalos grandes.`,
+          `Porque ela viaja muito a trabalho.`,
+          `Porque ela prefere criar peixes tropicais.`
+        ],
+        correct: 0,
+        explanation: `Quando o homem pergunta se ela tem um cavalo próprio, ela responde: "No. I'd love to have one, but, um... it's expensive."`
+      },
+      {
+        id: `q15_21`,
+        topic: `1.5`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Além de jogar golfe, por qual animal curioso o homem revela ter interesse no final da conversa?`,
+        options: [
+          `Peixes tropicais, especificamente piranhas`,
+          `Cavalos de corrida da França`,
+          `Elefantes asiáticos de polo`,
+          `Cães de caça escoceses`
+        ],
+        correct: 0,
+        explanation: `Ele conta que gostaria de ter um aquário com peixes tropicais ("tropical fish") e piranhas, citando a história de que 100 piranhas devoram um cavalo em menos de 5 minutos.`
+      },
+      {
+        id: `q15_22`,
+        topic: `1.5`,
+        focus: `Gramática`,
+        prompt: `Complete a frase do exercício de pronúncia da página 17:`,
+        quote: `I'd love to ______ a go!`,
+        options: [`have`, `make`, `do`, `take`],
+        correct: 0,
+        explanation: `O verbo fixo da expressão é "have": "have a go (at something)" = tentar / experimentar.`
+      },
+
+      // ==========================================
+      // 2.1 TEAMWORK & PRESENT CONTINUOUS (22 questões)
+      // ==========================================
+      {
+        id: `q21_01`,
+        topic: `2.1`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Na abertura da unidade 2.1, quem é John Perry?`,
+        options: [
+          `Um arquiteto britânico trabalhando em um projeto no exterior`,
+          `Um gerente de recursos humanos da agência PAF`,
+          `Um jornalista da revista European Life`,
+          `Um vendedor de peças para montanhas-russas`
+        ],
+        correct: 0,
+        explanation: `O enunciado da página 12 apresenta John Perry como "a British architect" trabalhando em um projeto fora do país, entrevistado por Vanessa Wood da revista European Life.`
+      },
+      {
+        id: `q21_02`,
+        topic: `2.1`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Em qual país e região John Perry está trabalhando na entrevista por telefone?`,
+        options: [
+          `Na França, na região do Jura (perto da Suíça)`,
+          `Na Itália, perto da fronteira com a Áustria`,
+          `Na Alemanha, ao sul de Berlim`,
+          `Na Escócia, perto de Glasgow`
+        ],
+        correct: 0,
+        explanation: `No áudio 9 (transcrição p. 115), Vanessa pergunta onde ele está na França ("in France") e John responde: "In the Jura. It's not far from Switzerland."`
+      },
+      {
+        id: `q21_03`,
+        topic: `2.1`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Qual é exatamente o projeto de construção que John Perry está realizando?`,
+        options: [
+          `Converter uma antiga casa de fazenda em um hotel ("converting a farmhouse into a hotel")`,
+          `Construir um centro de conferências em São Francisco`,
+          `Reformar um restaurante de frutos do mar em Londres`,
+          `Projetar um parque de diversões com montanha-russa`
+        ],
+        correct: 0,
+        explanation: `John esclarece para Vanessa: "We're converting a farmhouse into a hotel."`
+      },
+      {
+        id: `q21_04`,
+        topic: `2.1`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Qual é o orçamento total ("total budget") do projeto de hotel liderado por John Perry?`,
+        options: [`€560.000`, `€150.000`, `€300.000`, `€1.200.000`],
+        correct: 0,
+        explanation: `Na transcrição 9, John informa: "the total budget's five hundred and sixty thousand euros" (€560.000).`
+      },
+      {
+        id: `q21_05`,
+        topic: `2.1`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Quem são Richard e Kathy Mills no projeto da unidade 2?`,
+        options: [
+          `Sócios de John Perry (gerentes de hotel) que dividem o investimento com ele`,
+          `Inspetores fiscais do governo francês`,
+          `Designers de interiores contratados para pintar o hotel`,
+          `Jornalistas da revista European Life`
+        ],
+        correct: 0,
+        explanation: `John diz que Richard e Kathy Mills são seus sócios de negócios ("my business partners") e gerentes de hotel ("hotel managers").`
+      },
+      {
+        id: `q21_06`,
+        topic: `2.1`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Qual porcentagem do custo total da obra o próprio John Perry está pagando?`,
+        options: [`50% (metade)`, `30%`, `100%`, `25%`],
+        correct: 0,
+        explanation: `John afirma que está pagando metade ("half of that", ou seja, 50%), e Richard e Kathy Mills pagam o restante.`
+      },
+      {
+        id: `q21_07`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `De acordo com a Grammar Reference (p. 107), quando usamos o Present Continuous?`,
+        options: [
+          `Para descrever o que está acontecendo agora ou neste período ("at the moment" / "this week")`,
+          `Para falar apenas de hábitos permanentes e rotinas fixas anuais`,
+          `Exclusivamente para ações concluídas no passado remoto`,
+          `Somente para horários oficiais de voos e conferências`
+        ],
+        correct: 0,
+        explanation: `O Present Continuous ("be + verb + -ing") descreve ações em andamento no momento da fala ou ao redor do presente ("now", "at the moment", "today", "this week").`
+      },
+      {
+        id: `q21_08`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete a pergunta da entrevista com John Perry usando o Present Continuous:`,
+        quote: `Where ______ you ______ at the moment?`,
+        options: [`are / working`, `do / working`, `is / work`, `are / work`],
+        correct: 0,
+        explanation: `Em perguntas no Present Continuous com "you", colocamos "are" antes do sujeito e o verbo principal com "-ing": "Where are you working at the moment?"`
+      },
+      {
+        id: `q21_09`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete a frase de John Perry (exercício 1b, p. 12):`,
+        quote: `At the moment, we ______ on the bathrooms.`,
+        options: [`'re working`, `working`, `work`, `'s working`],
+        correct: 0,
+        explanation: `Com "we", o auxiliar é "are" (contraído como "'re") seguido do verbo em "-ing": "we're working on the bathrooms".`
+      },
+      {
+        id: `q21_10`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Qual frase negativa no Present Continuous está gramaticalmente correta segundo o quadro da página 12?`,
+        options: [
+          `She isn't working on this project.`,
+          `She doesn't working on this project.`,
+          `She not working on this project.`,
+          `She aren't working on this project.`
+        ],
+        correct: 0,
+        explanation: `Para a negativa com "she", usamos "isn't" (ou "'s not") + verbo com "-ing": "She isn't working on this project."`
+      },
+      {
+        id: `q21_11`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete a exclamação de John sobre os gastos da reforma (exercício 1b, p. 12):`,
+        quote: `This project ______ a fortune!`,
+        options: [`is costing`, `are costing`, `costing`, `is cost`],
+        correct: 0,
+        explanation: `"This project" equivale ao singular "it", exigindo "is" + gerúndio: "This project is costing a fortune!"`
+      },
+      {
+        id: `q21_12`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete a pergunta do exercício 1 da página 96:`,
+        quote: `What ______ the project manager ______ this morning?`,
+        options: [`is / doing`, `are / doing`, `does / doing`, `is / do`],
+        correct: 0,
+        explanation: `"The project manager" está no singular (he/she), portanto a pergunta no Present Continuous usa "is" + "doing": "What is the project manager doing this morning?"`
+      },
+      {
+        id: `q21_13`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete a frase negativa da página 96:`,
+        quote: `The lights ______ at the moment.`,
+        options: [`aren't working`, `isn't working`, `don't working`, `not working`],
+        correct: 0,
+        explanation: `Como "the lights" está no plural (they), a forma negativa correta no Present Continuous é "aren't working".`
+      },
+      {
+        id: `q21_14`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete a frase de abertura do exercício 1 da página 96:`,
+        quote: `They ______ the walls this morning. (build)`,
+        options: [`'re building`, `'re build`, `building`, `is building`],
+        correct: 0,
+        explanation: `Com "they", usamos "are" (contraído "'re") + "building": "They're building the walls this morning."`
+      },
+      {
+        id: `q21_15`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Transforme as palavras "where / the architect / work / today" em uma pergunta correta no Present Continuous:`,
+        options: [
+          `Where is the architect working today?`,
+          `Where the architect is working today?`,
+          `Where does the architect working today?`,
+          `Where are the architect working today?`
+        ],
+        correct: 0,
+        explanation: `Nas perguntas, o verbo "to be" ("is") vem antes do sujeito ("the architect"), seguido de "working".`
+      },
+      {
+        id: `q21_16`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete a frase do exercício 1 da página 96:`,
+        quote: `We ______ problems with the budget. (have)`,
+        options: [`'re having`, `'re haveing`, `'s having`, `having`],
+        correct: 0,
+        explanation: `"Have" perde o "-e" final antes de "-ing" ("having"), e com "we" usamos "'re" (are): "We're having problems with the budget."`
+      },
+      {
+        id: `q21_17`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Complete o exemplo da Grammar Reference (p. 107) com a grafia correta:`,
+        quote: `Where's Nick? — He's ______ lunch at the moment.`,
+        options: [`having`, `haveing`, `has`, `had`],
+        correct: 0,
+        explanation: `Verbos terminados em "-e" (como "have", "make", "phone") perdem o "-e" antes de "-ing": "having".`
+      },
+      {
+        id: `q21_18`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Qual verbo da lista abaixo dobra a consoante final ao receber "-ing" segundo a regra do livro?`,
+        options: [`travel → travelling`, `visit → visitting`, `paint → paintting`, `work → workking`],
+        correct: 0,
+        explanation: `Na Grammar Reference (p. 107), os verbos terminados em consoante + vogal + consoante (como "run → running", "swim → swimming", "travel → travelling") dobram a consoante final.`
+      },
+      {
+        id: `q21_19`,
+        topic: `2.1`,
+        focus: `Gramática`,
+        prompt: `Como você responde negativamente de forma curta à pergunta "Is Kathy working with you?"?`,
+        options: [`No, she isn't.`, `No, she doesn't.`, `No, she not.`, `No, she aren't.`],
+        correct: 0,
+        explanation: `Perguntas iniciadas com "Is Kathy...?" pedem o mesmo auxiliar "isn't" na resposta curta negativa: "No, she isn't."`
+      },
+      {
+        id: `q21_20`,
+        topic: `2.1`,
+        focus: `Vocabulário`,
+        prompt: `Na lista de cinco verbos da página 12 (build, design, paint, decorate, install), qual completa a legenda do exemplo: "They're ______ a room"?`,
+        options: [`decorating`, `installing`, `designing`, `costing`],
+        correct: 0,
+        explanation: `O exemplo 1 da atividade na parte inferior da página 12 é exatamente: "They're decorating a room."`
+      },
+      {
+        id: `q21_21`,
+        topic: `2.1`,
+        focus: `Vocabulário`,
+        prompt: `Qual destes cinco verbos de projeto da unidade 2.1 significa "instalar" (equipamentos, sistemas ou luminárias)?`,
+        options: [`install`, `paint`, `build`, `design`],
+        correct: 0,
+        explanation: `"Install" significa instalar; "build" é construir, "design" é projetar/desenhar, "paint" é pintar e "decorate" é decorar.`
+      },
+      {
+        id: `q21_22`,
+        topic: `2.1`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Entre os quatro comentários iniciais sobre gestão de projetos na página 12, qual dica financeira aparece no item 3?`,
+        options: [
+          `Para ser realista, adicione 30% ao orçamento da maioria dos projetos.`,
+          `Nunca faça relatórios de progresso antes do fim da obra.`,
+          `É fácil gerenciar um projeto grande sem cronograma.`,
+          `Sempre corte 50% do orçamento antes de começar.`
+        ],
+        correct: 0,
+        explanation: `O comentário 3 da página 12 diz literalmente: "To be realistic, add 30% to the budget of most projects."`
+      },
+
+      // ==========================================
+      // 2.2 SCHEDULES & BUDGETS (22 questões)
+      // ==========================================
+      {
+        id: `q22_01`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Se uma entrega ou etapa fica pronta duas semanas antes da data prevista, dizemos que está:`,
+        options: [`ahead of schedule`, `behind schedule`, `on schedule`, `over budget`],
+        correct: 0,
+        explanation: `"Ahead of schedule" significa adiantado em relação ao cronograma previsto (como ocorreu com o site do hotel).`
+      },
+      {
+        id: `q22_02`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Quando uma etapa é concluída exatamente dentro do prazo combinado, qual expressão usamos?`,
+        options: [`on schedule`, `under budget`, `behind schedule`, `running late`],
+        correct: 0,
+        explanation: `"On schedule" significa no prazo / dentro do cronograma.`
+      },
+      {
+        id: `q22_03`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `No e-mail de 1º de maio, John diz que a decoração vai começar tarde (7 de maio), ficando uma semana atrasada. Qual expressão ele usa?`,
+        quote: `That means we're a week ______.`,
+        options: [`behind schedule`, `ahead of schedule`, `under budget`, `on schedule`],
+        correct: 0,
+        explanation: `"Behind schedule" significa atrasado em relação ao cronograma.`
+      },
+      {
+        id: `q22_04`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `No exercício 2c da página 13, qual frase dos e-mails tem o mesmo significado de "we're behind schedule"?`,
+        options: [
+          `We're running late.`,
+          `We're under budget.`,
+          `We're ahead of schedule.`,
+          `We're having trouble.`
+        ],
+        correct: 0,
+        explanation: `"We're running late" (estamos atrasados) é sinônimo direto de "we're behind schedule".`
+      },
+      {
+        id: `q22_05`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Ainda no exercício 2c da página 13, qual verbo dos e-mails significa "finish (the work)"?`,
+        options: [`complete`, `open`, `book`, `plan`],
+        correct: 0,
+        explanation: `John escreve "I still think we can complete the work before 15th June", em que "complete" equivale a "finish".`
+      },
+      {
+        id: `q22_06`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Qual expressão presente no e-mail de John significa "we're having problems"?`,
+        options: [
+          `we're having trouble`,
+          `we're running late`,
+          `we're ahead of schedule`,
+          `we're over budget`
+        ],
+        correct: 0,
+        explanation: `John escreve "we're having trouble with the interior designer", usando "having trouble" como equivalente a "having problems".`
+      },
+      {
+        id: `q22_07`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Se o papel escolhido para o folheto custa mais caro do que o planejado, em que situação financeira o folheto está?`,
+        options: [`over budget`, `under budget`, `on schedule`, `ahead of schedule`],
+        correct: 0,
+        explanation: `"Over budget" significa acima do orçamento / gastando mais do que o valor previsto.`
+      },
+      {
+        id: `q22_08`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `O website do hotel custou £1.200 a menos do que o orçado. Como Richard descreve essa economia?`,
+        quote: `...because of the lower cost of the website (it was £1,200 ______).`,
+        options: [`under budget`, `over budget`, `behind schedule`, `on schedule`],
+        correct: 0,
+        explanation: `"Under budget" indica que o custo real ficou abaixo do orçamento planejado.`
+      },
+      {
+        id: `q22_09`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Quando o projeto inteiro mantém exatamente o custo previsto inicialmente, dizemos que ele está:`,
+        options: [`on budget`, `over budget`, `behind schedule`, `running late`],
+        correct: 0,
+        explanation: `"On budget" significa dentro do orçamento previsto.`
+      },
+      {
+        id: `q22_10`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Complete a frase do quadro Useful Language (p. 13):`,
+        quote: `Costs are higher than planned. We're $25,000 ______.`,
+        options: [`over budget`, `under budget`, `ahead of schedule`, `on schedule`],
+        correct: 0,
+        explanation: `Se os custos estão maiores que o planejado ("higher than planned"), a equipe está acima do orçamento: "$25,000 over budget".`
+      },
+      {
+        id: `q22_11`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Complete a frase positiva do quadro Useful Language:`,
+        quote: `We can complete the job ______ schedule and ______ budget.`,
+        options: [`on / on`, `at / at`, `in / over`, `behind / ahead`],
+        correct: 0,
+        explanation: `Usa-se a preposição "on" em ambas as colocações de cumprimento exato do plano: "on schedule and on budget".`
+      },
+      {
+        id: `q22_12`,
+        topic: `2.2`,
+        focus: `Diálogo & Contexto`,
+        prompt: `De acordo com o cronograma ("Schedule") da página 13, em qual data está prevista a inauguração ("open") do hotel?`,
+        options: [`15 de junho (15th June)`, `1º de maio (1st May)`, `7 de maio (7th May)`, `30 de março (30th March)`],
+        correct: 0,
+        explanation: `O cabeçalho da tabela de cronograma mostra "March | April | May | June - open 15th", e John confirma no e-mail: "before 15th June".`
+      },
+      {
+        id: `q22_13`,
+        topic: `2.2`,
+        focus: `Diálogo & Contexto`,
+        prompt: `No e-mail de 1º de maio ("Exactly six weeks to go before we open!"), qual parte do projeto John informa que já está completa e no prazo?`,
+        options: [`The building work (a obra de construção)`, `The decorating (a decoração)`, `The brochure (o folheto)`, `The website (o site)`],
+        correct: 0,
+        explanation: `John escreve: "As you know, the building work is now complete - so that's on schedule."`
+      },
+      {
+        id: `q22_14`,
+        topic: `2.2`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Com qual profissional John está tendo problemas ("having trouble"), causando atraso de uma semana na decoração?`,
+        options: [
+          `The interior designer (o designer de interiores)`,
+          `The web developer (o desenvolvedor do site)`,
+          `The paper supplier (o fornecedor de papel)`,
+          `The magazine journalist (a jornalista)`
+        ],
+        correct: 0,
+        explanation: `John relata: "we're having trouble with the interior designer and the decorating is starting late - 7th May."`
+      },
+      {
+        id: `q22_15`,
+        topic: `2.2`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Qual é a boa notícia trazida por Richard em sua resposta por e-mail sobre o website?`,
+        options: [
+          `O site ficou pronto duas semanas adiantado e os clientes já podem reservar quartos online.`,
+          `O site foi cancelado para economizar papel do folheto.`,
+          `O site custou exatamente o dobro do orçamento inicial.`,
+          `A inauguração foi adiada para julho graças ao site.`
+        ],
+        correct: 0,
+        explanation: `Richard escreve: "the website is now ready two weeks ahead of schedule. People can now book rooms online."`
+      },
+      {
+        id: `q22_16`,
+        topic: `2.2`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Por que Richard diz que o projeto inteiro ("the whole project") ainda está "on budget", mesmo com o papel caro do folheto?`,
+        options: [
+          `Porque o custo menor do website (£1.200 abaixo do orçamento) compensou o gasto extra com o folheto.`,
+          `Porque eles decidiram não imprimir nenhum folheto.`,
+          `Porque o designer de interiores trabalhou de graça.`,
+          `Porque John pagou a diferença sozinho fora da empresa.`
+        ],
+        correct: 0,
+        explanation: `Richard explica: "because of the lower cost of the website (it was £1,200 under budget) the whole project is still on budget."`
+      },
+      {
+        id: `q22_17`,
+        topic: `2.2`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Quais são as quatro atividades listadas no cronograma do hotel (p. 13)?`,
+        options: [
+          `Building work, Decorating, Website, Brochure`,
+          `Starters, Main courses, Side dishes, Desserts`,
+          `Hiring, Training, Marketing, Exporting`,
+          `Design, Manufacture, Delivery, Installation`
+        ],
+        correct: 0,
+        explanation: `A tabela de cronograma de março a junho acompanha essas quatro frentes: Building work, Decorating, Website e Brochure.`
+      },
+      {
+        id: `q22_18`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `No e-mail de Richard ("Thanks for the update") e no exercício 2 da página 96, o que significa "update"?`,
+        options: [
+          `Relatório de atualização sobre o andamento do projeto`,
+          `Multa por atraso na entrega da obra`,
+          `Contrato de empréstimo bancário`,
+          `Lista de hóspedes VIP para a inauguração`
+        ],
+        correct: 0,
+        explanation: `"Update" (progress report) é a atualização de status sobre como o trabalho está evoluindo.`
+      },
+      {
+        id: `q22_19`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Complete a pergunta do exercício 2 da página 96:`,
+        quote: `When can you ______ the decorating?`,
+        options: [`complete`, `behind`, `update`, `budget`],
+        correct: 0,
+        explanation: `Após o verbo modal "can", precisamos do verbo principal "complete" (= finalizar/concluir): "When can you complete the decorating?"`
+      },
+      {
+        id: `q22_20`,
+        topic: `2.2`,
+        focus: `Gramática`,
+        prompt: `Complete a frase do quadro Useful Language (p. 13) sobre atraso:`,
+        quote: `We're ______ two weeks late.`,
+        options: [`running`, `making`, `doing`, `completing`],
+        correct: 0,
+        explanation: `A colocação idiomática em inglês para estar atrasado em um cronograma ou horário é "running late" ("We're running two weeks late").`
+      },
+      {
+        id: `q22_21`,
+        topic: `2.2`,
+        focus: `Diálogo & Contexto`,
+        prompt: `Na Communication Practice 4 (p. 78–79), o diretor telefona ao gerente do escritório sobre a mudança de sede e pergunta pelos técnicos de informática. O que o gerente responde?`,
+        options: [
+          `Sim, eles estão instalando os computadores, mas estão um dia atrasados ("one day behind schedule").`,
+          `Não, os técnicos já terminaram tudo duas semanas adiantados.`,
+          `Não, a mudança foi cancelada por falta de orçamento.`,
+          `Sim, mas o serviço custou £1.200 abaixo do orçamento.`
+        ],
+        correct: 0,
+        explanation: `O diálogo-modelo da página 78 mostra: "A: Are the technicians installing the computers? B: Yes, but they're one day behind schedule."`
+      },
+      {
+        id: `q22_22`,
+        topic: `2.2`,
+        focus: `Vocabulário`,
+        prompt: `Qual frase do Useful Language descreve o cenário mais favorável possível em prazo e custo?`,
+        options: [
+          `We're ahead of schedule and under budget.`,
+          `We're behind schedule and over budget.`,
+          `We're running late and over budget.`,
+          `We're having trouble with the installations.`
+        ],
+        correct: 0,
+        explanation: `"Ahead of schedule" (adiantado) combinado com "under budget" (gastando menos que o previsto) é o cenário mais favorável.`
+      }
+    ];
+
+    const OPTION_LETTERS = [`A`, `B`, `C`, `D`];
+
+    let appState = {
+      selectedTopic: `all`,
+      seenByTopic: {
+        all: [],
+        '1.3': [],
+        '1.4': [],
+        '1.5': [],
+        '2.1': [],
+        '2.2': []
+      },
+      stats: {
+        totalAnswered: 0,
+        totalCorrect: 0,
+        roundsCompleted: 0,
+        currentStreak: 0,
+        byTopic: {
+          '1.3': { answered: 0, correct: 0 },
+          '1.4': { answered: 0, correct: 0 },
+          '1.5': { answered: 0, correct: 0 },
+          '2.1': { answered: 0, correct: 0 },
+          '2.2': { answered: 0, correct: 0 }
+        }
+      },
+      round: null
+    };
+
+    function getPoolForTopic(topicId) {
+      if (topicId === `all`) return QUESTION_BANK.slice();
+      return QUESTION_BANK.filter(function (q) {
+        return q.topic === topicId;
+      });
+    }
+
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function buildShuffledQuestionEntry(q) {
+      const indexed = q.options.map(function (text, idx) {
+        return { text: text, isCorrect: idx === q.correct };
+      });
+      const mixed = shuffleArray(indexed);
+      const newCorrect = mixed.findIndex(function (item) {
+        return item.isCorrect;
+      });
+      return {
+        id: q.id,
+        shuffledOptions: mixed.map(function (item) { return item.text; }),
+        correctIdx: newCorrect,
+        chosenIdx: null
+      };
+    }
+
+    function pickTenNewQuestions(topicId) {
+      const pool = getPoolForTopic(topicId);
+      const seenSet = new Set(appState.seenByTopic[topicId] || []);
+      let unseen = pool.filter(function (q) {
+        return !seenSet.has(q.id);
+      });
+
+      let wrappedAround = false;
+      if (unseen.length < 10) {
+        if (unseen.length === 0) {
+          appState.seenByTopic[topicId] = [];
+          unseen = pool.slice();
+          wrappedAround = true;
+        } else {
+          // Take all remaining unseen, then top up from seen (shuffled) and reset pool cleanly
+          const remainingSeen = shuffleArray(
+            pool.filter(function (q) { return seenSet.has(q.id); })
+          );
+          const needed = 10 - unseen.length;
+          const picked = shuffleArray(unseen).concat(remainingSeen.slice(0, needed));
+          appState.seenByTopic[topicId] = picked.map(function (q) { return q.id; });
+          wrappedAround = true;
+          return { items: picked.map(buildShuffledQuestionEntry), wrappedAround: wrappedAround };
+        }
+      }
+
+      let chosen;
+      if (topicId === `all` && unseen.length >= 10) {
+        // Aim for balanced representation across the 5 topics while picking only unseen questions
+        const topicOrder = shuffleArray([`1.3`, `1.4`, `1.5`, `2.1`, `2.2`]);
+        const pickedMap = new Map();
+        // First pass: up to 2 per topic
+        topicOrder.forEach(function (tId) {
+          const candidates = shuffleArray(unseen.filter(function (q) { return q.topic === tId; }));
+          candidates.slice(0, 2).forEach(function (q) {
+            if (pickedMap.size < 10) pickedMap.set(q.id, q);
+          });
+        });
+        // Fill any remainder from remaining unseen
+        if (pickedMap.size < 10) {
+          shuffleArray(unseen).forEach(function (q) {
+            if (pickedMap.size < 10 && !pickedMap.has(q.id)) {
+              pickedMap.set(q.id, q);
+            }
+          });
+        }
+        chosen = shuffleArray(Array.from(pickedMap.values()));
+      } else {
+        chosen = shuffleArray(unseen).slice(0, 10);
+      }
+
+      const currentSeen = appState.seenByTopic[topicId] || [];
+      chosen.forEach(function (q) {
+        if (currentSeen.indexOf(q.id) === -1) currentSeen.push(q.id);
+      });
+      appState.seenByTopic[topicId] = currentSeen;
+
+      return { items: chosen.map(buildShuffledQuestionEntry), wrappedAround: wrappedAround };
+    }
+
+    function showPoolNotice(message) {
+      const notice = document.getElementById(`pool-reset-notice`);
+      if (!notice) return;
+      if (!message) {
+        notice.style.display = `none`;
+        notice.textContent = ``;
+        return;
+      }
+      notice.textContent = message;
+      notice.style.display = `block`;
+    }
+
+    async function persistState() {
+      if (typeof window.notebookAppApi !== `undefined` && window.notebookAppApi.setAppState) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Safe fallback in isolated preview
+        }
+      }
+    }
+
+    function getQuestionById(id) {
+      return QUESTION_BANK.find(function (q) { return q.id === id; }) || null;
+    }
+
+    function getTopicMeta(topicId) {
+      return TOPICS.find(function (t) { return t.id === topicId; }) || TOPICS[0];
+    }
+
+    function startNewRound(topicOverride) {
+      const targetTopic = topicOverride || appState.selectedTopic || `all`;
+      appState.selectedTopic = targetTopic;
+      const result = pickTenNewQuestions(targetTopic);
+      appState.round = {
+        topicId: targetTopic,
+        items: result.items,
+        currentIndex: 0,
+        finished: false
+      };
+      if (result.wrappedAround) {
+        showPoolNotice(`Todas as questões inéditas deste modo foram concluídas. O banco foi renovado para mais 10 questões!`);
+      } else {
+        showPoolNotice(``);
+      }
+      renderAll();
+      persistState();
+    }
+
+    function selectTopic(topicId) {
+      if (topicId === appState.selectedTopic && appState.round && !appState.round.finished) {
+        // Clicking the active topic starts a fresh round of 10 new questions
+        startNewRound(topicId);
+        return;
+      }
+      startNewRound(topicId);
+    }
+
+    function selectAnswer(optionIdx) {
+      if (!appState.round || appState.round.finished) return;
+      const item = appState.round.items[appState.round.currentIndex];
+      if (!item || item.chosenIdx !== null) return;
+
+      item.chosenIdx = optionIdx;
+      const q = getQuestionById(item.id);
+      const isCorrect = optionIdx === item.correctIdx;
+
+      appState.stats.totalAnswered += 1;
+      if (isCorrect) {
+        appState.stats.totalCorrect += 1;
+        appState.stats.currentStreak += 1;
+      } else {
+        appState.stats.currentStreak = 0;
+      }
+
+      if (q && appState.stats.byTopic[q.topic]) {
+        appState.stats.byTopic[q.topic].answered += 1;
+        if (isCorrect) appState.stats.byTopic[q.topic].correct += 1;
+      }
+
+      renderAll();
+      persistState();
+    }
+
+    function nextQuestion() {
+      if (!appState.round) return;
+      const currentItem = appState.round.items[appState.round.currentIndex];
+      if (!currentItem || currentItem.chosenIdx === null) return;
+
+      if (appState.round.currentIndex < appState.round.items.length - 1) {
+        appState.round.currentIndex += 1;
+      } else {
+        appState.round.finished = true;
+        appState.stats.roundsCompleted += 1;
+      }
+      renderAll();
+      persistState();
+    }
+
+    function handleResetHistory(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Clique novamente para confirmar`;
+        setTimeout(function () {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Zerar histórico salvo`;
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Zerar histórico salvo`;
+      appState.seenByTopic = {
+        all: [],
+        '1.3': [],
+        '1.4': [],
+        '1.5': [],
+        '2.1': [],
+        '2.2': []
+      };
+      appState.stats = {
+        totalAnswered: 0,
+        totalCorrect: 0,
+        roundsCompleted: 0,
+        currentStreak: 0,
+        byTopic: {
+          '1.3': { answered: 0, correct: 0 },
+          '1.4': { answered: 0, correct: 0 },
+          '1.5': { answered: 0, correct: 0 },
+          '2.1': { answered: 0, correct: 0 },
+          '2.2': { answered: 0, correct: 0 }
+        }
+      };
+      startNewRound(appState.selectedTopic);
+    }
+
+    function renderTopicSelector() {
+      const container = document.getElementById(`topic-selector`);
+      if (!container) return;
+
+      const html = TOPICS.map(function (t) {
+        const pool = getPoolForTopic(t.id);
+        const seenCount = (appState.seenByTopic[t.id] || []).length;
+        const unseenCount = Math.max(0, pool.length - seenCount);
+        const activeClass = appState.selectedTopic === t.id ? ` is-active` : ``;
+        return (
+          `<button type="button" class="topic-btn${activeClass}" onclick="selectTopic('${t.id}')" aria-pressed="${appState.selectedTopic === t.id}">` +
+            `<div class="topic-btn-top">` +
+              `<span class="index-num">${t.code}</span>` +
+              `<span class="topic-count">${unseenCount}/${pool.length} novas</span>` +
+            `</div>` +
+            `<span class="topic-title">${t.title}</span>` +
+            `<span class="topic-sub">${t.short}</span>` +
+          `</button>`
+        );
+      }).join(``);
+
+      container.innerHTML = html;
+
+      const labelEl = document.getElementById(`active-mode-label`);
+      if (labelEl) {
+        const currentMeta = getTopicMeta(appState.selectedTopic);
+        labelEl.textContent = `Modo atual: ${currentMeta.title}`;
+      }
+    }
+
+    function renderSidebar() {
+      const round = appState.round;
+      let roundCorrect = 0;
+      if (round && Array.isArray(round.items)) {
+        round.items.forEach(function (it) {
+          if (it.chosenIdx !== null && it.chosenIdx === it.correctIdx) roundCorrect += 1;
+        });
+      }
+
+      const elRoundScore = document.getElementById(`kpi-round-score`);
+      if (elRoundScore) elRoundScore.textContent = `${roundCorrect} / 10`;
+
+      const elStreak = document.getElementById(`kpi-streak`);
+      if (elStreak) elStreak.textContent = `${appState.stats.currentStreak}`;
+
+      const elAcc = document.getElementById(`kpi-total-acc`);
+      if (elAcc) {
+        const pct = appState.stats.totalAnswered > 0
+          ? Math.round((appState.stats.totalCorrect / appState.stats.totalAnswered) * 100)
+          : 0;
+        elAcc.textContent = `${pct}%`;
+      }
+
+      const elRounds = document.getElementById(`kpi-rounds-done`);
+      if (elRounds) elRounds.textContent = `${appState.stats.roundsCompleted}`;
+
+      const pool = getPoolForTopic(appState.selectedTopic);
+      const seen = (appState.seenByTopic[appState.selectedTopic] || []).length;
+      const unseen = Math.max(0, pool.length - seen);
+      const elPoolTxt = document.getElementById(`pool-remaining-text`);
+      if (elPoolTxt) elPoolTxt.textContent = `${unseen} / ${pool.length}`;
+      const elPoolBar = document.getElementById(`pool-bar-fill`);
+      if (elPoolBar) {
+        const ratio = pool.length > 0 ? Math.round((unseen / pool.length) * 100) : 0;
+        elPoolBar.style.width = `${ratio}%`;
+      }
+
+      const cheatEl = document.getElementById(`topic-cheat-list`);
+      if (cheatEl) {
+        const meta = getTopicMeta(appState.selectedTopic);
+        cheatEl.innerHTML = meta.tips.map(function (tip) {
+          return `<li>${tip}</li>`;
+        }).join(``);
+      }
+
+      const statsListEl = document.getElementById(`topic-stats-list`);
+      if (statsListEl) {
+        const unitTopics = TOPICS.filter(function (t) { return t.id !== `all`; });
+        statsListEl.innerHTML = unitTopics.map(function (t) {
+          const st = appState.stats.byTopic[t.id] || { answered: 0, correct: 0 };
+          const pct = st.answered > 0 ? Math.round((st.correct / st.answered) * 100) : 0;
+          return (
+            `<div class="topic-stat-row">` +
+              `<div class="topic-stat-head">` +
+                `<span>${t.title}</span>` +
+                `<span class="topic-stat-nums">${st.correct}/${st.answered} (${pct}%)</span>` +
+              `</div>` +
+              `<div class="mini-bar-track">` +
+                `<div class="mini-bar-fill" style="width: ${pct}%;"></div>` +
+              `</div>` +
+            `</div>`
+          );
+        }).join(``);
+      }
+    }
+
+    function renderQuizStage() {
+      const stage = document.getElementById(`quiz-stage`);
+      if (!stage || !appState.round) return;
+
+      const round = appState.round;
+      if (round.finished) {
+        renderSummaryStage(stage, round);
+        return;
+      }
+
+      const idx = round.currentIndex;
+      const item = round.items[idx];
+      const q = getQuestionById(item.id);
+      if (!q) return;
+
+      const topicMeta = getTopicMeta(q.topic);
+      const answered = item.chosenIdx !== null;
+      const isCorrect = answered && item.chosenIdx === item.correctIdx;
+
+      const pipsHtml = round.items.map(function (it, pIdx) {
+        let cls = `progress-pip`;
+        if (it.chosenIdx !== null) {
+          cls += it.chosenIdx === it.correctIdx ? ` is-correct` : ` is-wrong`;
+        } else if (pIdx === idx) {
+          cls += ` is-current`;
+        }
+        return `<div class="${cls}" aria-hidden="true"></div>`;
+      }).join(``);
+
+      const quoteHtml = q.quote
+        ? `<div class="question-quote">${q.quote}</div>`
+        : ``;
+
+      const optionsHtml = item.shuffledOptions.map(function (optText, oIdx) {
+        let cls = `option-btn`;
+        let iconHtml = ``;
+        if (answered) {
+          if (oIdx === item.correctIdx) {
+            cls += ` is-correct`;
+            iconHtml = `<span class="option-status-icon" aria-label="Correta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></span>`;
+          } else if (oIdx === item.chosenIdx) {
+            cls += ` is-wrong`;
+            iconHtml = `<span class="option-status-icon" aria-label="Incorreta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>`;
+          } else {
+            cls += ` is-dimmed`;
+          }
+        }
+        return (
+          `<button type="button" class="${cls}" ${answered ? `disabled` : ``} onclick="selectAnswer(${oIdx})">` +
+            `<span class="option-key">${OPTION_LETTERS[oIdx]}</span>` +
+            `<span class="option-label">${optText}</span>` +
+            `${iconHtml}` +
+          `</button>`
+        );
+      }).join(``);
+
+      let feedbackHtml = ``;
+      if (answered) {
+        const verdictClass = isCorrect ? `is-correct` : `is-wrong`;
+        const verdictTitle = isCorrect
+          ? `Resposta correta!`
+          : `Resposta incorreta — opção correta: ${OPTION_LETTERS[item.correctIdx]}) ${item.shuffledOptions[item.correctIdx]}`;
+        const nextLabel = idx < round.items.length - 1
+          ? `Próxima questão`
+          : `Ver resultado da rodada`;
+
+        feedbackHtml =
+          `<div class="feedback-box ${verdictClass}">` +
+            `<div class="feedback-verdict">${verdictTitle}</div>` +
+            `<p class="feedback-explanation">${q.explanation}</p>` +
+            `<div class="feedback-actions">` +
+              `<span class="kbd-hint">Pressione Enter para continuar</span>` +
+              `<button type="button" class="btn btn-primary" onclick="nextQuestion()">` +
+                `${nextLabel}` +
+                `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>` +
+              `</button>` +
+            `</div>` +
+          `</div>`;
+      }
+
+      const numStr = String(idx + 1).padStart(2, `0`);
+      stage.innerHTML =
+        `<div class="quiz-meta-row">` +
+          `<div class="quiz-badges">` +
+            `<span class="tag-chip tag-chip-slate">${topicMeta.title}</span>` +
+            `<span class="tag-chip">${q.focus}</span>` +
+          `</div>` +
+          `<span class="question-counter">QUESTÃO ${numStr} / 10</span>` +
+        `</div>` +
+        `<div class="progress-strip" role="progressbar" aria-valuemin="1" aria-valuemax="10" aria-valuenow="${idx + 1}">` +
+          `${pipsHtml}` +
+        `</div>` +
+        `<div class="question-block">` +
+          `<h3 class="question-text">${q.prompt}</h3>` +
+          `${quoteHtml}` +
+        `</div>` +
+        `<div class="options-list" role="group" aria-label="Alternativas de resposta">` +
+          `${optionsHtml}` +
+        `</div>` +
+        `${feedbackHtml}`;
+    }
+
+    function renderSummaryStage(stage, round) {
+      let score = 0;
+      const topicBreakdown = {};
+      round.items.forEach(function (it) {
+        const q = getQuestionById(it.id);
+        const ok = it.chosenIdx === it.correctIdx;
+        if (ok) score += 1;
+        if (q) {
+          if (!topicBreakdown[q.topic]) topicBreakdown[q.topic] = { total: 0, correct: 0 };
+          topicBreakdown[q.topic].total += 1;
+          if (ok) topicBreakdown[q.topic].correct += 1;
+        }
+      });
+
+      const pct = Math.round((score / round.items.length) * 100);
+      let verdictMessage = ``;
+      if (score >= 9) {
+        verdictMessage = `<strong>Excelente domínio!</strong> Você acertou quase todas as estruturas e expressões desta rodada de Business Start-Up 2.`;
+      } else if (score >= 7) {
+        verdictMessage = `<strong>Bom desempenho!</strong> A maioria dos pontos gramaticais e lexicais está consolidada; vale revisar os detalhes das questões erradas abaixo.`;
+      } else if (score >= 5) {
+        verdictMessage = `<strong>Progresso intermediário.</strong> Confira as explicações do gabarito comentado e jogue outra rodada com 10 perguntas inéditas para fixar.`;
+      } else {
+        verdictMessage = `<strong>Hora de revisar o guia rápido!</strong> Leia as explicações abaixo e use o botão ao lado para praticar uma nova bateria de 10 perguntas.`;
+      }
+
+      const breakdownChips = Object.keys(topicBreakdown).sort().map(function (tId) {
+        const b = topicBreakdown[tId];
+        return `<span class="tag-chip tag-chip-slate">${tId}: ${b.correct}/${b.total}</span>`;
+      }).join(``);
+
+      const reviewHtml = round.items.map(function (it, rIdx) {
+        const q = getQuestionById(it.id);
+        if (!q) return ``;
+        const ok = it.chosenIdx === it.correctIdx;
+        const userAns = it.chosenIdx !== null ? it.shuffledOptions[it.chosenIdx] : `—`;
+        const rightAns = it.shuffledOptions[it.correctIdx];
+        const statusCls = ok ? `is-correct` : `is-wrong`;
+        const badgeText = ok ? `Acerto` : `Erro`;
+
+        return (
+          `<article class="review-item ${statusCls}">` +
+            `<div class="review-item-head">` +
+              `<span class="dossier-meta">Questão ${String(rIdx + 1).padStart(2, `0`)} · Tópico ${q.topic} · ${q.focus}</span>` +
+              `<span class="tag-chip">${badgeText}</span>` +
+            `</div>` +
+            `<p class="review-q">${q.prompt}</p>` +
+            `<div class="review-answers">` +
+              `<span>Sua resposta: <strong>${userAns}</strong></span>` +
+              `${ok ? `` : `<span>Resposta correta: <strong>${rightAns}</strong></span>`}` +
+            `</div>` +
+            `<div class="review-exp">${q.explanation}</div>` +
+          `</article>`
+        );
+      }).join(``);
+
+      const roundMeta = getTopicMeta(round.topicId);
+      stage.innerHTML =
+        `<div class="summary-header">` +
+          `<div>` +
+            `<div class="summary-score-sub">Rodada concluída · ${roundMeta.title}</div>` +
+            `<div class="summary-score-big">${score} / 10 (${pct}%)</div>` +
+          `</div>` +
+          `<div class="quiz-badges">${breakdownChips}</div>` +
+        `</div>` +
+        `<div class="summary-verdict">${verdictMessage}</div>` +
+        `<div class="summary-actions">` +
+          `<button type="button" class="btn btn-accent" onclick="startNewRound()">` +
+            `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 16h5v5"></path></svg>` +
+            `Reiniciar rodada com 10 perguntas novas` +
+          `</button>` +
+          `<button type="button" class="btn btn-secondary" onclick="selectTopic('all')">` +
+            `Jogar modo mesclado (todos os tópicos)` +
+          `</button>` +
+        `</div>` +
+        `<h3 class="section-kicker">Gabarito comentado da rodada</h3>` +
+        `<div class="review-list">${reviewHtml}</div>`;
+    }
+
+    function renderAll() {
+      renderTopicSelector();
+      renderQuizStage();
+      renderSidebar();
+    }
+
+    function handleKeydown(e) {
+      if (!appState.round || appState.round.finished) return;
+      const item = appState.round.items[appState.round.currentIndex];
+      if (!item) return;
+
+      if (item.chosenIdx === null) {
+        if (e.key === `1`) selectAnswer(0);
+        else if (e.key === `2`) selectAnswer(1);
+        else if (e.key === `3`) selectAnswer(2);
+        else if (e.key === `4`) selectAnswer(3);
+      } else if (e.key === `Enter`) {
+        e.preventDefault();
+        nextQuestion();
+      }
+    }
+
+    async function initApp() {
+      const bankMeta = document.getElementById(`bank-total-meta`);
+      if (bankMeta) {
+        bankMeta.textContent = `${QUESTION_BANK.length} Questões Revisadas`;
+      }
+
+      if (typeof window.notebookAppApi !== `undefined` && window.notebookAppApi.getAppState) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object` && saved.round && Array.isArray(saved.round.items)) {
+            appState = saved;
+          }
+        } catch (err) {
+          // Proceed with fresh state
+        }
+      }
+
+      if (!appState.round) {
+        startNewRound(`all`);
+      } else {
+        renderAll();
+      }
+
+      document.addEventListener(`keydown`, handleKeydown);
+
+      if (typeof window.notebookAppApi !== `undefined` && window.notebookAppApi.notifyAppReady) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>
